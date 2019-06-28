@@ -7,13 +7,20 @@ import { MatToolbarModule,
          MatButtonModule,
          MatIconModule,
          MatListModule,
-         MatSidenavModule } from "@angular/material";
+         MatSidenavModule,
+         MatTableModule,
+         MatSortModule,
+         MatFormFieldModule,
+         MatInputModule,
+         MatPaginatorModule,
+         MatPaginatorIntl } from "@angular/material";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { SheetsComponent } from "./sheets/sheets.component";
 import { ConcertsComponent } from "./concerts/concerts.component";
+import PaginatorTranslation from "./shared/paginatorTranslation";
 
 @NgModule({
   declarations: [
@@ -32,9 +39,14 @@ import { ConcertsComponent } from "./concerts/concerts.component";
     MatIconModule,
     MatListModule,
     MatSidenavModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ { provide: MatPaginatorIntl, useClass: PaginatorTranslation}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
-<mat-toolbar class="toolbar" color="primary">
-  <mat-toolbar-row>
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="toolbar-row">
     <div id="menu-icon" [className]="className" (click)="sidenav.toggle(); modifyMenuIcon()" fxShow="true" fxHide.gt-sm>
       <span></span>
       <span></span>
@@ -43,5 +43,8 @@
   </mat-sidenav>
   <mat-sidenav-content fxFlexFill>
     <router-outlet></router-outlet>
+    <footer class="footer">
+      <span>Harmonie du 3ème canton - Reims - 2019</span>
+    </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
