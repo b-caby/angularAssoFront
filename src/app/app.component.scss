@@ -1,16 +1,52 @@
+#logo {
+  cursor: pointer;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
-.toolbar-row {
-  height: 64px;
+#connectedUser {
+  font-family: "Roboto", sans-serif;
+  padding: 10px;
+  cursor: default;
+  color: #200f46;
+}
+#connectedUser .mat-icon {
+  vertical-align: bottom;
+}
+
+#primaryToolbar {
+  height: 56px;
+  min-height: 56px;
+  color: #ffffff;
+  background: #200f46;
+  padding-right: 5px;
+}
+
+#secondaryToolbar{
+  height: 40px; 
+  min-height: 40px;
+  background: #bca8ec;
+  color: #000000;
+  padding: 0px;
+}
+
+#userButton {
+  padding: 0px;
+}
+
+.menuButton {
+  display: block;
+  text-align: left;
+  padding: 0px 10px;
 }
 
 .container {
   position: absolute;
   width: 100%;
   min-width: 100%;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 96px);
 }
 
 .footer {
@@ -28,7 +64,7 @@
   width: 18px;
   height: 12px;
   position: relative;
-  margin: 9px 6px;
+  margin: 9px 6px 9px 21px;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -45,7 +81,7 @@
   position: absolute;
   height: 2px;
   width: 100%;
-  background: #ffffff;
+  background: #000000;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);

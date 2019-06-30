@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
+import { Component, ViewChild, OnInit } from "@angular/core";
+import { MatSidenav } from "@angular/material";
 
 @Component({
   selector: "app-root",
@@ -7,10 +7,19 @@ import { RouterOutlet } from "@angular/router";
   styleUrls: ["./app.component.scss"]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+  @ViewChild("sidenav", {static: true}) sidenav: MatSidenav;
   public className = "";
+  public firstname = "Bérenger";
+  public lastname = "C.";
 
-  modifyMenuIcon(outlet: RouterOutlet) {
-    this.className = this.className === "" ? "open" : "";
+  ngOnInit() {
+    // Sidenav behaviour management 
+    this.sidenav.openedStart.subscribe(() => {
+      this.className = "open";
+    });
+    this.sidenav.closedStart.subscribe(() => {
+      this.className = "";
+    });
   }
 }

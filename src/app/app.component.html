@@ -1,13 +1,46 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row class="toolbar-row">
-    <div id="menu-icon" [className]="className" (click)="sidenav.toggle(); modifyMenuIcon()" fxShow="true" fxHide.gt-sm>
+  <!-- Primary row -->
+  <mat-toolbar-row id="primaryToolbar">
+    <img id="logo" src="../assets/img/logo.png" routerLink="/home" height="45" width="45">
+    <span class="spacer"></span>
+    <div>
+      <button id="userButton" mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+          <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <!-- Dropdown menu -->
+      <mat-menu #menu yPosition="below" xPosition="before">
+        <div style="text-align: center">
+          <span id="connectedUser">
+              <mat-icon>face</mat-icon>
+              {{firstname}} {{lastname}}
+            </span>
+        </div>
+        <hr>
+        <div>
+          <a class="menuButton" routerLink="/sheets" routerLinkActive="active" mat-button>
+            Mon compte
+          </a>
+          <a class="menuButton" routerLink="/home" routerLinkActive="active" mat-button>
+            Se déconnecter
+          </a>
+        </div>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+
+  <!-- Secondary row -->
+  <mat-toolbar-row id="secondaryToolbar">
+    <div id="menu-icon" [className]="className" (click)="sidenav.toggle();" fxShow="true" fxHide.gt-sm>
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <span>H3C</span>
-    <span class="spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
+      <a routerLink="/home" routerLinkActive="active" mat-button>
+        <mat-icon>home</mat-icon>
+        Accueil
+      </a>
       <a routerLink="/sheets" routerLinkActive="active" mat-button>
         <mat-icon>music_note</mat-icon>
         Partitions
@@ -16,17 +49,20 @@
         <mat-icon>event_note</mat-icon>
         Concerts
       </a>
-      <a href="#" mat-button>
-        <mat-icon>account_box</mat-icon>
-        Mon compte
-      </a>
     </div>
   </mat-toolbar-row>
+
+
 </mat-toolbar>
 
+<!-- Sidenav -->
 <mat-sidenav-container class="container">
   <mat-sidenav #sidenav>
     <mat-nav-list>
+      <a routerLink="/home" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
+        <mat-icon>home</mat-icon>
+        Accueil
+      </a>
       <a routerLink="/sheets" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
         <mat-icon>music_note</mat-icon>
         Partitions
@@ -34,10 +70,6 @@
       <a routerLink="/concerts" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
         <mat-icon>event_note</mat-icon>
         Concerts
-      </a>
-      <a href="#" mat-list-item>
-        <mat-icon>account_box</mat-icon>
-        Mon compte
       </a>
     </mat-nav-list>
   </mat-sidenav>
