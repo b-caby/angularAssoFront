@@ -22,13 +22,15 @@ import { HomeComponent } from "./home/home.component";
 import { SheetsComponent } from "./sheets/sheets.component";
 import { ConcertsComponent } from "./concerts/concerts.component";
 import PaginatorTranslation from "./shared/paginatorTranslation";
+import { SheetDetailComponent } from "./sheets/sheet-detail/sheet-detail.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SheetsComponent,
-    ConcertsComponent
+    ConcertsComponent,
+    SheetDetailComponent
   ],
   imports: [
     BrowserModule,

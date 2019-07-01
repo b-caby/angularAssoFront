@@ -23,3 +23,9 @@ table {
 .mat-row:nth-child(odd){
     background-color: #f8f8f8;
 }
+
+#symbolRow {
+    padding-right: 5px;
+    width: 64px;
+    cursor: pointer;
+}
