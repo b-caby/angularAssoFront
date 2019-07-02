@@ -1,7 +1,3 @@
-table {
-    width: 100%;
-}
-
 #container {
     font-family: "Poppins", sans-serif;
     margin: 20px;
@@ -11,35 +7,7 @@ table {
     text-align: right;
 }
 
-td.mat-cell {
-
-    padding: 0px 2px;
-    border-left: 0.5px solid rgba(0, 0, 0, 0.12);
-}
-
-@media only screen and (max-width: 600px)  {
-    td.mat-cell {
-        max-width: 120px;
-        text-overflow: ellipsis;
-        overflow-x: hidden;
-    }
-}
-
 ::ng-deep button.mat-sort-header-button {
     text-transform: uppercase;
     color: #808488;
-}
-
-.mat-row:nth-child(even){
-    background-color: #ffffff;
-}
-
-.mat-row:nth-child(odd){
-    background-color: #f8f8f8;
-}
-
-#symbolRow {
-    padding-right: 5px;
-    width: 64px;
-    cursor: pointer;
 }

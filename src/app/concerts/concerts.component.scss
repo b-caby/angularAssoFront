@@ -1,0 +1,13 @@
+#container {
+    font-family: "Poppins", sans-serif;
+    margin: 20px;
+}
+
+.filter {
+    text-align: right;
+}
+
+::ng-deep button.mat-sort-header-button {
+    text-transform: uppercase;
+    color: #808488;
+}

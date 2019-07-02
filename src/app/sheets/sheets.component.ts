@@ -61,7 +61,6 @@ export class SheetsComponent implements OnInit, OnDestroy {
 
   private setupTable() {
     this.displayedColumns = ["id", "title", "author", "composer", "genre", "symbol"];
-    console.log(this.currentScreenWidth);
     if (this.currentScreenWidth === "xs") {
       this.displayedColumns = ["title", "author", "symbol"];
     }

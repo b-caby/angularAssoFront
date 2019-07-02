@@ -25,6 +25,7 @@ import { SheetsComponent } from "./sheets/sheets.component";
 import { ConcertsComponent } from "./concerts/concerts.component";
 import PaginatorTranslation from "./shared/paginatorTranslation";
 import { SheetDetailComponent } from "./sheets/sheet-detail/sheet-detail.component";
+import { ConcertDetailComponent } from './concerts/concert-detail/concert-detail.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SheetDetailComponent } from "./sheets/sheet-detail/sheet-detail.compone
     HomeComponent,
     SheetsComponent,
     ConcertsComponent,
-    SheetDetailComponent
+    SheetDetailComponent,
+    ConcertDetailComponent
   ],
   imports: [
     BrowserModule,
