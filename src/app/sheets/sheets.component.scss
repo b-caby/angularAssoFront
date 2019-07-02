@@ -11,6 +11,20 @@ table {
     text-align: right;
 }
 
+td.mat-cell {
+
+    padding: 0px 2px;
+    border-left: 0.5px solid rgba(0, 0, 0, 0.12);
+}
+
+@media only screen and (max-width: 600px)  {
+    td.mat-cell {
+        max-width: 120px;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+    }
+}
+
 ::ng-deep button.mat-sort-header-button {
     text-transform: uppercase;
     color: #808488;

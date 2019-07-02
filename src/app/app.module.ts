@@ -13,7 +13,9 @@ import { MatToolbarModule,
          MatSortModule,
          MatFormFieldModule,
          MatInputModule,
+         MatCardModule,
          MatPaginatorModule,
+         MatGridListModule,
          MatPaginatorIntl } from "@angular/material";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -48,6 +50,8 @@ import { SheetDetailComponent } from "./sheets/sheet-detail/sheet-detail.compone
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
+    MatGridListModule,
     AppRoutingModule
   ],
   providers: [ { provide: MatPaginatorIntl, useClass: PaginatorTranslation}],

@@ -12,19 +12,31 @@
             <!-- Id column -->
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
-                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                <td mat-cell *matCellDef="let element">{{element.id}}</td>
+            </ng-container>
+
+            <!-- Title column -->
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Titre</th>
+                <td mat-cell *matCellDef="let element">{{element.title}}</td>
             </ng-container>
         
             <!-- Author column -->
             <ng-container matColumnDef="author">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Auteur</th>
-                <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+                <td mat-cell *matCellDef="let element">{{element.author}}</td>
             </ng-container>
         
             <!-- Composer column -->
             <ng-container matColumnDef="composer">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Compositeur</th>
-                <td mat-cell *matCellDef="let element"> {{element.composer}} </td>
+                <td mat-cell *matCellDef="let element">{{element.composer}}</td>
+            </ng-container>
+
+            <!-- Genre column -->
+            <ng-container matColumnDef="genre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Genre</th>
+                <td mat-cell *matCellDef="let element">{{element.genre}}</td>
             </ng-container>
 
             <!-- Symbol column -->
