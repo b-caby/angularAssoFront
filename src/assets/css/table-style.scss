@@ -6,16 +6,34 @@
   background-color: #f8f8f8;
 }
 
-#symbolRow {
+#detailsSymbol, #addSymbol {
   width: 38px;
   cursor: pointer;
 }
 
-#symbolRow .mat-button {
+#detailsSymbol .mat-button {
   min-width: 38px;
   padding: 0px 5px;
   border-radius: 20px;
   background-color: #f0f0f0;
+}
+
+#addSymbol .mat-button {
+  min-width: 38px;
+  padding: 0;
+  border-radius: 20px;
+  color: lightgray;
+}
+
+#addSymbol .mat-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+#addSymbol .mat-icon {
+  width: auto;
+  height: auto;
+  font-size: 36px;
 }
 
 td.mat-cell {

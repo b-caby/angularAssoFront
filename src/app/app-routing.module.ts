@@ -6,11 +6,14 @@ import { ConcertsComponent } from "./concerts/concerts.component";
 import { SheetsComponent } from "./sheets/sheets.component";
 import { SheetDetailComponent } from "./sheets/sheet-detail/sheet-detail.component";
 import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail.component";
+import { SheetStepsComponent } from "./sheets/sheet-steps/sheet-steps.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "home", component: HomeComponent },
   { path: "sheets", component: SheetsComponent },
+  { path: "sheets/steps", component: SheetStepsComponent },
+  { path: "sheets/steps/:id", component: SheetStepsComponent },
   { path: "sheets/:id", component: SheetDetailComponent },
   { path: "concerts", component: ConcertsComponent },
   { path: "concerts/:id", component: ConcertDetailComponent}

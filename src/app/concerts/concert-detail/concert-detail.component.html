@@ -78,7 +78,7 @@
                 <!-- Symbol column -->
                 <ng-container matColumnDef="symbol">
                     <th mat-header-cell *matHeaderCellDef></th>
-                    <td id="symbolRow" mat-cell *matCellDef="let element">
+                    <td id="detailsSymbol" mat-cell *matCellDef="let element">
                         <a [routerLink]="['/sheets', element.id]" routerLinkActive="active" mat-button>
                             <mat-icon>search</mat-icon>
                         </a> 

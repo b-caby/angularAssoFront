@@ -1,0 +1,51 @@
+<div id="container">
+    <h1>{{title}}</h1>
+    <mat-vertical-stepper [linear]="true" #stepper class="mat-elevation-z2">
+        <mat-step [stepControl]="infosFormGroup">
+            <form [formGroup]="infosFormGroup">
+                <ng-template matStepLabel>Infos</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Titre" formControlName="title" required/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Auteur" formControlName="author"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Compositeur" formControlName="composer"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Genre" formControlName="genre"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Type" formControlName="type"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Editeur" formControlName="publisher"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Details" formControlName="details"/>
+                </mat-form-field>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="classificationFormGroup">
+            <form [formGroup]="classificationFormGroup">
+            <ng-template matStepLabel>Rangement</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="Numéro de boite" formControlName="boxNumber"/>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Numéro de conducteur" formControlName="trayNumber"/>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Date d'enregistrement" formControlName="recordingDate"/>
+            </mat-form-field>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Validation</ng-template>
+            <div>
+                <button mat-button (click)="stepper.reset()">Enregistrer</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+</div>
