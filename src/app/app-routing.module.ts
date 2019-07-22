@@ -7,16 +7,21 @@ import { SheetsComponent } from "./sheets/sheets.component";
 import { SheetDetailComponent } from "./sheets/sheet-detail/sheet-detail.component";
 import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail.component";
 import { SheetStepsComponent } from "./sheets/sheet-steps/sheet-steps.component";
+import { AuthComponent } from "./auth/auth.component";
+import { ShellComponent } from "./shell/shell.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path: "home", component: HomeComponent },
-  { path: "sheets", component: SheetsComponent },
-  { path: "sheets/steps", component: SheetStepsComponent },
-  { path: "sheets/steps/:id", component: SheetStepsComponent },
-  { path: "sheets/:id", component: SheetDetailComponent },
-  { path: "concerts", component: ConcertsComponent },
-  { path: "concerts/:id", component: ConcertDetailComponent}
+  { path: "", component: ShellComponent, children: [
+    { path: "", redirectTo: "/home", pathMatch: "full" },
+    { path: "home", component: HomeComponent },
+    { path: "sheets", component: SheetsComponent },
+    { path: "sheets/steps", component: SheetStepsComponent },
+    { path: "sheets/steps/:id", component: SheetStepsComponent },
+    { path: "sheets/:id", component: SheetDetailComponent },
+    { path: "concerts", component: ConcertsComponent },
+    { path: "concerts/:id", component: ConcertDetailComponent}
+  ]},
+  { path: "auth", component: AuthComponent}
 ];
 
 @NgModule({
