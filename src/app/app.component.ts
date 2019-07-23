@@ -1,6 +1,4 @@
-import { Component, ViewChild, OnInit } from "@angular/core";
-import { MatSidenav } from "@angular/material";
-import { Subscription } from "rxjs";
+import { Component } from "@angular/core";
 
 @Component({
   selector: "app-root",

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import Sheet from "src/app/shared/models/sheet";
+import { Sheet } from "src/app/shared/models/sheet";
 import { ActivatedRoute } from "@angular/router";
 
 const query =  {

@@ -24,7 +24,7 @@ import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { SheetsComponent } from "./sheets/sheets.component";
 import { ConcertsComponent } from "./concerts/concerts.component";
-import PaginatorTranslation from "./shared/paginatorTranslation";
+import { PaginatorTranslation } from "./shared/paginatorTranslation";
 import { SheetDetailComponent } from "./sheets/sheet-detail/sheet-detail.component";
 import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail.component";
 import { SheetStepsComponent } from "./sheets/sheet-steps/sheet-steps.component";
@@ -65,7 +65,7 @@ import { ShellComponent } from "./shell/shell.component";
     MatStepperModule,
     AppRoutingModule
   ],
-  providers: [ { provide: MatPaginatorIntl, useClass: PaginatorTranslation}],
+  providers: [{ provide: MatPaginatorIntl, useClass: PaginatorTranslation }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-class Sheet {
+export class Sheet {
     public id: number;
     public title: string;
     public author: string;
@@ -19,5 +19,3 @@ class SheetConcert {
     public name: string;
     public location: string;
 }
-
-export default Sheet;

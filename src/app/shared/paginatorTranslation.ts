@@ -1,6 +1,6 @@
 import { MatPaginatorIntl } from "@angular/material";
 
-export default class PaginatorTranslation extends MatPaginatorIntl {
+export class PaginatorTranslation extends MatPaginatorIntl {
     itemsPerPageLabel = "Eléments par page";
     nextPageLabel = "Page suivante";
     previousPageLabel = "Page précédente";

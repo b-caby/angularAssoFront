@@ -9,19 +9,20 @@ import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail
 import { SheetStepsComponent } from "./sheets/sheet-steps/sheet-steps.component";
 import { AuthComponent } from "./auth/auth.component";
 import { ShellComponent } from "./shell/shell.component";
+import { AuthGuard } from "./shared/authGuard";
 
 const routes: Routes = [
   { path: "", component: ShellComponent, children: [
     { path: "", redirectTo: "/home", pathMatch: "full" },
-    { path: "home", component: HomeComponent },
-    { path: "sheets", component: SheetsComponent },
-    { path: "sheets/steps", component: SheetStepsComponent },
-    { path: "sheets/steps/:id", component: SheetStepsComponent },
-    { path: "sheets/:id", component: SheetDetailComponent },
-    { path: "concerts", component: ConcertsComponent },
-    { path: "concerts/:id", component: ConcertDetailComponent}
+    { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
+    { path: "sheets", component: SheetsComponent, canActivate: [AuthGuard] },
+    { path: "sheets/steps", component: SheetStepsComponent, canActivate: [AuthGuard] },
+    { path: "sheets/steps/:id", component: SheetStepsComponent, canActivate: [AuthGuard] },
+    { path: "sheets/:id", component: SheetDetailComponent, canActivate: [AuthGuard] },
+    { path: "concerts", component: ConcertsComponent, canActivate: [AuthGuard] },
+    { path: "concerts/:id", component: ConcertDetailComponent, canActivate: [AuthGuard] }
   ]},
-  { path: "auth", component: AuthComponent}
+  { path: "auth", component: AuthComponent }
 ];
 
 @NgModule({

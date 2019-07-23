@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatSort, MatTableDataSource } from "@angular/material";
-import { Router } from "@angular/router";
 
 const query =  {
   id: 1022,
@@ -32,14 +31,9 @@ export class SheetDetailComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
   }
-
-  public goToSheetModification() {
-    this.router.navigate(["/sheets/steps"], {state: {data: this.data}});
-  }
-
 }

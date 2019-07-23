@@ -21,7 +21,7 @@
             <a class="menuButton" routerLink="/sheets" routerLinkActive="active" mat-button>
               Mon compte
             </a>
-            <a class="menuButton" routerLink="/home" routerLinkActive="active" mat-button>
+            <a class="menuButton" (click)="logout()" routerLinkActive="active" mat-button>
               Se déconnecter
             </a>
           </div>
@@ -31,7 +31,7 @@
   
     <!-- Secondary row -->
     <mat-toolbar-row id="secondaryToolbar">
-      <div id="menu-icon" [className]="className" (click)="sidenav.toggle();" fxShow="true" fxHide.gt-sm>
+      <div id="menu-icon" [className]="menuButtonStyle" (click)="sidenav.toggle();" fxShow="true" fxHide.gt-sm>
         <span></span>
         <span></span>
         <span></span>
