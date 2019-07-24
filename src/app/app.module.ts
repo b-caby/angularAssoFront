@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { MatToolbarModule,
          MatButtonModule,
          MatIconModule,
@@ -30,6 +31,7 @@ import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail
 import { SheetStepsComponent } from "./sheets/sheet-steps/sheet-steps.component";
 import { AuthComponent } from "./auth/auth.component";
 import { ShellComponent } from "./shell/shell.component";
+import { ApiInterceptor } from "./shared/apiInterceptor";
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { ShellComponent } from "./shell/shell.component";
     ShellComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
@@ -65,7 +68,8 @@ import { ShellComponent } from "./shell/shell.component";
     MatStepperModule,
     AppRoutingModule
   ],
-  providers: [{ provide: MatPaginatorIntl, useClass: PaginatorTranslation }],
+  providers: [{ provide: MatPaginatorIntl, useClass: PaginatorTranslation },
+              { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
