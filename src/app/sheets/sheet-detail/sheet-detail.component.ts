@@ -1,23 +1,10 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatSort, MatTableDataSource } from "@angular/material";
+import { ActivatedRoute } from "@angular/router";
 
-const query =  {
-  id: 1022,
-  title: "The Danserye",
-  author: "MELLAERTS Manu",
-  composer: "Tylman Susato",
-  genre: "classique moyen âge",
-  type: "",
-  publisher: "",
-  details: "Très dur/solo de saxo alto",
-  boxNumber: "1",
-  trayNumber: "2",
-  recordingDate: "2019",
-  concerts: [
-    { id: 1, date: "06/01/2016", name: "Concert annuel", location: "Conservatoire Reims" },
-    { id: 2, date: "07/01/2016", name: "Concert annuel", location: "Conservatoire Reims" }
-  ]
-};
+import { SheetConcert, Sheet } from "src/app/shared/models/sheet";
+import { SheetService } from "src/app/shared/services/sheetService";
+
 
 @Component({
   selector: "app-sheet-detail",
@@ -25,15 +12,27 @@ const query =  {
   styleUrls: ["./sheet-detail.component.scss"]
 })
 export class SheetDetailComponent implements OnInit {
-  public data = query;
-  public dataSource = new MatTableDataSource(query.concerts);
-  public displayedColumns = ["date", "name", "location", "symbol"];
+  public dataSource: MatTableDataSource<SheetConcert>;
+  public sheetInfos: Sheet;
+  public displayedColumns: string[];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() { }
+  constructor(private service: SheetService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.dataSource = new MatTableDataSource([new SheetConcert()]);
+    this.displayedColumns = ["date", "name", "location", "symbol"];
     this.dataSource.sort = this.sort;
+
+    this.getSheetDetails(this.route.snapshot.params.id as number);
+  }
+
+  private getSheetDetails(id: number) {
+    this.service.getSheetDetails(id).subscribe((data: Sheet) => {
+      this.sheetInfos = data;
+      this.dataSource = new MatTableDataSource([data.concerts]);
+    });
   }
 }

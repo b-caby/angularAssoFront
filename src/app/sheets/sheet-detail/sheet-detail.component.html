@@ -1,4 +1,5 @@
-<a [routerLink]="['/sheets/steps', data.id]" routerLinkActive="active" mat-button>
+<app-loader></app-loader>
+<a [routerLink]="['/sheets/steps', sheetInfos.id]" routerLinkActive="active" mat-button>
     Modifier
 </a>
 
@@ -16,31 +17,31 @@
             <div class="grid-container">
                 <p class="grid-row">
                     <span class="grid-cell info-label">Titre</span>
-                    <span class="grid-cell">{{data.title}}</span>
+                    <span class="grid-cell">{{sheetInfos.title}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Auteur</span>
-                    <span class="grid-cell">{{data.author}}</span>
+                    <span class="grid-cell">{{sheetInfos.author}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Compositeur</span>
-                    <span class="grid-cell">{{data.composer}}</span>
+                    <span class="grid-cell">{{sheetInfos.composer}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Genre</span>
-                    <span class="grid-cell">{{data.genre}}</span>
+                    <span class="grid-cell">{{sheetInfos.genre}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Type</span>
-                    <span class="grid-cell">{{data.type}}</span>
+                    <span class="grid-cell">{{sheetInfos.type}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Editeur</span>
-                    <span class="grid-cell">{{data.publisher}}</span>
+                    <span class="grid-cell">{{sheetInfos.publisher}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Details</span>
-                    <span class="grid-cell">{{data.details}}</span>
+                    <span class="grid-cell">{{sheetInfos.details}}</span>
                 </p>
             </div>
         </mat-card-content>
@@ -58,15 +59,15 @@
             <div class="grid-container">
                 <p class="grid-row">
                     <span class="grid-cell info-label">Numéro de boite</span>
-                    <span class="grid-cell">{{data.boxNumber}}</span>
+                    <span class="grid-cell">{{sheetInfos.boxNumber}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Numéro de conducteur</span>
-                    <span class="grid-cell">{{data.trayNumber}}</span>
+                    <span class="grid-cell">{{sheetInfos.trayNumber}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Date d'enregistrement</span>
-                    <span class="grid-cell">{{data.recordingDate}}</span>
+                    <span class="grid-cell">{{sheetInfos.recordingDate}}</span>
                 </p>
             </div>
         </mat-card-content>

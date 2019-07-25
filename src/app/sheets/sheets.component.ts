@@ -27,14 +27,17 @@ export class SheetsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.title = "Partitions";
-    this.getAllSheets();
-
+    this.dataSource = new MatTableDataSource([new Sheet()]);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
         this.setupTable();
       }
     });
+
+    this.getAllSheets();
   }
 
   ngOnDestroy(): void {
@@ -52,12 +55,9 @@ export class SheetsComponent implements OnInit, OnDestroy {
     }
   }
 
-  private async getAllSheets() {
+  private getAllSheets() {
     this.service.getAllSheets().subscribe((data: Sheet[]) => {
-      console.log(data);
       this.dataSource = new MatTableDataSource(data);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
     });
   }
 }

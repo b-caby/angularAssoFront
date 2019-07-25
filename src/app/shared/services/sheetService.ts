@@ -12,7 +12,11 @@ export class SheetService {
 
   constructor(private http: HttpClient) { }
 
-  getAllSheets() {
+  public getAllSheets() {
     return this.http.get(`${this.url}/api/sheets`);
+  }
+
+  public getSheetDetails(id: number) {
+    return this.http.get(`${this.url}/api/sheets/${id}`);
   }
 }

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AppRoutingModule } from "./app-routing.module";
 import { MatToolbarModule,
          MatButtonModule,
          MatIconModule,
@@ -18,20 +19,22 @@ import { MatToolbarModule,
          MatPaginatorModule,
          MatGridListModule,
          MatStepperModule,
+         MatProgressSpinnerModule,
          MatPaginatorIntl } from "@angular/material";
 
-import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { SheetsComponent } from "./sheets/sheets.component";
 import { ConcertsComponent } from "./concerts/concerts.component";
-import { PaginatorTranslation } from "./shared/paginatorTranslation";
 import { SheetDetailComponent } from "./sheets/sheet-detail/sheet-detail.component";
 import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail.component";
 import { SheetStepsComponent } from "./sheets/sheet-steps/sheet-steps.component";
 import { AuthComponent } from "./auth/auth.component";
 import { ShellComponent } from "./shell/shell.component";
+import { LoaderComponent } from "./loader/loader.component";
+
 import { ApiInterceptor } from "./shared/apiInterceptor";
+import { PaginatorTranslation } from "./shared/paginatorTranslation";
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import { ApiInterceptor } from "./shared/apiInterceptor";
     ConcertDetailComponent,
     SheetStepsComponent,
     AuthComponent,
-    ShellComponent
+    ShellComponent,
+    LoaderComponent
   ],
   imports: [
     HttpClientModule,
@@ -66,6 +70,7 @@ import { ApiInterceptor } from "./shared/apiInterceptor";
     MatCardModule,
     MatGridListModule,
     MatStepperModule,
+    MatProgressSpinnerModule,
     AppRoutingModule
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorTranslation },

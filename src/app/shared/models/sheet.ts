@@ -13,7 +13,7 @@ export class Sheet {
     public concerts: SheetConcert;
 }
 
-class SheetConcert {
+export class SheetConcert {
     public id: number;
     public date: string;
     public name: string;
