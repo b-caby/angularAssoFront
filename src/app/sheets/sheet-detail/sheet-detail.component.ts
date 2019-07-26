@@ -15,6 +15,7 @@ export class SheetDetailComponent implements OnInit {
   public dataSource: MatTableDataSource<SheetConcert>;
   public sheetInfos: Sheet;
   public displayedColumns: string[];
+  public hasConcerts: boolean;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -22,17 +23,20 @@ export class SheetDetailComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getSheetDetails(this.route.snapshot.params.id);
+
     this.dataSource = new MatTableDataSource([new SheetConcert()]);
     this.displayedColumns = ["date", "name", "location", "symbol"];
-    this.dataSource.sort = this.sort;
-
-    this.getSheetDetails(this.route.snapshot.params.id as number);
   }
 
   private getSheetDetails(id: number) {
     this.service.getSheetDetails(id).subscribe((data: Sheet) => {
       this.sheetInfos = data;
-      this.dataSource = new MatTableDataSource([data.concerts]);
+      if (data.concerts) {
+        this.hasConcerts = true;
+        this.dataSource = new MatTableDataSource(data.concerts);
+        this.dataSource.sort = this.sort;
+      }
     });
   }
 }

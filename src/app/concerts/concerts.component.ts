@@ -1,15 +1,10 @@
-import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
+import { Component, OnInit, ViewChild, OnDestroy }   from "@angular/core";
 import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
-import { Subscription } from "rxjs";
-import { MediaObserver, MediaChange } from "@angular/flex-layout";
+import { MediaObserver, MediaChange }                from "@angular/flex-layout";
+import { Subscription }                              from "rxjs";
 
-const data = [
-  { id: 1, date: "06/01/2016", name: "Concert annuel", location: "Conservatoire Reims" },
-  { id: 2, date: "07/01/2016", name: "Concert annuel", location: "Conservatoire Reims" },
-  { id: 3, date: "19/03/2016", name: "Concert de Tinqueux", location: "Salles des Fêtes Guy Hallet" },
-  { id: 4, date: "28/06/2016", name: "Flâneries musicales", location: "Cryptoportique" },
-  { id: 5, date: "23/09/2016", name: "Concert de Bazancourt", location: "Filature de Bazancourt" }
-];
+import { Concert }        from "../shared/models/concert";
+import { ConcertService } from "../shared/services/concertService";
 
 @Component({
   selector: "app-concerts",
@@ -17,22 +12,22 @@ const data = [
   styleUrls: ["./concerts.component.scss"]
 })
 export class ConcertsComponent implements OnInit, OnDestroy {
-  public title = "Concerts";
-  public dataSource = new MatTableDataSource(data);
-  public displayedColumns: string[];
-
-  private currentScreenWidth = "";
+  private currentScreenWidth: string;
   private OnScreenSizeChanged: Subscription;
+  public title: string;
+  public dataSource: MatTableDataSource<Concert>;
+  public displayedColumns: string[];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private mediaObserver: MediaObserver) { }
+  constructor(private mediaObserver: MediaObserver,
+              private service: ConcertService) { }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-
+    this.getAllConcerts();
+    this.title = "Concerts";
+    this.dataSource = new MatTableDataSource([new Concert()]);
     this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
@@ -54,5 +49,13 @@ export class ConcertsComponent implements OnInit, OnDestroy {
     if (this.currentScreenWidth === "xs") {
       this.displayedColumns.shift();
     }
+  }
+
+  private getAllConcerts() {
+    this.service.getAllConcerts().subscribe((data: Concert[]) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 }

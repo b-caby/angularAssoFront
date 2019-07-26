@@ -14,7 +14,7 @@ export class ApiInterceptor implements HttpInterceptor {
         request = request.clone({
             setHeaders: {
                 // tslint:disable-next-line: max-line-length
-                Authorization: `Bearer PUTTHECORRECTTOKEN`
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwibG9naW4iOiJnLmNhbmVwYSIsInJvbGUiOiJtdXNpY2llbiIsImlhdCI6MTU2MTA1NDg1N30.48lEe2cCE9pB1NhbEyku8FUf-KMVw2PQhKCq0UOoub0`
             }
         });
 

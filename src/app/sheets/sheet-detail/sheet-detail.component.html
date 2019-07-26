@@ -74,7 +74,7 @@
     </mat-card>
 </div>
 <!-- Concert info card -->
-<mat-card class="card">
+<mat-card class="card" *ngIf="hasConcerts">
     <mat-card-header>
         <div mat-card-avatar>
             <mat-icon>event_note</mat-icon>
@@ -88,7 +88,7 @@
                 <!-- Date column -->
                 <ng-container matColumnDef="date">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-                    <td mat-cell *matCellDef="let element">{{element.date}}</td>
+                    <td mat-cell *matCellDef="let element">{{element.date | date: "dd/MM/yy"}}</td>
                 </ng-container>
             
                 <!-- Name column -->

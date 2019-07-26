@@ -35,6 +35,7 @@ import { LoaderComponent } from "./loader/loader.component";
 
 import { ApiInterceptor } from "./shared/apiInterceptor";
 import { PaginatorTranslation } from "./shared/paginatorTranslation";
+import { ErrorInterceptor } from "./shared/errorInterceptor";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { PaginatorTranslation } from "./shared/paginatorTranslation";
     AppRoutingModule
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorTranslation },
-              { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }],
+              { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+              { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

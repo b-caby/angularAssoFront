@@ -10,12 +10,12 @@ export class Sheet {
     public boxNumber: string;
     public trayNumber: string;
     public recordingDate: string;
-    public concerts: SheetConcert;
+    public concerts: SheetConcert[];
 }
 
 export class SheetConcert {
     public id: number;
-    public date: string;
+    public date: Date;
     public name: string;
     public location: string;
 }

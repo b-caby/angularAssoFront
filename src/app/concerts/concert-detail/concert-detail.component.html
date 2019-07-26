@@ -11,15 +11,15 @@
             <div class="grid-container">
                 <p class="grid-row">
                     <span class="grid-cell info-label">Date</span>
-                    <span class="grid-cell">{{data.date}}</span>
+                    <span class="grid-cell">{{concertInfos.date | date: "dd/MM/yy"}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Nom</span>
-                    <span class="grid-cell">{{data.name}}</span>
+                    <span class="grid-cell">{{concertInfos.name}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Lieu</span>
-                    <span class="grid-cell">{{data.location}}</span>
+                    <span class="grid-cell">{{concertInfos.location}}</span>
                 </p>
             </div>
         </mat-card-content>
@@ -37,22 +37,22 @@
             <div class="grid-container">
                 <p class="grid-row">
                     <span class="grid-cell info-label">Nombre de musiciens</span>
-                    <span class="grid-cell">{{data.playerNumber}}</span>
+                    <span class="grid-cell">{{concertInfos.playerNumber}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Nombre de spectacteurs</span>
-                    <span class="grid-cell">{{data.spectatorNumber}}</span>
+                    <span class="grid-cell">{{concertInfos.spectatorNumber}}</span>
                 </p>
                 <p class="grid-row">
                     <span class="grid-cell info-label">Durée</span>
-                    <span class="grid-cell">{{data.length}}</span>
+                    <span class="grid-cell">{{concertInfos.length}}</span>
                 </p>
             </div>
         </mat-card-content>
     </mat-card>
 </div>
 
-<mat-card class="card">
+<mat-card *ngIf="hasSheets" class="card">
     <mat-card-header>
         <div mat-card-avatar>
             <mat-icon>music_note</mat-icon>

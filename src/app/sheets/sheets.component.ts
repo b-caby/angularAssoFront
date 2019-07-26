@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
+import { Component, OnInit, ViewChild, OnDestroy }   from "@angular/core";
 import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
-import { MediaObserver, MediaChange } from "@angular/flex-layout";
-import { Subscription } from "rxjs";
+import { MediaObserver, MediaChange }                from "@angular/flex-layout";
+import { Subscription }                              from "rxjs";
 
 import { SheetService } from "../shared/services/sheetService";
-import { Sheet } from "../shared/models/sheet";
+import { Sheet }        from "../shared/models/sheet";
 
 @Component({
   selector: "app-sheets",
@@ -27,17 +27,22 @@ export class SheetsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.title = "Partitions";
-    this.dataSource = new MatTableDataSource([new Sheet()]);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
-      if (change[0].mqAlias !== this.currentScreenWidth) {
-        this.currentScreenWidth = change[0].mqAlias;
-        this.setupTable();
-      }
-    });
-
     this.getAllSheets();
+  }
+
+  private getAllSheets() {
+    this.service.getAllSheets().subscribe((data: Sheet[]) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+
+      this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
+        if (change[0].mqAlias !== this.currentScreenWidth) {
+          this.currentScreenWidth = change[0].mqAlias;
+          this.setupTable();
+        }
+      });
+    });
   }
 
   ngOnDestroy(): void {
@@ -53,11 +58,5 @@ export class SheetsComponent implements OnInit, OnDestroy {
     if (this.currentScreenWidth === "xs") {
       this.displayedColumns = ["title", "author", "symbol"];
     }
-  }
-
-  private getAllSheets() {
-    this.service.getAllSheets().subscribe((data: Sheet[]) => {
-      this.dataSource = new MatTableDataSource(data);
-    });
   }
 }

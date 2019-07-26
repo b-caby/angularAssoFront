@@ -1,21 +1,10 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatTableDataSource, MatSort } from "@angular/material";
+import { MatTableDataSource, MatSort }  from "@angular/material";
+import { ActivatedRoute }               from "@angular/router";
 
-const query =  {
-  id: 12,
-  date: "19/11/2016",
-  name: "Sainte Cécile",
-  location: "Basilique Saint Remi",
-  playerNumber: 50,
-  spectatorNumber: 1000,
-  length: 75,
-  sheets: [
-    { id: 1131, title: "Marche pour la Cérémonie des Turcs", author: "John Doe" },
-    { id: 1038, title: "Orégon", author: "Jane Doe" },
-    { id: 1517, title: "AVE MARIA ", author: "James Smith" },
-    { id: 1518, title: "HALLELUJAH ", author: "Sarah Smith" }
-  ]
-}
+import { ConcertSheets, Concert }  from "src/app/shared/models/concert";
+import { ConcertService }          from "src/app/shared/services/concertService";
+
 
 @Component({
   selector: "app-concert-detail",
@@ -23,15 +12,33 @@ const query =  {
   styleUrls: ["./concert-detail.component.scss"]
 })
 export class ConcertDetailComponent implements OnInit {
-  public data = query;
-  public dataSource = new MatTableDataSource(query.sheets);
-  public displayedColumns = ["title", "author", "symbol"];
+  public dataSource: MatTableDataSource<ConcertSheets>;
+  public displayedColumns: string[];
+  public concertInfos: Concert;
+  public hasSheets: boolean;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private service: ConcertService) { }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
+    this.getConcertDetails(this.route.snapshot.params.id);
+
+    this.concertInfos = new Concert();
+    this.dataSource = new MatTableDataSource([new ConcertSheets()]);
+    this.displayedColumns = ["title", "author", "symbol"];
+  }
+
+  private getConcertDetails(id: number) {
+    this.service.GetConcertDetails(id).subscribe((data: Concert[]) => {
+      console.log(data);
+      this.concertInfos = data[0];
+      if (data[0].sheets) {
+        this.hasSheets = true;
+        this.dataSource = new MatTableDataSource(data[0].sheets);
+        this.dataSource.sort = this.sort;
+      }
+    });
   }
 }
