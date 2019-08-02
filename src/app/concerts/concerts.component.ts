@@ -25,15 +25,16 @@ export class ConcertsComponent implements OnInit, OnDestroy {
               private service: ConcertService) { }
 
   ngOnInit() {
-    this.getAllConcerts();
     this.title = "Concerts";
-    this.dataSource = new MatTableDataSource([new Concert()]);
+    this.dataSource = new MatTableDataSource();
     this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
         this.setupTable();
       }
     });
+
+    this.getAllConcerts();
   }
 
   ngOnDestroy() {
@@ -53,7 +54,7 @@ export class ConcertsComponent implements OnInit, OnDestroy {
 
   private getAllConcerts() {
     this.service.getAllConcerts().subscribe((data: Concert[]) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.data = data;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });

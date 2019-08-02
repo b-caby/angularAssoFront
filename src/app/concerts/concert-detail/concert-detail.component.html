@@ -1,4 +1,17 @@
-<div id="container">
+<app-loader></app-loader>
+<div id="edit-header">
+    <h1>{{title}}</h1>
+    <div class="edit-header-buttons">
+        <a [routerLink]="['/concerts/steps', concertInfos.id]" routerLinkActive="active" mat-button>
+            <mat-icon>edit</mat-icon>
+        </a>
+        <a (click)="openDeleteDialog()" mat-button>
+            <mat-icon>delete</mat-icon>
+        </a>
+    </div>
+</div>
+
+<div id="edit-container">
     <mat-card class="card">
         <mat-card-header>
             <div mat-card-avatar>
@@ -52,7 +65,7 @@
     </mat-card>
 </div>
 
-<mat-card *ngIf="hasSheets" class="card">
+<mat-card [ngClass]='hasSheets ? "visible": "hidden"' class="card">
     <mat-card-header>
         <div mat-card-avatar>
             <mat-icon>music_note</mat-icon>

@@ -19,6 +19,7 @@ import { MatToolbarModule,
          MatPaginatorModule,
          MatGridListModule,
          MatStepperModule,
+         MatDialogModule,
          MatProgressSpinnerModule,
          MatPaginatorIntl } from "@angular/material";
 
@@ -32,6 +33,8 @@ import { SheetStepsComponent } from "./sheets/sheet-steps/sheet-steps.component"
 import { AuthComponent } from "./auth/auth.component";
 import { ShellComponent } from "./shell/shell.component";
 import { LoaderComponent } from "./loader/loader.component";
+import { DeleteDialogComponent } from "./dialog/delete-dialog/delete-dialog.component";
+import { ConcertStepsComponent } from "./concerts/concert-steps/concert-steps.component";
 
 import { ApiInterceptor } from "./shared/apiInterceptor";
 import { PaginatorTranslation } from "./shared/paginatorTranslation";
@@ -48,8 +51,11 @@ import { ErrorInterceptor } from "./shared/errorInterceptor";
     SheetStepsComponent,
     AuthComponent,
     ShellComponent,
-    LoaderComponent
+    LoaderComponent,
+    DeleteDialogComponent,
+    ConcertStepsComponent
   ],
+  entryComponents: [DeleteDialogComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -71,6 +77,7 @@ import { ErrorInterceptor } from "./shared/errorInterceptor";
     MatCardModule,
     MatGridListModule,
     MatStepperModule,
+    MatDialogModule,
     MatProgressSpinnerModule,
     AppRoutingModule
   ],

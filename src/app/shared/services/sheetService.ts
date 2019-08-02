@@ -19,4 +19,8 @@ export class SheetService {
   public getSheetDetails(id: number) {
     return this.http.get(`${this.url}/api/sheets/${id}`);
   }
+
+  public deleteSheet(id: number) {
+    return this.http.delete(`${this.url}/api/sheets/${id}`);
+  }
 }

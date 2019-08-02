@@ -35,7 +35,11 @@
 
             <!-- Symbol column -->
             <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef></th>
+                <th id="addSymbol" mat-header-cell *matHeaderCellDef>
+                    <a [routerLink]="['/concerts/steps']" routerLinkActive="active" mat-button>
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </a> 
+                </th>
                 <td id="detailsSymbol" mat-cell *matCellDef="let element">
                     <a [routerLink]="['/concerts', element.id]" routerLinkActive="active" mat-button>
                         <mat-icon>search</mat-icon>

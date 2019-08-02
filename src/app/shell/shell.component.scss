@@ -6,6 +6,10 @@ cursor: pointer;
 flex: 1 1 auto;
 }
 
+h1 {
+    margin: 0px;
+}
+
 #connectedUser {
 font-family: "Roboto", sans-serif;
 padding: 10px;
@@ -137,4 +141,9 @@ opacity: 0;
 transform: rotate(-45deg);
 top: 10.5px;
 left: 1px;
+}
+
+.edit-delete {
+    display: flex;
+    justify-content: flex-end;
 }

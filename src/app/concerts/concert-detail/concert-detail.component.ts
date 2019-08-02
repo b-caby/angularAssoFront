@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatTableDataSource, MatSort }  from "@angular/material";
+import { MatDialog }                    from "@angular/material/dialog";
 import { ActivatedRoute }               from "@angular/router";
 
-import { ConcertSheets, Concert }  from "src/app/shared/models/concert";
-import { ConcertService }          from "src/app/shared/services/concertService";
+import { ConcertSheets, Concert } from "src/app/shared/models/concert";
+import { ConcertService }         from "src/app/shared/services/concertService";
+import { DeleteDialogComponent }  from "src/app/dialog/delete-dialog/delete-dialog.component";
 
 
 @Component({
@@ -16,28 +18,46 @@ export class ConcertDetailComponent implements OnInit {
   public displayedColumns: string[];
   public concertInfos: Concert;
   public hasSheets: boolean;
+  public title: string;
+  private concertId: number;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private route: ActivatedRoute,
-              private service: ConcertService) { }
+              private service: ConcertService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getConcertDetails(this.route.snapshot.params.id);
-
+    this.title = "Détail concert";
     this.concertInfos = new Concert();
-    this.dataSource = new MatTableDataSource([new ConcertSheets()]);
+    this.dataSource = new MatTableDataSource();
     this.displayedColumns = ["title", "author", "symbol"];
+
+    this.concertId = this.route.snapshot.params.id;
+
+    this.getConcertDetails(this.concertId);
   }
 
   private getConcertDetails(id: number) {
-    this.service.GetConcertDetails(id).subscribe((data: Concert[]) => {
-      console.log(data);
-      this.concertInfos = data[0];
-      if (data[0].sheets) {
+    this.service.GetConcertDetails(id).subscribe((data: Concert) => {
+      this.concertInfos = data;
+      if (data.sheets) {
         this.hasSheets = true;
-        this.dataSource = new MatTableDataSource(data[0].sheets);
+        this.dataSource.data = data.sheets;
         this.dataSource.sort = this.sort;
+      }
+    });
+  }
+
+  public openDeleteDialog() {
+    const dialog = this.dialog.open(DeleteDialogComponent, {
+      width: "250px",
+    });
+
+    dialog.afterClosed().subscribe((isConfirmed) => {
+      if (isConfirmed) {
+        /*this.service.deleteSheet(this.sheetId);*/
+        console.log(`Delete Sheet with ID = ${this.concertId}`);
       }
     });
   }

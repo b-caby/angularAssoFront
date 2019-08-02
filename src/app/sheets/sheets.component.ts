@@ -27,21 +27,22 @@ export class SheetsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.title = "Partitions";
+    this.dataSource = new MatTableDataSource();
+    this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
+      if (change[0].mqAlias !== this.currentScreenWidth) {
+        this.currentScreenWidth = change[0].mqAlias;
+        this.setupTable();
+      }
+    });
+
     this.getAllSheets();
   }
 
   private getAllSheets() {
     this.service.getAllSheets().subscribe((data: Sheet[]) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.data = data;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-
-      this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
-        if (change[0].mqAlias !== this.currentScreenWidth) {
-          this.currentScreenWidth = change[0].mqAlias;
-          this.setupTable();
-        }
-      });
     });
   }
 
