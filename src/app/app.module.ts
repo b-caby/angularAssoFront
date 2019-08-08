@@ -32,13 +32,15 @@ import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail
 import { SheetStepsComponent } from "./sheets/sheet-steps/sheet-steps.component";
 import { AuthComponent } from "./auth/auth.component";
 import { ShellComponent } from "./shell/shell.component";
-import { LoaderComponent } from "./loader/loader.component";
-import { DeleteDialogComponent } from "./dialog/delete-dialog/delete-dialog.component";
+import { LoaderComponent } from "./components/loader/loader.component";
+import { DeleteDialogComponent } from "./components/delete-dialog/delete-dialog.component";
 import { ConcertStepsComponent } from "./concerts/concert-steps/concert-steps.component";
+import { ErrorHandlerComponent } from "./components/error-handler/error-handler.component";
 
 import { ApiInterceptor } from "./shared/apiInterceptor";
 import { PaginatorTranslation } from "./shared/paginatorTranslation";
 import { ErrorInterceptor } from "./shared/errorInterceptor";
+
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { ErrorInterceptor } from "./shared/errorInterceptor";
     ShellComponent,
     LoaderComponent,
     DeleteDialogComponent,
-    ConcertStepsComponent
+    ConcertStepsComponent,
+    ErrorHandlerComponent
   ],
   entryComponents: [DeleteDialogComponent],
   imports: [

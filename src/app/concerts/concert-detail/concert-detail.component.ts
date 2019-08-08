@@ -5,21 +5,22 @@ import { ActivatedRoute }               from "@angular/router";
 
 import { ConcertSheets, Concert } from "src/app/shared/models/concert";
 import { ConcertService }         from "src/app/shared/services/concertService";
-import { DeleteDialogComponent }  from "src/app/dialog/delete-dialog/delete-dialog.component";
-
+import { DeleteDialogComponent }  from "src/app/components/delete-dialog/delete-dialog.component";
 
 @Component({
   selector: "app-concert-detail",
   templateUrl: "./concert-detail.component.html",
-  styleUrls: ["./concert-detail.component.scss"]
+  styleUrls: ["../../../../src/assets/css/itemsdetails-style.scss"]
 })
 export class ConcertDetailComponent implements OnInit {
+
+  private concertId: number;
+
+  public title: string;
+  public concertInfos: Concert;
   public dataSource: MatTableDataSource<ConcertSheets>;
   public displayedColumns: string[];
-  public concertInfos: Concert;
   public hasSheets: boolean;
-  public title: string;
-  private concertId: number;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -34,7 +35,6 @@ export class ConcertDetailComponent implements OnInit {
     this.displayedColumns = ["title", "author", "symbol"];
 
     this.concertId = this.route.snapshot.params.id;
-
     this.getConcertDetails(this.concertId);
   }
 
@@ -56,7 +56,7 @@ export class ConcertDetailComponent implements OnInit {
 
     dialog.afterClosed().subscribe((isConfirmed) => {
       if (isConfirmed) {
-        /*this.service.deleteSheet(this.sheetId);*/
+        /*this.service.deleteSheet(this.concertId);*/
         console.log(`Delete Sheet with ID = ${this.concertId}`);
       }
     });

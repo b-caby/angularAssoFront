@@ -1,21 +1,23 @@
-import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit }                  from "@angular/core";
 import { ActivatedRoute }                     from "@angular/router";
 
 import { ConcertService } from "src/app/shared/services/concertService";
-import { Concert } from "src/app/shared/models/concert";
+import { Concert }        from "src/app/shared/models/concert";
 
 @Component({
   selector: "app-concert-steps",
   templateUrl: "./concert-steps.component.html",
-  styleUrls: ["./concert-steps.component.scss"]
+  styleUrls: ["../../../../src/assets/css/itemssteps-style.scss"]
 })
 export class ConcertStepsComponent implements OnInit {
+
+  private currentConcert: Concert;
+
+  public title: string;
   public infosFormGroup: FormGroup;
   public audienceFormGroup: FormGroup;
   public sheetFormGroup: FormGroup;
-  public title: string;
-  private currentConcert: Concert;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,

@@ -1,20 +1,22 @@
-import { Component, OnInit }                  from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit }                  from "@angular/core";
 import { ActivatedRoute }                     from "@angular/router";
 
-import { Sheet }        from "src/app/shared/models/sheet";
-import { SheetService } from "src/app/shared/services/sheetService";
+import { SheetService }  from "src/app/shared/services/sheetService";
+import { Sheet }         from "src/app/shared/models/sheet";
 
 @Component({
   selector: "app-sheet-steps",
   templateUrl: "./sheet-steps.component.html",
-  styleUrls: ["./sheet-steps.component.scss"]
+  styleUrls: ["../../../../src/assets/css/itemssteps-style.scss"]
 })
 export class SheetStepsComponent implements OnInit {
+
+  private currentSheet: Sheet;
+
+  public title: string;
   public infosFormGroup: FormGroup;
   public classificationFormGroup: FormGroup;
-  public title: string;
-  private currentSheet: Sheet;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
@@ -68,5 +70,9 @@ export class SheetStepsComponent implements OnInit {
       trayNumber: this.currentSheet.trayNumber,
       recordingDate: this.currentSheet.recordingDate
     });
+  }
+
+  public saveSheet() {
+
   }
 }

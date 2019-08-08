@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, OnDestroy }   from "@angular/core";
 import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
+import { Component, OnInit, ViewChild, OnDestroy }   from "@angular/core";
 import { MediaObserver, MediaChange }                from "@angular/flex-layout";
 import { Subscription }                              from "rxjs";
 
@@ -12,8 +12,10 @@ import { Sheet }        from "../shared/models/sheet";
   styleUrls: ["./sheets.component.scss"]
 })
 export class SheetsComponent implements OnInit, OnDestroy {
+
   private currentScreenWidth: string;
-  private OnScreenSizeChanged: Subscription;
+  private onScreenSizeChanged: Subscription;
+
   public title: string;
   public dataSource: MatTableDataSource<Sheet>;
   public displayedColumns: string[];
@@ -28,7 +30,7 @@ export class SheetsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.title = "Partitions";
     this.dataSource = new MatTableDataSource();
-    this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
+    this.onScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
         this.setupTable();
@@ -38,16 +40,17 @@ export class SheetsComponent implements OnInit, OnDestroy {
     this.getAllSheets();
   }
 
-  private getAllSheets() {
-    this.service.getAllSheets().subscribe((data: Sheet[]) => {
-      this.dataSource.data = data;
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    });
+  ngOnDestroy() {
+    this.onScreenSizeChanged.unsubscribe();
   }
 
-  ngOnDestroy(): void {
-    this.OnScreenSizeChanged.unsubscribe();
+  private getAllSheets() {
+    this.service.getAllSheets().subscribe(
+      (data: Sheet[]) => {
+        this.dataSource.data = data;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+    });
   }
 
   public applyFilter(filter: string) {

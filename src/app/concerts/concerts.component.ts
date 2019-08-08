@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, OnDestroy }   from "@angular/core";
 import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
+import { Component, OnInit, ViewChild, OnDestroy }   from "@angular/core";
 import { MediaObserver, MediaChange }                from "@angular/flex-layout";
 import { Subscription }                              from "rxjs";
 
-import { Concert }        from "../shared/models/concert";
 import { ConcertService } from "../shared/services/concertService";
+import { Concert }        from "../shared/models/concert";
 
 @Component({
   selector: "app-concerts",
@@ -12,8 +12,10 @@ import { ConcertService } from "../shared/services/concertService";
   styleUrls: ["./concerts.component.scss"]
 })
 export class ConcertsComponent implements OnInit, OnDestroy {
+
   private currentScreenWidth: string;
-  private OnScreenSizeChanged: Subscription;
+  private onScreenSizeChanged: Subscription;
+
   public title: string;
   public dataSource: MatTableDataSource<Concert>;
   public displayedColumns: string[];
@@ -27,7 +29,7 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.title = "Concerts";
     this.dataSource = new MatTableDataSource();
-    this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
+    this.onScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
         this.setupTable();
@@ -38,7 +40,7 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.OnScreenSizeChanged.unsubscribe();
+    this.onScreenSizeChanged.unsubscribe();
   }
 
   public applyFilter(filter: string) {
@@ -48,7 +50,7 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   private setupTable() {
     this.displayedColumns = ["id", "date", "name", "location", "symbol"];
     if (this.currentScreenWidth === "xs") {
-      this.displayedColumns.shift();
+      this.displayedColumns = ["date", "name", "symbol"];
     }
   }
 

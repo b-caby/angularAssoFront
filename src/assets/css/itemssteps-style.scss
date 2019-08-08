@@ -1,0 +1,28 @@
+$color: #200f46;
+
+#container {
+    font-family: "Poppins", sans-serif;
+    margin: 20px;
+}
+
+::ng-deep .mat-vertical-stepper-header .mat-step-icon {
+    background-color: $color;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: $color
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: $color
+}
+
+::ng-deep .mat-input-element {
+    caret-color: $color
+}
+
+#validate {
+    border: 1px solid $color;
+    width: 100%;
+    color: $color;
+}

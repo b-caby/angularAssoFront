@@ -1,3 +1,5 @@
+<app-loader></app-loader>
+<app-error-handler></app-error-handler>
 <div id="container">
     <h1>{{title}}</h1>
     <mat-vertical-stepper [linear]="true" #stepper class="mat-elevation-z2">
@@ -37,7 +39,10 @@
         <mat-step>
             <ng-template matStepLabel>Validation</ng-template>
             <div>
-                <button mat-button (click)="stepper.reset()">Enregistrer</button>
+                <button id="validate" mat-button (click)="stepper.reset()">
+                    <mat-icon>done</mat-icon> 
+                    Enregistrer
+                </button>
             </div>
         </mat-step>
     </mat-vertical-stepper>

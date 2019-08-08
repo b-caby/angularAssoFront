@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { LoaderService } from "../shared/services/loaderService";
+import { LoaderService } from "../../shared/services/loaderService";
 import { Subject } from "rxjs";
 
 @Component({
@@ -16,8 +16,8 @@ export class LoaderComponent implements OnInit {
   constructor(private loaderService: LoaderService) { }
 
   ngOnInit() {
-    this.color = 'primary';
-    this.mode = 'indeterminate';
+    this.color = "primary";
+    this.mode = "indeterminate";
     this.value = 50;
     this.isLoading = this.loaderService.isLoading;
   }

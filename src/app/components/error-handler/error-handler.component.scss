@@ -1,0 +1,108 @@
+$pin-size: 5vmin;
+$signboard-wrapper-init-time: 1000ms;
+$signboard-wrapper-init-sign-move-time: 1000ms;
+$signboard-wrapper-sign-move-time: 3000ms;
+$signboard-wrapper-sign-move-delay-time: $signboard-wrapper-init-time + $signboard-wrapper-init-sign-move-time;
+$signboard-wrapper-rotation-degree: 3deg;
+
+$signboard-background-color: #ff5625;
+$signboard-text-shadow-color: darken($signboard-background-color, 20%);
+$string-border-color: #893d00;
+$pin-pin1-background-color: #9f9f9f;
+$pin-pin2-3-background-color: darken($signboard-background-color, 15%);
+
+html, body, .main-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  display: block;
+  z-index: 99999;
+  background-color:#fafafa;
+}
+
+.main-wrapper {
+  font-size: 15vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signboard-wrapper {
+  width: 75vmin;
+  height: 55vmin;
+  margin: 20px;
+  position: relative;
+  flex-shrink: 0;
+  transform-origin: center #{$pin-size / 2};
+  animation:
+    $signboard-wrapper-init-time init forwards,
+    $signboard-wrapper-init-sign-move-time init-sign-move ease-out $signboard-wrapper-init-time,
+    $signboard-wrapper-sign-move-time sign-move $signboard-wrapper-sign-move-delay-time infinite;
+  .signboard {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    background-color: $signboard-background-color;
+    width: 100%;
+    height: 35vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    border-radius: 4vmin;
+    text-shadow: 0 -0.015em $signboard-text-shadow-color;
+  }
+  .string {
+    width: 30vmin;
+    height: 30vmin;
+    border: solid 0.9vmin $string-border-color;
+    border-bottom: none;
+    border-right: none;
+    position: absolute;
+    left: 50%;
+    transform-origin: top left;
+    transform: rotatez(45deg);
+  }
+  .pin {
+    width: 5vmin;
+    height: 5vmin;
+    position: absolute;
+    border-radius: 50%;
+    &.pin1 {
+      background-color: $pin-pin1-background-color;
+      top: 0;
+      left: calc(50% - #{$pin-size / 2});
+    }
+    &.pin2, &.pin3 {
+      background-color: $pin-pin2-3-background-color;
+      top: 21.5vmin;
+    }
+    &.pin2 {
+      left: 13vmin;
+    }
+    &.pin3 {
+      right: 13vmin;
+    }
+  }
+}
+
+@keyframes init {
+  0%   { transform: scale(0); }
+  40%  { transform: scale(1.1); }
+  60%  { transform: scale(0.9); }
+  80%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes init-sign-move {
+  100% { transform: rotatez($signboard-wrapper-rotation-degree); }
+}
+
+@keyframes sign-move {
+  0%   { transform: rotatez($signboard-wrapper-rotation-degree); }
+  50%  { transform: rotatez(-$signboard-wrapper-rotation-degree); }
+  100% { transform: rotatez($signboard-wrapper-rotation-degree); }
+}
