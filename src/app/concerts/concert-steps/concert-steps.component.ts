@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Component, OnInit }                  from "@angular/core";
-import { ActivatedRoute }                     from "@angular/router";
+import { ActivatedRoute, Router }             from "@angular/router";
 
 import { ConcertService } from "src/app/shared/services/concertService";
 import { Concert }        from "src/app/shared/models/concert";
@@ -20,6 +20,7 @@ export class ConcertStepsComponent implements OnInit {
   public sheetFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
+              private router: Router,
               private route: ActivatedRoute,
               private service: ConcertService) { }
 
@@ -63,5 +64,9 @@ export class ConcertStepsComponent implements OnInit {
       spectatorNumber: this.currentConcert.spectatorNumber,
       length: this.currentConcert.length
     });
+  }
+
+  public saveConcert() {
+    this.router.navigateByUrl("/sheets");
   }
 }

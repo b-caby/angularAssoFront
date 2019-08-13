@@ -21,6 +21,12 @@ $color: #200f46;
     caret-color: $color
 }
 
+form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(auto, 500px));
+}
+
+
 #validate {
     border: 1px solid $color;
     width: 100%;

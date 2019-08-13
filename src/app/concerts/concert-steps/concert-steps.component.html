@@ -13,7 +13,9 @@
                     <input matInput placeholder="Lieu" formControlName="location"/>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="Date" formControlName="date"/>
+                    <input matInput placeholder="Date" [matDatepicker]="datepicker" formControlName="date"/>
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker></mat-datepicker>
                 </mat-form-field>
             </form>
         </mat-step>
@@ -21,25 +23,26 @@
             <form [formGroup]="audienceFormGroup">
             <ng-template matStepLabel>Audience</ng-template>
             <mat-form-field>
-                <input matInput placeholder="Nombre de musiciens" formControlName="playerNumber"/>
+                <input matInput type="number" placeholder="Nombre de musiciens" formControlName="playerNumber"/>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Nombre d'auditeurs" formControlName="spectatorNumber"/>
+                <input matInput type="number" placeholder="Nombre d'auditeurs" formControlName="spectatorNumber"/>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Durée" formControlName="length"/>
+                <input matInput type="number" placeholder="Durée" formControlName="length"/>
             </mat-form-field>
             </form>
         </mat-step>
         <mat-step [stepControl]="sheetFormGroup">
             <form [formGroup]="sheetFormGroup">
             <ng-template matStepLabel>Partitions</ng-template>
+            
             </form>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Validation</ng-template>
             <div>
-                <button id="validate" mat-button (click)="stepper.reset()">
+                <button id="validate" mat-button (click)="saveConcert()">
                     <mat-icon>done</mat-icon> 
                     Enregistrer
                 </button>

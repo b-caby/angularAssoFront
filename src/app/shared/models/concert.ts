@@ -3,9 +3,9 @@ export class Concert {
     public date: Date;
     public name: string;
     public location: string;
-    public playerNumber: string;
-    public spectatorNumber: string;
-    public length: string;
+    public playerNumber: number;
+    public spectatorNumber: number;
+    public length: number;
     public sheets: ConcertSheets[];
 }
 

@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+
 import { environment } from "../../../environments/environment";
+import { Concert }     from "../models/concert";
 
 @Injectable({
   providedIn: "root"
@@ -18,5 +20,13 @@ export class ConcertService {
 
   public GetConcertDetails(id: number) {
     return this.http.get(`${this.url}/api/concerts/${id}`);
+  }
+
+  public createConcert(concert: Concert) {
+    return this.http.post(`${this.url}/api/concerts`, concert);
+  }
+
+  public modifyConcert(id: number, concert: Concert) {
+    return this.http.post(`${this.url}/api/concerts/${id}`, concert);
   }
 }
