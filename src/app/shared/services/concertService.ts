@@ -29,4 +29,8 @@ export class ConcertService {
   public modifyConcert(id: number, concert: Concert) {
     return this.http.post(`${this.url}/api/concerts/${id}`, concert);
   }
+
+  public deleteConcert(id: number) {
+    return this.http.delete(`${this.url}/api/concerts/${id}`);
+  }
 }

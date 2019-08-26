@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatTableDataSource, MatSort }  from "@angular/material";
-import { MatDialog }                    from "@angular/material/dialog";
-import { ActivatedRoute }               from "@angular/router";
+import { Component, OnInit, ViewChild }              from "@angular/core";
+import { MatTableDataSource, MatSort, MatSnackBar }  from "@angular/material";
+import { MatDialog }                                 from "@angular/material/dialog";
+import { ActivatedRoute, Router }                    from "@angular/router";
 
 import { ConcertSheets, Concert } from "src/app/shared/models/concert";
 import { ConcertService }         from "src/app/shared/services/concertService";
 import { DeleteDialogComponent }  from "src/app/components/delete-dialog/delete-dialog.component";
+import { ErrorsService }          from "src/app/shared/services/errorsService";
+import { ErrorSnackbarComponent } from "src/app/components/error-snackbar/error-snackbar.component";
 
 @Component({
   selector: "app-concert-detail",
@@ -26,7 +28,10 @@ export class ConcertDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private service: ConcertService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private errorService: ErrorsService,
+              private router: Router,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.title = "Détail concert";
@@ -46,6 +51,8 @@ export class ConcertDetailComponent implements OnInit {
         this.dataSource.data = data.sheets;
         this.dataSource.sort = this.sort;
       }
+    }, (err: any) => {
+      this.errorService.show();
     });
   }
 
@@ -56,8 +63,11 @@ export class ConcertDetailComponent implements OnInit {
 
     dialog.afterClosed().subscribe((isConfirmed) => {
       if (isConfirmed) {
-        /*this.service.deleteSheet(this.concertId);*/
-        console.log(`Delete Sheet with ID = ${this.concertId}`);
+        this.service.deleteConcert(this.concertId).subscribe(() => {
+          this.router.navigateByUrl("/concerts");
+        }, (err: any) => {
+          this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
+        });
       }
     });
   }

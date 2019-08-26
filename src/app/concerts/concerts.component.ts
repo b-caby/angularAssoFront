@@ -5,6 +5,7 @@ import { Subscription }                              from "rxjs";
 
 import { ConcertService } from "../shared/services/concertService";
 import { Concert }        from "../shared/models/concert";
+import { ErrorsService }  from "../shared/services/errorsService";
 
 @Component({
   selector: "app-concerts",
@@ -24,7 +25,8 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private mediaObserver: MediaObserver,
-              private service: ConcertService) { }
+              private service: ConcertService,
+              private errorService: ErrorsService) { }
 
   ngOnInit() {
     this.title = "Concerts";
@@ -59,6 +61,8 @@ export class ConcertsComponent implements OnInit, OnDestroy {
       this.dataSource.data = data;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+    }, (err: any) => {
+      this.errorService.show();
     });
   }
 }
