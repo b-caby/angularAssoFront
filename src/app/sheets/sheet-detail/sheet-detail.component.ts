@@ -1,13 +1,15 @@
-import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
-import { MatSort, MatTableDataSource }  from "@angular/material";
-import { MatDialog }                    from "@angular/material/dialog";
-import { ActivatedRoute }               from "@angular/router";
-import { MediaObserver, MediaChange }   from "@angular/flex-layout";
-import { Subscription }                 from "rxjs";
+import { Component, OnInit, ViewChild, OnDestroy }  from "@angular/core";
+import { MatSort, MatTableDataSource, MatSnackBar } from "@angular/material";
+import { MatDialog }                                from "@angular/material/dialog";
+import { ActivatedRoute, Router }                           from "@angular/router";
+import { MediaObserver, MediaChange }               from "@angular/flex-layout";
+import { Subscription }                             from "rxjs";
 
-import { DeleteDialogComponent } from "src/app/components/delete-dialog/delete-dialog.component";
-import { SheetConcert, Sheet }   from "src/app/shared/models/sheet";
-import { SheetService }          from "src/app/shared/services/sheetService";
+import { DeleteDialogComponent }  from "src/app/components/delete-dialog/delete-dialog.component";
+import { SheetConcert, Sheet }    from "src/app/shared/models/sheet";
+import { SheetService }           from "src/app/shared/services/sheetService";
+import { ErrorsService }          from "src/app/shared/services/errorsService";
+import { ErrorSnackbarComponent } from "src/app/components/error-snackbar/error-snackbar.component";
 
 @Component({
   selector: "app-sheet-detail",
@@ -31,7 +33,10 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
   constructor(private service: SheetService,
               private route: ActivatedRoute,
               private dialog: MatDialog,
-              private mediaObserver: MediaObserver) { }
+              private mediaObserver: MediaObserver,
+              private errorService: ErrorsService,
+              private snackbar: MatSnackBar,
+              private router: Router) { }
 
   ngOnInit() {
     this.title = "Détails partition";
@@ -61,6 +66,9 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
         this.dataSource.data = data.concerts;
         this.dataSource.sort = this.sort;
       }
+    }, (err: any) => {
+      console.log(err);
+      this.errorService.show();
     });
   }
 
@@ -78,8 +86,11 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
 
     dialog.afterClosed().subscribe((isConfirmed) => {
       if (isConfirmed) {
-        /*this.service.deleteSheet(this.sheetId);*/
-        console.log(`Delete Sheet with ID = ${this.sheetId}`);
+        this.service.deleteSheet(this.sheetId).subscribe(() => {
+          this.router.navigateByUrl("/sheets");
+        }, (err: any) => {
+          this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
+        });
       }
     });
   }

@@ -10,10 +10,12 @@ import { ErrorsService } from "src/app/shared/services/errorsService";
 })
 export class ErrorHandlerComponent implements OnInit {
   public hasErrors: Subject<boolean>;
+  public errorMessage: string;
 
   constructor(private service: ErrorsService) { }
 
   ngOnInit() {
+    this.errorMessage = "Merci de contacter l'administrateur du site";
     this.hasErrors = this.service.hasErrors;
   }
 }

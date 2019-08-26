@@ -1,9 +1,12 @@
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Component, OnInit }                  from "@angular/core";
 import { ActivatedRoute, Router }             from "@angular/router";
+import { MatSnackBar }                        from "@angular/material";
 
-import { SheetService }  from "src/app/shared/services/sheetService";
-import { Sheet }         from "src/app/shared/models/sheet";
+import { ErrorSnackbarComponent } from "src/app/components/error-snackbar/error-snackbar.component";
+import { SheetService }           from "src/app/shared/services/sheetService";
+import { Sheet }                  from "src/app/shared/models/sheet";
+import { ErrorsService }          from "src/app/shared/services/errorsService";
 
 @Component({
   selector: "app-sheet-steps",
@@ -22,7 +25,9 @@ export class SheetStepsComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private service: SheetService) {
+              private service: SheetService,
+              private errorService: ErrorsService,
+              private snackbar: MatSnackBar) {
    }
 
   ngOnInit() {
@@ -55,6 +60,8 @@ export class SheetStepsComponent implements OnInit {
     this.service.getSheetDetails(id).subscribe((data: Sheet) => {
       this.currentSheet = data;
       this.formSetValues();
+    }, (err: any) => {
+      this.errorService.show();
     });
   }
 
@@ -90,10 +97,16 @@ export class SheetStepsComponent implements OnInit {
 
     if (this.sheetId) {
       this.service.modifySheet(this.sheetId, sheet).subscribe(() => {
-        this.router.navigateByUrl("/sheets");
+        this.router.navigateByUrl(`/sheets/${this.sheetId}`);
+      }, (err: any) => {
+        this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
       });
     } else {
-      this.service.createSheet(sheet);
+      this.service.createSheet(sheet).subscribe(() => {
+        this.router.navigateByUrl("/sheets");
+      }, (err: any) => {
+        this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
+      });
     }
   }
 }

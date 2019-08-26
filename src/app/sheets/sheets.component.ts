@@ -3,8 +3,9 @@ import { Component, OnInit, ViewChild, OnDestroy }   from "@angular/core";
 import { MediaObserver, MediaChange }                from "@angular/flex-layout";
 import { Subscription }                              from "rxjs";
 
-import { SheetService } from "../shared/services/sheetService";
-import { Sheet }        from "../shared/models/sheet";
+import { SheetService }  from "../shared/services/sheetService";
+import { Sheet }         from "../shared/models/sheet";
+import { ErrorsService } from "../shared/services/errorsService";
 
 @Component({
   selector: "app-sheets",
@@ -24,7 +25,8 @@ export class SheetsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private mediaObserver: MediaObserver,
-              private service: SheetService) {
+              private service: SheetService,
+              private errorService: ErrorsService) {
   }
 
   ngOnInit() {
@@ -45,11 +47,12 @@ export class SheetsComponent implements OnInit, OnDestroy {
   }
 
   private getAllSheets() {
-    this.service.getAllSheets().subscribe(
-      (data: Sheet[]) => {
-        this.dataSource.data = data;
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
+    this.service.getAllSheets().subscribe((data: Sheet[]) => {
+      this.dataSource.data = data;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    }, (err: any) => {
+      this.errorService.show();
     });
   }
 

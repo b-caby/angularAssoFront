@@ -25,6 +25,7 @@ import { MatToolbarModule,
          MatDialogModule,
          MatProgressSpinnerModule,
          MatDatepickerModule,
+         MatSnackBarModule,
          MatPaginatorIntl } from "@angular/material";
 
 import { AppComponent }           from "./app.component";
@@ -43,6 +44,7 @@ import { ErrorHandlerComponent }  from "./components/error-handler/error-handler
 import { ApiInterceptor }         from "./shared/apiInterceptor";
 import { PaginatorTranslation }   from "./shared/paginatorTranslation";
 import { ErrorInterceptor }       from "./shared/errorInterceptor";
+import { ErrorSnackbarComponent } from "./components/error-snackbar/error-snackbar.component";
 
 const MY_FORMATS = {
   parse: {
@@ -70,9 +72,10 @@ const MY_FORMATS = {
     LoaderComponent,
     DeleteDialogComponent,
     ConcertStepsComponent,
-    ErrorHandlerComponent
+    ErrorHandlerComponent,
+    ErrorSnackbarComponent
   ],
-  entryComponents: [DeleteDialogComponent],
+  entryComponents: [DeleteDialogComponent, ErrorSnackbarComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -98,6 +101,7 @@ const MY_FORMATS = {
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    MatSnackBarModule,
     AppRoutingModule
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorTranslation },

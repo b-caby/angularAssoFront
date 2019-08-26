@@ -22,11 +22,19 @@ html, body, .main-wrapper {
   background-color:#fafafa;
 }
 
+.errorMessage {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  margin: 20px;
+  text-align: center
+}
+
 .main-wrapper {
   font-size: 15vmin;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .signboard-wrapper {
