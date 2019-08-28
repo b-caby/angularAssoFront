@@ -16,7 +16,6 @@ import { ErrorsService }          from "src/app/shared/services/errorsService";
 export class SheetStepsComponent implements OnInit {
 
   private currentSheet: Sheet;
-  private sheetId: number;
 
   public title: string;
   public infosFormGroup: FormGroup;
@@ -33,11 +32,10 @@ export class SheetStepsComponent implements OnInit {
   ngOnInit() {
     this.title = "Ajouter une partition";
     this.currentSheet = new Sheet();
-    this.sheetId = this.route.snapshot.params.id;
 
-    if (this.sheetId) {
+    if (this.route.snapshot.params.id) {
       this.title = "Modifier une partition";
-      this.getSheetDetails(this.sheetId);
+      this.getSheetDetails(this.route.snapshot.params.id);
     }
 
     this.infosFormGroup = this.formBuilder.group({
@@ -95,9 +93,9 @@ export class SheetStepsComponent implements OnInit {
     sheet.trayNumber = this.classificationFormGroup.get("trayNumber").value;
     sheet.recordingDate = this.classificationFormGroup.get("recordingDate").value;
 
-    if (this.sheetId) {
-      this.service.modifySheet(this.sheetId, sheet).subscribe(() => {
-        this.router.navigateByUrl(`/sheets/${this.sheetId}`);
+    if (this.route.snapshot.params.id) {
+      this.service.modifySheet(this.currentSheet.id, sheet).subscribe(() => {
+        this.router.navigateByUrl(`/sheets/${this.currentSheet.id}`);
       }, (err: any) => {
         this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
       });
