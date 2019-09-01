@@ -1,5 +1,9 @@
-import { Injectable } from "@angular/core";
-import { JwtToken } from "../models/jwtToken";
+import { Injectable }      from "@angular/core";
+import { HttpClient }      from "@angular/common/http";
+import { BehaviorSubject } from 'rxjs';
+
+import { environment } from "../../../environments/environment";
+import { AuthInfo }    from "../models/authInfo";
 
 @Injectable({
     providedIn: "root"
@@ -7,11 +11,22 @@ import { JwtToken } from "../models/jwtToken";
 
 export class AuthService {
 
-    constructor() { }
+    private url = environment.endpoint;
 
-    public login() {
-        // CALL THE API
-        this.setSession();
+    public user = new BehaviorSubject<AuthInfo>(this.getUser());
+
+    constructor(private http: HttpClient) { }
+
+    public login(login: string, password: string) {
+        return this.http.post(`${this.url}/api/auth`, { login, password });
+    }
+
+    public setSession(token: string) {
+        localStorage.setItem("id_token", token);
+    }
+
+    public logout() {
+        localStorage.removeItem("id_token");
     }
 
     public isLoggedIn() {
@@ -19,22 +34,9 @@ export class AuthService {
         return !!token;
     }
 
-    public getUser(): JwtToken {
-        // DECODE THE JWT
-        const tokenInfos =  {
-            id: 1,
-            firstname: "Bérenger",
-            lastname: "C.",
-            role: "musicien"
-        };
-        return Object.assign(new JwtToken(), tokenInfos);
-    }
-
-    public logout() {
-        localStorage.removeItem("id_token");
-    }
-
-    private setSession() {
-        localStorage.setItem("id_token", "OK");
+    public getUser() {
+        const payload = localStorage.getItem("id_token");
+        const decoded = (!!payload) ? JSON.parse(window.atob(payload.split(".")[1])) : {};
+        return Object.assign(new AuthInfo(), decoded);
     }
 }

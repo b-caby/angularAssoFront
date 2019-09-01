@@ -1,7 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit }                  from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from "../shared/services/authService";
+import { Router, ActivatedRoute }             from "@angular/router";
+import { MatSnackBar }                        from "@angular/material";
+
+import { AuthService }            from "../shared/services/authService";
+import { ErrorSnackbarComponent } from "../components/error-snackbar/error-snackbar.component";
 
 @Component({
   selector: "app-auth",
@@ -15,7 +18,8 @@ export class AuthComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private auth: AuthService) { }
+              private service: AuthService,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.authFormGroup = this.formBuilder.group({
@@ -27,7 +31,18 @@ export class AuthComponent implements OnInit {
   }
 
   public submit() {
-    this.auth.login();
+    const login = this.authFormGroup.get("login").value;
+    const password = this.authFormGroup.get("password").value;
+
+    this.service.login(login, password).subscribe((data: string) => {
+      if (data === "") {
+        this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
+      } else {
+        this.service.setSession(data);
+      }
+    }, (err: any) => {
+      this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
+    });
     this.router.navigate([this.returnUrl]);
   }
 }

@@ -67,7 +67,6 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
         this.dataSource.sort = this.sort;
       }
     }, (err: any) => {
-      console.log(err);
       this.errorService.show();
     });
   }

@@ -1,8 +1,10 @@
 import { Component, ViewChild, OnInit, OnDestroy } from "@angular/core";
-import { MatSidenav } from "@angular/material";
-import { Subscription } from "rxjs";
+import { MatSidenav }                              from "@angular/material";
+import { Subscription }                            from "rxjs";
+import { Router }                                  from "@angular/router";
+
 import { AuthService } from "../shared/services/authService";
-import { Router } from "@angular/router";
+import { AuthInfo }    from "../shared/models/authInfo";
 
 @Component({
   selector: "app-shell",
@@ -10,13 +12,13 @@ import { Router } from "@angular/router";
   styleUrls: ["./shell.component.scss"]
 })
 export class ShellComponent implements OnInit, OnDestroy {
+
   @ViewChild("sidenav", {static: true}) sidenav: MatSidenav;
-  public firstname: string;
-  public lastname: string;
   private onOpened: Subscription;
   private onClosed: Subscription;
 
-  public menuButtonStyle = "";
+  public menuButtonStyle: string;
+  public user: AuthInfo
 
   constructor(private auth: AuthService,
               private router: Router) { }
@@ -30,14 +32,15 @@ export class ShellComponent implements OnInit, OnDestroy {
       this.menuButtonStyle = "";
     });
 
-    const tokenInfos = this.auth.getUser();
-    this.firstname = tokenInfos.firstname;
-    this.lastname = tokenInfos.lastname;
+    this.auth.user.subscribe((data) => {
+      this.user = data;
+    });
   }
 
   ngOnDestroy() {
     this.onOpened.unsubscribe();
     this.onClosed.unsubscribe();
+    this.auth.user.unsubscribe()
   }
 
   public logout() {
