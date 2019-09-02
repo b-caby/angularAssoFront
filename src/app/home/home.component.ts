@@ -7,11 +7,12 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-  title = "Accueil";
+  public title: string;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.title = "Accueil";
   }
 
 }

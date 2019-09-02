@@ -10,7 +10,7 @@ import { ErrorsService } from "../shared/services/errorsService";
 @Component({
   selector: "app-sheets",
   templateUrl: "./sheets.component.html",
-  styleUrls: ["./sheets.component.scss"]
+  styleUrls: ["../../../src/assets/css/itemslist-style.scss"]
 })
 export class SheetsComponent implements OnInit, OnDestroy {
 

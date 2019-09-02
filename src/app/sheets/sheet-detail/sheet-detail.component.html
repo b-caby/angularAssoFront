@@ -14,7 +14,7 @@
 
 <div id="edit-container">
     <!-- Info card -->
-    <mat-card class="card">
+    <mat-card class="card mat-elevation-z6">
         <mat-card-header>
             <div mat-card-avatar>
                 <mat-icon>music_note</mat-icon>
@@ -56,7 +56,7 @@
         </mat-card-content>
     </mat-card>
     <!-- Box info card -->
-    <mat-card class="card">
+    <mat-card class="card mat-elevation-z6">
         <mat-card-header>
             <div mat-card-avatar>
                 <mat-icon>all_inbox</mat-icon>
@@ -83,7 +83,7 @@
     </mat-card>
 </div>
 <!-- Concert info card -->
-<mat-card class="card" [ngClass]='hasConcerts ? "visible": "hidden"'>
+<mat-card class="card mat-elevation-z6" [ngClass]='hasConcerts ? "visible": "hidden"'>
     <mat-card-header>
         <div mat-card-avatar>
             <mat-icon>event_note</mat-icon>
@@ -92,7 +92,7 @@
     </mat-card-header>
     <hr>
     <mat-card-content>
-        <div class="mat-elevation-z2">
+        <div class="mat-elevation-z1">
             <table mat-table [dataSource]="dataSource" matSort>        
                 <!-- Date column -->
                 <ng-container matColumnDef="date">

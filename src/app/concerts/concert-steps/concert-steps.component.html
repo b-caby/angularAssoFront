@@ -2,7 +2,7 @@
 <app-error-handler></app-error-handler>
 <div id="container">
   <h1>{{title}}</h1>
-  <mat-vertical-stepper [linear]="true" #stepper class="mat-elevation-z2">
+  <mat-vertical-stepper [linear]="true" #stepper class="mat-elevation-z6">
     <mat-step [stepControl]="infosFormGroup">
       <form [formGroup]="infosFormGroup">
         <ng-template matStepLabel>Infos</ng-template>
@@ -36,7 +36,7 @@
     <mat-step>
       <ng-template matStepLabel>Partitions</ng-template>
       <!-- Recherche -->
-      <div id="search-sheets" class="mat-elevation-z2">
+      <div id="search-sheets" class="mat-elevation-z1">
         <div class="search-container">
           <mat-form-field>
             <input matInput (keyup)="searchSheet($event.target.value)" placeholder="Recherche (3 lettres)">
@@ -59,7 +59,7 @@
       </div>
 
       <!-- Table -->
-      <div class="mat-elevation-z2" [ngClass]='hasSheets ? "visible": "collapsed"'>
+      <div class="mat-elevation-z1" [ngClass]='hasSheets ? "visible": "collapsed"'>
         <table mat-table [dataSource]="dataSource" matSort>
           <!-- Title column -->
           <ng-container matColumnDef="title">

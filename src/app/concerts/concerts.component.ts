@@ -10,7 +10,7 @@ import { ErrorsService }  from "../shared/services/errorsService";
 @Component({
   selector: "app-concerts",
   templateUrl: "./concerts.component.html",
-  styleUrls: ["./concerts.component.scss"]
+  styleUrls: ["../../../src/assets/css/itemslist-style.scss"]
 })
 export class ConcertsComponent implements OnInit, OnDestroy {
 

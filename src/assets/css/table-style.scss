@@ -16,6 +16,7 @@
   padding: 0px 5px;
   border-radius: 20px;
   background-color: #f0f0f0;
+  border: 1px solid lightgrey;
 }
 
 #addSymbol .mat-button {
@@ -55,5 +56,10 @@ table {
   width: 100%;
 }
 
-
+button.mat-sort-header-button {
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: bold;
+  font-size: larger;
+}
   
