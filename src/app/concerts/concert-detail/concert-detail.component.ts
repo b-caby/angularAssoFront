@@ -8,6 +8,9 @@ import { ConcertService }         from "src/app/shared/services/concertService";
 import { DeleteDialogComponent }  from "src/app/components/delete-dialog/delete-dialog.component";
 import { ErrorsService }          from "src/app/shared/services/errorsService";
 import { ErrorSnackbarComponent } from "src/app/components/error-snackbar/error-snackbar.component";
+import { AuthService }            from "src/app/shared/services/authService";
+import { Roles }                  from "src/app/shared/enums/roles";
+
 
 @Component({
   selector: "app-concert-detail",
@@ -23,6 +26,8 @@ export class ConcertDetailComponent implements OnInit {
   public dataSource: MatTableDataSource<ConcertSheets>;
   public displayedColumns: string[];
   public hasSheets: boolean;
+  public canModify: boolean;
+  public canDelete: boolean;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -31,13 +36,16 @@ export class ConcertDetailComponent implements OnInit {
               private dialog: MatDialog,
               private errorService: ErrorsService,
               private router: Router,
-              private snackbar: MatSnackBar) { }
+              private snackbar: MatSnackBar,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.title = "Détail concert";
     this.concertInfos = new Concert();
     this.dataSource = new MatTableDataSource();
     this.displayedColumns = ["title", "author", "symbol"];
+    this.canModify = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
+    this.canDelete = (this.auth.user.role === Roles.ADMIN);
 
     this.concertId = this.route.snapshot.params.id;
     this.getConcertDetails(this.concertId);

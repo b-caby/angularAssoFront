@@ -6,6 +6,8 @@ import { Subscription }                              from "rxjs";
 import { ConcertService } from "../shared/services/concertService";
 import { Concert }        from "../shared/models/concert";
 import { ErrorsService }  from "../shared/services/errorsService";
+import { AuthService }    from "../shared/services/authService";
+import { Roles }          from "../shared/enums/roles";
 
 @Component({
   selector: "app-concerts",
@@ -20,17 +22,20 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   public title: string;
   public dataSource: MatTableDataSource<Concert>;
   public displayedColumns: string[];
+  public hasRights: boolean;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private mediaObserver: MediaObserver,
               private service: ConcertService,
-              private errorService: ErrorsService) { }
+              private errorService: ErrorsService,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.title = "Concerts";
     this.dataSource = new MatTableDataSource();
+    this.hasRights = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
     this.onScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;

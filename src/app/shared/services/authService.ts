@@ -1,5 +1,5 @@
-import { Injectable }      from "@angular/core";
-import { HttpClient }      from "@angular/common/http";
+import { Injectable }                  from "@angular/core";
+import { HttpClient }                  from "@angular/common/http";
 import { BehaviorSubject } from "rxjs";
 
 import { environment } from "../../../environments/environment";
@@ -10,12 +10,17 @@ import { AuthInfo }    from "../models/authInfo";
 })
 
 export class AuthService {
+    private url: string;
+    private userSubject: BehaviorSubject<AuthInfo>;
 
-    private url = environment.endpoint;
+    constructor(private http: HttpClient) {
+        this.url = environment.endpoint;
+        this.userSubject = new BehaviorSubject<AuthInfo>(this.getUser());
+    }
 
-    public user = new BehaviorSubject<AuthInfo>(this.getUser());
-
-    constructor(private http: HttpClient) { }
+    public get user(): AuthInfo {
+        return this.userSubject.value;
+    }
 
     public login(login: string, password: string) {
         return this.http.post(`${this.url}/api/auth`, { login, password });
@@ -23,10 +28,12 @@ export class AuthService {
 
     public setSession(token: string) {
         localStorage.setItem("id_token", token);
+        this.userSubject.next(this.getUser());
     }
 
     public logout() {
         localStorage.removeItem("id_token");
+        this.userSubject.next(null);
     }
 
     public isLoggedIn() {

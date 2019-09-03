@@ -39,6 +39,7 @@ export class AuthComponent implements OnInit {
         this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
       } else {
         this.service.setSession(data);
+        this.router.navigateByUrl(this.returnUrl);
       }
     }, (err: any) => {
       this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });

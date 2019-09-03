@@ -8,6 +8,9 @@
 
 #detailsSymbol, #addSymbol {
   width: 38px;
+}
+
+#addSymbol a {
   cursor: pointer;
 }
 
@@ -56,10 +59,17 @@ table {
   width: 100%;
 }
 
+.mat-table {
+  background: #ffffff;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
 button.mat-sort-header-button {
   text-transform: uppercase;
   color: #000000;
   font-weight: bold;
   font-size: larger;
+  font-family: "Poppins", sans-serif;
 }
   

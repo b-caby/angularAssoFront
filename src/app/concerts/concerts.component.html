@@ -9,7 +9,7 @@
         </mat-form-field>
     </div>
     
-    <div class="mat-elevation-z6">
+    <div class="rounded mat-elevation-z6">
         <table mat-table [dataSource]="dataSource" matSort>
             <!-- Id column -->
             <ng-container matColumnDef="id">
@@ -38,7 +38,7 @@
             <!-- Symbol column -->
             <ng-container matColumnDef="symbol">
                 <th id="addSymbol" mat-header-cell *matHeaderCellDef>
-                    <a [routerLink]="['/concerts/steps']" routerLinkActive="active" mat-button>
+                    <a *ngIf="hasRights" [routerLink]="['/concerts/steps']" routerLinkActive="active" mat-button>
                         <mat-icon>add_circle_outline</mat-icon>
                     </a> 
                 </th>

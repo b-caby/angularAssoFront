@@ -10,21 +10,55 @@ import { SheetStepsComponent }    from "./sheets/sheet-steps/sheet-steps.compone
 import { AuthComponent }          from "./auth/auth.component";
 import { ShellComponent }         from "./shell/shell.component";
 import { ConcertStepsComponent }  from "./concerts/concert-steps/concert-steps.component";
-
-import { AuthGuard } from "./shared/authGuard";
+import { AuthGuard }              from "./shared/authGuard";
+import { Roles }                  from "./shared/enums/roles";
 
 const routes: Routes = [
   { path: "", component: ShellComponent, children: [
-    { path: "", redirectTo: "/home", pathMatch: "full" },
-    { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
-    { path: "sheets", component: SheetsComponent, canActivate: [AuthGuard] },
-    { path: "sheets/steps", component: SheetStepsComponent, canActivate: [AuthGuard] },
-    { path: "sheets/steps/:id", component: SheetStepsComponent, canActivate: [AuthGuard] },
-    { path: "sheets/:id", component: SheetDetailComponent, canActivate: [AuthGuard] },
-    { path: "concerts", component: ConcertsComponent, canActivate: [AuthGuard] },
-    { path: "concerts/steps", component: ConcertStepsComponent, canActivate: [AuthGuard] },
-    { path: "concerts/steps/:id", component: ConcertStepsComponent, canActivate: [AuthGuard] },
-    { path: "concerts/:id", component: ConcertDetailComponent, canActivate: [AuthGuard] }
+    {path: "", redirectTo: "/home", pathMatch: "full" },
+    {
+      path: "home",
+      component: HomeComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: "sheets",
+      component: SheetsComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: "sheets/steps",
+      component: SheetStepsComponent,
+      canActivate: [AuthGuard], data: { roles: [Roles.OFFICER, Roles.ADMIN] }
+    },
+    {
+      path: "sheets/steps/:id",
+      component: SheetStepsComponent,
+      canActivate: [AuthGuard], data: { roles: [Roles.OFFICER, Roles.ADMIN] }
+    },
+    {
+      path: "sheets/:id",
+      component: SheetDetailComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: "concerts",
+      component: ConcertsComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: "concerts/steps",
+      component: ConcertStepsComponent,
+      canActivate: [AuthGuard], data: { roles: [Roles.OFFICER, Roles.ADMIN] }
+    },
+    {
+      path: "concerts/steps/:id",
+      component: ConcertStepsComponent,
+      canActivate: [AuthGuard], data: { roles: [Roles.OFFICER, Roles.ADMIN] }
+    },
+    { path: "concerts/:id",
+      component: ConcertDetailComponent,
+      canActivate: [AuthGuard] }
   ]},
   { path: "auth", component: AuthComponent }
 ];

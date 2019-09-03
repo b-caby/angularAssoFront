@@ -3,10 +3,10 @@
 <div id="edit-header">
     <h1>{{title}}</h1>
     <div class="edit-header-buttons">
-        <a [routerLink]="['/concerts/steps', concertInfos.id]" routerLinkActive="active" mat-button>
+        <a *ngIf="canModify" [routerLink]="['/concerts/steps', concertInfos.id]" routerLinkActive="active" mat-button>
             <mat-icon>edit</mat-icon>
         </a>
-        <a (click)="openDeleteDialog()" mat-button>
+        <a *ngIf="canDelete" (click)="openDeleteDialog()" mat-button>
             <mat-icon>delete</mat-icon>
         </a>
     </div>

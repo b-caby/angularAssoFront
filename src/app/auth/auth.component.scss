@@ -1,14 +1,77 @@
+::ng-deep body {
+  background: #ffeddd;
+}
+
+p {
+  margin: 0px;
+}
+
+.container {
+  background: #ffffff;
+  margin: 20px 0px;
+}
+
+#auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
 :host {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0px;
+  display: flex;
+  justify-content: center;
+  margin: 25px 0px;
 }
 
 form {
-    padding: 50px;
+  padding: 30px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
 }
 
 .button {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: flex-end;
+}
+
+input {
+  font-family: "Poppins", sans-serif;
+  padding: 5px 15px;
+  margin: 10px 0px;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  font-size: 16px;
+
+  &:focus,
+  &.active {
+    outline: none;
+    border-color: #200f46;
+  }
+}
+
+::ng-deep .mat-form-field-wrapper {
+  padding: 0px;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 100% !important;
+}
+
+.form-login {
+  font-family: "Poppins", sans-serif;
+  border-radius: 10px;
+  padding: 10px;
+  background: #b7abd1;
+  margin-top: 30px;
+  width: 100px;
+  position: relative;
+  top: 0;
+  transition: 0.2s ease;
+  outline: none;
+  border: 2px solid lightgray;
+  &:hover, &.hover {
+    top: -3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
 }

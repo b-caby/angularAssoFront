@@ -18,12 +18,14 @@ export class ShellComponent implements OnInit, OnDestroy {
   private onClosed: Subscription;
 
   public menuButtonStyle: string;
-  public user: AuthInfo
+  public user: AuthInfo;
 
   constructor(private auth: AuthService,
               private router: Router) { }
 
   ngOnInit() {
+    this.user = this.auth.user;
+
     // Sidenav behaviour management
     this.onOpened = this.sidenav.openedStart.subscribe(() => {
       this.menuButtonStyle = "open";
@@ -31,16 +33,11 @@ export class ShellComponent implements OnInit, OnDestroy {
     this.onClosed = this.sidenav.closedStart.subscribe(() => {
       this.menuButtonStyle = "";
     });
-
-    this.auth.user.subscribe((data) => {
-      this.user = data;
-    });
   }
 
   ngOnDestroy() {
     this.onOpened.unsubscribe();
     this.onClosed.unsubscribe();
-    this.auth.user.unsubscribe()
   }
 
   public logout() {

@@ -10,6 +10,8 @@ import { SheetConcert, Sheet }    from "src/app/shared/models/sheet";
 import { SheetService }           from "src/app/shared/services/sheetService";
 import { ErrorsService }          from "src/app/shared/services/errorsService";
 import { ErrorSnackbarComponent } from "src/app/components/error-snackbar/error-snackbar.component";
+import { AuthService }            from "src/app/shared/services/authService";
+import { Roles }                  from "src/app/shared/enums/roles";
 
 @Component({
   selector: "app-sheet-detail",
@@ -27,6 +29,8 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
   public sheetInfos: Sheet;
   public displayedColumns: string[];
   public hasConcerts: boolean;
+  public canModify: boolean;
+  public canDelete: boolean;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -36,13 +40,16 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
               private mediaObserver: MediaObserver,
               private errorService: ErrorsService,
               private snackbar: MatSnackBar,
-              private router: Router) { }
+              private router: Router,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.title = "Détails partition";
     this.dataSource = new MatTableDataSource();
     this.sheetInfos = new Sheet();
     this.displayedColumns = ["date", "name", "location", "symbol"];
+    this.canModify = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
+    this.canDelete = (this.auth.user.role === Roles.ADMIN);
     this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
