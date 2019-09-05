@@ -45,6 +45,7 @@ import { ApiInterceptor }         from "./shared/apiInterceptor";
 import { PaginatorTranslation }   from "./shared/paginatorTranslation";
 import { ErrorInterceptor }       from "./shared/errorInterceptor";
 import { ErrorSnackbarComponent } from "./components/error-snackbar/error-snackbar.component";
+import { AccountComponent }       from "./users/account/account.component";
 
 const MY_FORMATS = {
   parse: {
@@ -73,7 +74,8 @@ const MY_FORMATS = {
     DeleteDialogComponent,
     ConcertStepsComponent,
     ErrorHandlerComponent,
-    ErrorSnackbarComponent
+    ErrorSnackbarComponent,
+    AccountComponent
   ],
   entryComponents: [DeleteDialogComponent, ErrorSnackbarComponent],
   imports: [

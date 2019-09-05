@@ -12,6 +12,7 @@ import { ShellComponent }         from "./shell/shell.component";
 import { ConcertStepsComponent }  from "./concerts/concert-steps/concert-steps.component";
 import { AuthGuard }              from "./shared/authGuard";
 import { Roles }                  from "./shared/enums/roles";
+import { AccountComponent }       from "./users/account/account.component";
 
 const routes: Routes = [
   { path: "", component: ShellComponent, children: [
@@ -56,9 +57,16 @@ const routes: Routes = [
       component: ConcertStepsComponent,
       canActivate: [AuthGuard], data: { roles: [Roles.OFFICER, Roles.ADMIN] }
     },
-    { path: "concerts/:id",
+    {
+      path: "concerts/:id",
       component: ConcertDetailComponent,
-      canActivate: [AuthGuard] }
+      canActivate: [AuthGuard]
+    },
+    {
+      path: "account",
+      component: AccountComponent,
+      canActivate: [AuthGuard]
+    }
   ]},
   { path: "auth", component: AuthComponent }
 ];
