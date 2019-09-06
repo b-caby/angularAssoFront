@@ -16,4 +16,8 @@ export class UserService {
   public getAccount() {
     return this.http.get(`${this.url}/api/users/account`);
   }
+
+  public getAttendance() {
+    return this.http.get(`${this.url}/api/users/attendance`);
+  }
 }

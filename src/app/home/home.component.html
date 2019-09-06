@@ -1,3 +1,14 @@
 <div id="container">
-    <h1>{{title}}</h1>
+  <h1>{{title}}</h1>
+
+  <mat-card class="mat-elevation-z6">
+    <mat-nav-list #sheetList>
+        <mat-list-item *ngFor="let attendance of attendances">
+          <span matLine>{{attendance.date | date: "dd/MM/yy"}} - {{attendance.name}}</span>
+          <p matLine>{{attendance.location}}</p>
+          <div matLine><div class="status{{attendance.status}}" style="height: 30px; width:30px;"></div>{{attendance.comment}}</div>
+        </mat-list-item>
+      </mat-nav-list>
+  </mat-card>
+
 </div>

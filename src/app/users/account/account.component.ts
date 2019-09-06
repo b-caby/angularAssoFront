@@ -19,6 +19,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     this.title = "Mon compte";
+    this.userInfos = new User();
     this.getUserAccount();
   }
 

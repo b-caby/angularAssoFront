@@ -9,7 +9,7 @@
   <mat-card class="card mat-elevation-z6">
     <mat-card-header>
       <div mat-card-avatar>
-        <mat-icon>music_note</mat-icon>
+        <mat-icon>apartment</mat-icon>
       </div>
       <mat-card-title>Coordonnées</mat-card-title>
     </mat-card-header>
@@ -26,7 +26,7 @@
         </p>
         <p class="grid-row">
           <span class="grid-cell info-label">Date de naissance</span>
-          <span class="grid-cell">{{userInfos.birthdate}}</span>
+          <span class="grid-cell">{{userInfos.birthdate | date: "dd/MM/yyyy"}}</span>
         </p>
         <p class="grid-row">
           <span class="grid-cell info-label">Adresse</span>
@@ -59,7 +59,7 @@
   <mat-card class="card mat-elevation-z6">
     <mat-card-header>
       <div mat-card-avatar>
-        <mat-icon>all_inbox</mat-icon>
+        <mat-icon>music_note</mat-icon>
       </div>
       <mat-card-title>Instrument</mat-card-title>
     </mat-card-header>
@@ -90,9 +90,9 @@
 <mat-card class="card mat-elevation-z6">
   <mat-card-header>
     <div mat-card-avatar>
-      <mat-icon>event_note</mat-icon>
+      <mat-icon>lock</mat-icon>
     </div>
-    <mat-card-title>Harmonie</mat-card-title>
+    <mat-card-title>Identifiants</mat-card-title>
   </mat-card-header>
   <hr>
   <mat-card-content>
@@ -104,14 +104,6 @@
         <p class="grid-row">
           <span class="grid-cell info-label">Mot de passe</span>
           <span class="grid-cell">{{userInfos.password}}</span>
-        </p>
-        <p class="grid-row">
-          <span class="grid-cell info-label">Date d'arrivée</span>
-          <span class="grid-cell">{{userInfos.joinedOn}}</span>
-        </p>
-        <p class="grid-row">
-          <span class="grid-cell info-label">Numéro de série</span>
-          <span class="grid-cell">{{userInfos.serialNumber}}</span>
         </p>
       </div>
   </mat-card-content>
