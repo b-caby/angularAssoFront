@@ -62,13 +62,18 @@ form {
 }
 
 .mat-selection-list {
-    max-height:213px; 
-    overflow:auto;
+    max-height: 216px; 
+    overflow: auto;
 }
 
 #noResult {
     font-style: italic;
     color: #d3d3d3;
+}
+
+#sm-button {
+    margin-left: -10px;
+    margin-top: 10px;
 }
 
 .search-container {

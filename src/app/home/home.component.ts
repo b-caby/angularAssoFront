@@ -28,4 +28,8 @@ export class HomeComponent implements OnInit {
       this.errorService.show();
     });
   }
+
+  public modifyAttendance(attendance: Attendance, value: number) {
+    attendance.status = value;
+  }
 }

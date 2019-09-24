@@ -7,13 +7,13 @@
       <form [formGroup]="infosFormGroup">
         <ng-template matStepLabel>Infos</ng-template>
         <mat-form-field>
-          <input matInput placeholder="Nom" formControlName="name" required/>
+          <input matInput placeholder="Nom" formControlName="name" required />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Lieu" formControlName="location"/>
+          <input matInput placeholder="Lieu" formControlName="location" />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Date" [matDatepicker]="datepicker" formControlName="date"/>
+          <input matInput placeholder="Date" [matDatepicker]="datepicker" formControlName="date" />
           <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
           <mat-datepicker #datepicker></mat-datepicker>
         </mat-form-field>
@@ -23,13 +23,13 @@
       <form [formGroup]="audienceFormGroup">
         <ng-template matStepLabel>Audience</ng-template>
         <mat-form-field>
-          <input matInput type="number" placeholder="Nombre de musiciens" formControlName="playerNumber"/>
+          <input matInput type="number" placeholder="Nombre de musiciens" formControlName="playerNumber" />
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="number" placeholder="Nombre d'auditeurs" formControlName="spectatorNumber"/>
+          <input matInput type="number" placeholder="Nombre d'auditeurs" formControlName="spectatorNumber" />
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="number" placeholder="Durée" formControlName="length"/>
+          <input matInput type="number" placeholder="Durée" formControlName="length" />
         </mat-form-field>
       </form>
     </mat-step>
@@ -39,13 +39,13 @@
       <div id="search-sheets" class="mat-elevation-z1">
         <div class="search-container">
           <mat-form-field>
-            <input matInput (keyup)="searchSheet($event.target.value)" placeholder="Recherche (3 lettres)">
+            <input matInput (keyup)="searchSheet($event.target.value)" placeholder="Recherche (3 lettres min)">
           </mat-form-field>
           <button mat-button [disabled]="sheetList.selectedOptions.selected.length === 0"
-            (click)="addSheet(sheetList.selectedOptions.selected)">
-            <mat-icon>add</mat-icon>
-            Ajouter
+            (click)="addSheet(sheetList.selectedOptions.selected)" fxHide.lt-sm="true">
+            <mat-icon>add</mat-icon>Ajouter
           </button>
+
         </div>
 
         <div id="noResult" *ngIf="!hasSearchResults">Pas de résutlats</div>
@@ -56,6 +56,13 @@
             <p matLine>{{sheet.author}}</p>
           </mat-list-option>
         </mat-selection-list>
+
+        <button id="sm-button" mat-button fxHide.gt-xs *ngIf="sheetList.selectedOptions.selected.length !== 0"
+          (click)="addSheet(sheetList.selectedOptions.selected)">
+          <mat-icon>add</mat-icon>
+          Ajouter
+        </button>
+
       </div>
 
       <!-- Table -->

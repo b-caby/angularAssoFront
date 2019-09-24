@@ -3,18 +3,106 @@
     margin: 20px;
 }
 
-.status1 {
-    background: green;
+#event-date {
+    text-transform: capitalize;
+    font-weight: bold;
 }
 
-.status2 {
-    background: red;
+:host ::ng-deep .mat-list-item-content {
+    padding: 10px !important;
+    border-bottom: 1px dashed lightgray;
+    border-top: 1px dashed lightgray;
 }
 
-.status3 {
-    background: yellow;
+:host ::ng-deep .mat-list-text {
+    max-width: calc(100% - 156px);
 }
 
-.status4 {
-    background: grey;
+.mat-list-item:nth-child(even){
+    background-color: #ffffff;
+}
+
+.mat-list-item:nth-child(odd){
+    background-color: #f8f8f8;
+}
+
+.attendance-input-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.radiobtn {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.attendance-input {
+    position: relative;
+    display: inline-block;
+    height: 44px;
+    width: 44px;
+    line-height: 44px;
+    text-align: center;
+    margin: 0 0 0 7px;
+    background-color: #e7e7e7;
+    color: silver;
+    vertical-align: top;
+    border-radius: 5px;
+    font-size: .8em;
+    cursor: pointer;
+    transition: .3s ease-out;
+    transition-property: all;
+}
+
+#yes::before {
+    content: "✔"; 
+    font-family: 'DoodleIcons',sans-serif;
+    font-size: 18px;
+}
+
+#yes.active {
+    background-color: #63d481;
+    color: #ffffff;
+}
+
+#maybe::before {
+    content: "❓";
+    font-size: 13px;
+    font-family: 'DoodleIcons',sans-serif;
+}
+
+#maybe.active {
+    background-color: #efa625;
+    color: #ffffff;
+}
+
+#no::before {
+    content: "❌";
+    font-size: 18px;
+    font-family: 'DoodleIcons',sans-serif;
+}
+
+#no.active {
+    background-color: #de4846;
+    color: #ffffff;
+}
+
+.mat-card {
+    max-width: 550px;
+    margin: auto;
+}
+
+@font-face{
+    font-family: 'DoodleIcons';
+    src: url("../../../src/assets/fonts/doodleIcons.woff") format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
