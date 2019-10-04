@@ -9,7 +9,11 @@
         <span id="event-date" matLine>{{attendance.date | date: "EEE dd MMMM"}}</span>
         <p matLine>{{attendance.name}}</p>
         <p matLine>{{attendance.location}}</p>
-        <!--<div matLine><div class="status{{attendance.status}}" style="height: 30px; width:30px;"></div>{{attendance.comment}}</div>-->
+        <br matLine>
+        <mat-form-field matLine>
+          <input matInput placeholder="Commentaire" value="{{attendance.comment}}" (input)="modifyComment(attendance)">
+        </mat-form-field>
+
         <ul class="attendance-input-list">
           <li id="yes" [ngClass]='{"active": attendance.status === 1 }' class="attendance-input">
             <input class="radiobtn" type="radio" name="attendance-{{index}}" [checked]="attendance.status === 1" (click)="modifyAttendance(attendance, 1)">
@@ -21,6 +25,11 @@
             <input class="radiobtn" type="radio" name="attendance-{{index}}" [checked]="attendance.status === 2" (click)="modifyAttendance(attendance, 2)">
           </li>
         </ul>
+
+        <button *ngIf="attendance.isEdited" id="sm-button" mat-button>
+          Enregistrer
+        </button>
+
       </mat-list-item>
     </mat-list>
   </mat-card>

@@ -31,5 +31,10 @@ export class HomeComponent implements OnInit {
 
   public modifyAttendance(attendance: Attendance, value: number) {
     attendance.status = value;
+    attendance.isEdited = true;
+  }
+
+  public modifyComment(attendance: Attendance) {
+    attendance.isEdited = true;
   }
 }

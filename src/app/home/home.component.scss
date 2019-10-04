@@ -100,6 +100,17 @@
     margin: auto;
 }
 
+ul {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#sm-button {
+    top: 45px;
+    left: 35px;
+}
+
 @font-face{
     font-family: 'DoodleIcons';
     src: url("../../../src/assets/fonts/doodleIcons.woff") format('woff');

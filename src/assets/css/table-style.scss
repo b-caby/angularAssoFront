@@ -10,10 +10,6 @@
   width: 38px;
 }
 
-#addSymbol a {
-  cursor: pointer;
-}
-
 #detailsSymbol .mat-button {
   min-width: 38px;
   padding: 0px 5px;
@@ -22,11 +18,7 @@
   border: 1px solid lightgrey;
 }
 
-#addSymbol .mat-button {
-  min-width: 38px;
-  padding: 0;
-  border-radius: 20px;
-  color: lightgray;
+#addSymbol .mat-icon-button {
   -webkit-text-fill-color: black;
 }
 

@@ -38,6 +38,7 @@
 .grid-cell {
     display: table-cell;
     padding: 3px 6px;
+    word-break: break-all;
 }
 
 .visible {

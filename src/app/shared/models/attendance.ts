@@ -5,4 +5,5 @@ export class Attendance {
     public location: string;
     public comment: string;
     public status: number;
+    public isEdited: boolean;
 }
