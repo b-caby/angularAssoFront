@@ -1,11 +1,11 @@
-.mat-row:nth-child(even){
+.mat-row:nth-child(even), .mat-list-option:nth-child(even){
   background-color: #ffffff;
   &:hover{
     background-color: #ffeddd;
   }
 }
 
-.mat-row:nth-child(odd){
+.mat-row:nth-child(odd), .mat-list-option:nth-child(odd){
   background-color: #f8f8f8;
   &:hover{
     background-color: #ffeddd;
@@ -45,4 +45,8 @@ button.mat-sort-header-button {
 
 .mat-column-date {
   flex: 0 0 25%;
+}
+
+.mat-column-symbol {
+  flex: 0 0 10%;
 }

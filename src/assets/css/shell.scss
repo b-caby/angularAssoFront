@@ -1,43 +1,39 @@
-#logo {
-cursor: pointer;
-}
+$primaryColor: #200f46;
+$secondaryColor: #bca8ec;
 
-.spacer {
-flex: 1 1 auto;
-}
-
-h1 {
-    margin: 0px;
-}
-
-#connectedUser {
-    font-family: "Roboto", sans-serif;
-    padding: 10px;
-    cursor: default;
-    color: #200f46;
-}
-#connectedUser .mat-icon {
-    vertical-align: bottom;
-}
-
-#primaryToolbar {
+.primaryToolbar {
     height: 56px;
     min-height: 56px;
     color: #ffffff;
-    background: #200f46;
+    background: $primaryColor;
     padding-right: 5px;
 }
 
-#secondaryToolbar{
+.secondaryToolbar{
     height: 40px; 
     min-height: 40px;
-    background: #bca8ec;
+    background: $secondaryColor;
     color: #000000;
     padding: 0px;
 }
 
-#userButton {
-    padding: 0px;
+#logo {
+    cursor: pointer;
+}
+
+#spacer {
+    flex: 1 1 auto;
+}
+
+.menuHeader {
+    font-family: "Roboto", sans-serif;
+    padding: 10px;
+    cursor: default;
+    color: #200f46;
+
+    .mat-icon{
+        vertical-align: bottom;
+    }
 }
 
 .menuButton {
@@ -46,7 +42,11 @@ h1 {
     padding: 0px 10px;
 }
 
-.container {
+.headerButton {
+    padding: 0px;
+}
+
+.sidenav {
     position: absolute;
     width: 100%;
     min-width: 100%;
@@ -64,7 +64,8 @@ h1 {
     font-size: 12px;
 }
 
-#menu-icon {
+/* CSS FOR THE HAMBURGER MENU ANIMATION*/
+#menuHamburger {
     width: 18px;
     height: 12px;
     position: relative;
@@ -80,7 +81,7 @@ h1 {
     cursor: pointer;
 }
 
-#menu-icon span {
+#menuHamburger span {
     display: block;
     position: absolute;
     height: 2px;
@@ -96,7 +97,7 @@ h1 {
     transition: .25s ease-in-out;
 }
 
-#menu-icon span:nth-child(1) {
+#menuHamburger span:nth-child(1) {
     top: 0px;
     -webkit-transform-origin: left center;
     -moz-transform-origin: left center;
@@ -104,7 +105,7 @@ h1 {
     transform-origin: left center;
 }
 
-#menu-icon span:nth-child(2) {
+#menuHamburger span:nth-child(2) {
     top: 5px;
     -webkit-transform-origin: left center;
     -moz-transform-origin: left center;
@@ -112,7 +113,7 @@ h1 {
     transform-origin: left center;
 }
 
-#menu-icon span:nth-child(3) {
+#menuHamburger span:nth-child(3) {
     top: 10px;
     -webkit-transform-origin: left center;
     -moz-transform-origin: left center;
@@ -120,7 +121,7 @@ h1 {
     transform-origin: left center;
 }
 
-#menu-icon.open span:nth-child(1) {
+#menuHamburger.open span:nth-child(1) {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
@@ -129,21 +130,16 @@ h1 {
     left: 1px;
 }
 
-#menu-icon.open span:nth-child(2) {
+#menuHamburger.open span:nth-child(2) {
     width: 0%;
     opacity: 0;
 }
 
-#menu-icon.open span:nth-child(3) {
+#menuHamburger.open span:nth-child(3) {
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
     top: 10.5px;
     left: 1px;
-}
-
-.edit-delete {
-    display: flex;
-    justify-content: flex-end;
 }

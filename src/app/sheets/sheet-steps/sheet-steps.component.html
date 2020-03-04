@@ -1,7 +1,10 @@
 <app-loader></app-loader>
 <app-error-handler></app-error-handler>
-<div id="container">
+<div class="header">
     <h1>{{title}}</h1>
+</div>
+
+<div class="content">
     <mat-vertical-stepper [linear]="true" #stepper class="mat-elevation-z6">
         <mat-step [stepControl]="infosFormGroup">
             <form [formGroup]="infosFormGroup">
@@ -46,7 +49,7 @@
         <mat-step>
             <ng-template matStepLabel>Validation</ng-template>
             <div>
-                <button id="validate" mat-button (click)="saveSheet()">
+                <button id="submitButton" mat-button (click)="saveSheet()">
                     <mat-icon>done</mat-icon> 
                     Enregistrer
                 </button>

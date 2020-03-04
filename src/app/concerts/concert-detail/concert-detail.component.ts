@@ -15,7 +15,7 @@ import { Roles }                  from "src/app/shared/enums/roles";
 @Component({
   selector: "app-concert-detail",
   templateUrl: "./concert-detail.component.html",
-  styleUrls: ["../../../../src/assets/css/itemsdetails-style.scss"]
+  styleUrls: ["../../../../src/assets/css/itemsdetails.scss"]
 })
 export class ConcertDetailComponent implements OnInit {
 

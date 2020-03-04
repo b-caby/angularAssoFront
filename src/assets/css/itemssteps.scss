@@ -1,10 +1,5 @@
 $color: #200f46;
 
-#container {
-    font-family: "Poppins", sans-serif;
-    margin: 20px;
-}
-
 ::ng-deep .mat-vertical-stepper-header .mat-step-icon {
     background-color: $color;
 }
@@ -21,44 +16,33 @@ $color: #200f46;
     caret-color: $color
 }
 
-::ng-deep .mat-pseudo-checkbox-checked {
+::ng-deep .mat-accent .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-checked {
     background: $color;
 }
 
 form {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(auto, 500px));
+    grid-gap: 10px;
 }
 
-.visible {
-    visibility: visible;
-}
-
-.hidden {
-    visibility: hidden;
-}
-
-.collapsed {
-    visibility: collapse;
-}
-
-#validate {
+#submitButton {
     border: 1px solid $color;
     width: 100%;
     color: $color;
 }
 
-.mat-list-option:nth-child(even){
-    background-color: #ffffff;
-}
-
-.mat-list-option:nth-child(odd){
-    background-color: #f8f8f8;
-}
-
-#search-sheets {
-    margin: 10px 0px;
+.searchSheets {
+    margin: 0px 0px 10px 0px;
     padding: 20px;
+    border: 1px solid $color;
+    border-radius: 10px;
+}
+
+.searchFilter {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .mat-selection-list {
@@ -74,9 +58,4 @@ form {
 #sm-button {
     margin-left: -10px;
     margin-top: 10px;
-}
-
-.search-container {
-    display: flex;
-    justify-content: space-between;
 }

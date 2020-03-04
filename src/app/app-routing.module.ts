@@ -16,7 +16,7 @@ import { AccountComponent }       from "./users/account/account.component";
 
 const routes: Routes = [
   { path: "", component: ShellComponent, children: [
-    {path: "", redirectTo: "/home", pathMatch: "full" },
+    { path: "", redirectTo: "/home", pathMatch: "full" },
     {
       path: "home",
       component: HomeComponent,

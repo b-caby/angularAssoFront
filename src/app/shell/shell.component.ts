@@ -9,7 +9,7 @@ import { AuthInfo }    from "../shared/models/authInfo";
 @Component({
   selector: "app-shell",
   templateUrl: "./shell.component.html",
-  styleUrls: ["./shell.component.scss"]
+  styleUrls: ["../../../src/assets/css/shell.scss"]
 })
 export class ShellComponent implements OnInit, OnDestroy {
 

@@ -7,7 +7,7 @@ import { ErrorsService } from "src/app/shared/services/errorsService";
 @Component({
   selector: "app-account",
   templateUrl: "./account.component.html",
-  styleUrls: ["../../../../src/assets/css/itemsdetails-style.scss"]
+  styleUrls: ["../../../../src/assets/css/itemsdetails.scss"]
 })
 export class AccountComponent implements OnInit {
 

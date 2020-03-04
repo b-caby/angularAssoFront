@@ -15,7 +15,7 @@ import { ErrorSnackbarComponent } from "src/app/components/error-snackbar/error-
 @Component({
   selector: "app-concert-steps",
   templateUrl: "./concert-steps.component.html",
-  styleUrls: ["../../../../src/assets/css/itemssteps-style.scss"]
+  styleUrls: ["../../../../src/assets/css/itemssteps.scss"]
 })
 export class ConcertStepsComponent implements OnInit, OnDestroy {
 
@@ -70,9 +70,9 @@ export class ConcertStepsComponent implements OnInit, OnDestroy {
   }
 
   private setupTable() {
-    this.displayedColumns = ["title", "author", "symbol"];
-    if (this.currentScreenWidth === "xs") {
-      this.displayedColumns = ["title", "symbol"];
+    this.displayedColumns = ["sheetTitle", "author", "symbol"];
+    if (this.currentScreenWidth === "sm" || this.currentScreenWidth === "xs") {
+      this.displayedColumns = ["sheetTitle", "symbol"];
     }
   }
 

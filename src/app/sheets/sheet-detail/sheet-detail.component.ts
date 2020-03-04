@@ -16,7 +16,7 @@ import { Roles }                  from "src/app/shared/enums/roles";
 @Component({
   selector: "app-sheet-detail",
   templateUrl: "./sheet-detail.component.html",
-  styleUrls: ["../../../../src/assets/css/itemsdetails-style.scss"]
+  styleUrls: ["../../../../src/assets/css/itemsdetails.scss"]
 })
 export class SheetDetailComponent implements OnInit, OnDestroy {
 
