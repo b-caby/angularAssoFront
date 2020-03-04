@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy }  from "@angular/core";
 import { MatSort, MatTableDataSource, MatSnackBar } from "@angular/material";
 import { MatDialog }                                from "@angular/material/dialog";
-import { ActivatedRoute, Router }                           from "@angular/router";
+import { ActivatedRoute, Router }                   from "@angular/router";
 import { MediaObserver, MediaChange }               from "@angular/flex-layout";
 import { Subscription }                             from "rxjs";
 
@@ -47,7 +47,6 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
     this.title = "Détails partition";
     this.dataSource = new MatTableDataSource();
     this.sheetInfos = new Sheet();
-    this.displayedColumns = ["date", "name", "location", "symbol"];
     this.canModify = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
     this.canDelete = (this.auth.user.role === Roles.ADMIN);
     this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
@@ -79,9 +78,9 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
   }
 
   private setupTable() {
-    this.displayedColumns = ["date", "name", "location", "symbol"];
-    if (this.currentScreenWidth === "xs") {
-      this.displayedColumns = ["date", "name", "symbol"];
+    this.displayedColumns = ["date", "name", "location"];
+    if (this.currentScreenWidth === "sm" || this.currentScreenWidth === "xs") {
+      this.displayedColumns = ["date", "name"];
     }
   }
 

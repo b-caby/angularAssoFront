@@ -1,14 +1,22 @@
 <app-loader></app-loader>
 <app-error-handler></app-error-handler>
-<div id="container">
+<div class="header">
     <h1>{{title}}</h1>
 
-    <div class="filter">
-        <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
-        </mat-form-field>
+    <div class="header-buttons">
+        <a *ngIf="canAddSheets" [routerLink]="['/sheets/steps']" routerLinkActive="active" mat-button>
+            <mat-icon>add_circle_outline</mat-icon>
+        </a>
     </div>
+</div>
+
+<div class="filter">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+    </mat-form-field>
+</div>
     
+<div class="content">
     <div class="rounded mat-elevation-z6">
         <mat-table [dataSource]="dataSource" matSort>
             <!-- Title column -->

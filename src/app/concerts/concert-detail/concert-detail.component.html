@@ -1,8 +1,8 @@
 <app-loader></app-loader>
 <app-error-handler></app-error-handler>
-<div id="container" class="edit-header">
+<div class="header">
     <h1>{{title}}</h1>
-    <div class="edit-header-buttons">
+    <div class="header-buttons">
         <a *ngIf="canModify" [routerLink]="['/concerts/steps', concertInfos.id]" routerLinkActive="active" mat-button>
             <mat-icon>edit</mat-icon>
         </a>
@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div class="edit-container">
+<div class="content">
     <mat-card class="card mat-elevation-z6">
         <mat-card-header>
             <div mat-card-avatar>
@@ -66,43 +66,36 @@
     </mat-card>
 </div>
 
-<mat-card class="card mat-elevation-z6" [ngClass]='hasSheets ? "visible": "hidden"'>
-    <mat-card-header>
-        <div mat-card-avatar>
-            <mat-icon>music_note</mat-icon>
-        </div>
-        <mat-card-title>Partitions</mat-card-title>
-    </mat-card-header>
-    <hr>
-    <mat-card-content>
-        <div class="mat-elevation-z1">
-            <table mat-table [dataSource]="dataSource" matSort>        
-                <!-- Title column -->
-                <ng-container matColumnDef="title">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Titre</th>
-                    <td mat-cell *matCellDef="let element">{{element.title}}</td>
-                </ng-container>
-            
-                <!-- Author column -->
-                <ng-container matColumnDef="author">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Auteur</th>
-                    <td mat-cell *matCellDef="let element">{{element.author}}</td>
-                </ng-container>
+<div class="content">
+    <mat-card class="card mat-elevation-z6" [ngClass]='hasSheets ? "visible": "hidden"'>
+        <mat-card-header>
+            <div mat-card-avatar>
+                <mat-icon>music_note</mat-icon>
+            </div>
+            <mat-card-title>Partitions</mat-card-title>
+        </mat-card-header>
+        <hr>
+        <mat-card-content>
+            <div class="rounded mat-elevation-z1">
+                <mat-table [dataSource]="dataSource" matSort>        
+                    <!-- Title column -->
+                    <ng-container matColumnDef="title">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Titre</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.title}}</mat-cell>
+                    </ng-container>
+                
+                    <!-- Author column -->
+                    <ng-container matColumnDef="author">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Auteur</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.author}}</mat-cell>
+                    </ng-container>
+                
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row matRipple *matRowDef="let row; columns: displayedColumns;"
+                             [routerLink]="['/sheets', row.id]" routerLinkActive="active"></mat-row>
+                </mat-table>
+            </div>
     
-                <!-- Symbol column -->
-                <ng-container matColumnDef="symbol">
-                    <th mat-header-cell *matHeaderCellDef></th>
-                    <td id="detailsSymbol" mat-cell *matCellDef="let element">
-                        <a [routerLink]="['/sheets', element.id]" routerLinkActive="active" mat-button>
-                            <mat-icon>search</mat-icon>
-                        </a> 
-                    </td>
-                </ng-container>
-    
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-        </div>
-
-    </mat-card-content>
-</mat-card>
+        </mat-card-content>
+    </mat-card>
+</div>

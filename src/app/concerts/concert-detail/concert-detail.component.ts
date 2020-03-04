@@ -43,7 +43,7 @@ export class ConcertDetailComponent implements OnInit {
     this.title = "Détail concert";
     this.concertInfos = new Concert();
     this.dataSource = new MatTableDataSource();
-    this.displayedColumns = ["title", "author", "symbol"];
+    this.displayedColumns = ["title", "author"];
     this.canModify = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
     this.canDelete = (this.auth.user.role === Roles.ADMIN);
 

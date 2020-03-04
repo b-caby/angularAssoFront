@@ -7,7 +7,27 @@ mat-sidenav-content {
   background: #f9f9f9;
 }
 
-#container {
-    font-family: "Poppins", sans-serif;
-    margin: 20px;
+.header {
+  font-family: "Poppins", sans-serif;
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-buttons {
+  display: flex;
+}
+
+.content {
+  margin: 0px 20px 20px 20px;
+}
+
+.filter {
+  text-align: right;
+  margin: 0px 20px;
+}
+
+.rounded {
+  border-radius: 20px;
 }
