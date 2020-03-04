@@ -1,26 +1,7 @@
-$color: #200f46;
-
-#container {
-    font-family: "Poppins", sans-serif;
-    margin: 20px;
-}
-
 .rounded {
     border-radius: 20px;
 }
 
 .filter {
     text-align: right;
-}
-
-::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-    color: $color
-}
-
-::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
-    background-color: $color
-}
-
-::ng-deep .mat-input-element {
-    caret-color: $color
 }

@@ -1,11 +1,4 @@
-#edit-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-}
-
-#edit-header {
-    font-family: "Poppins", sans-serif;
-    margin: 0px 20px;
+.edit-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,6 +6,11 @@
 
 .edit-header-buttons {
     display: flex;
+}
+
+.edit-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 .card {

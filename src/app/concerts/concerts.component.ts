@@ -55,9 +55,9 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   }
 
   private setupTable() {
-    this.displayedColumns = ["id", "date", "name", "location", "symbol"];
+    this.displayedColumns = ["date", "name", "location"];
     if (this.currentScreenWidth === "xs") {
-      this.displayedColumns = ["date", "name", "symbol"];
+      this.displayedColumns = ["date", "name"];
     }
   }
 

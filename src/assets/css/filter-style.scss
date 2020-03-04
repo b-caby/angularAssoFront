@@ -1,0 +1,13 @@
+$color: #200f46;
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: $color
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: $color
+}
+
+.mat-input-element {
+    caret-color: $color
+}

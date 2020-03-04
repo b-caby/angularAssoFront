@@ -28,6 +28,7 @@ import { MatToolbarModule,
          MatProgressSpinnerModule,
          MatDatepickerModule,
          MatSnackBarModule,
+         MatRippleModule,
          MatPaginatorIntl } from "@angular/material";
 
 import { AppComponent }           from "./app.component";
@@ -108,6 +109,7 @@ registerLocaleData(localeFr);
     MatDatepickerModule,
     MatMomentDateModule,
     MatSnackBarModule,
+    MatRippleModule,
     AppRoutingModule
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorTranslation },
