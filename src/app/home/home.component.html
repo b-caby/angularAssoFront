@@ -1,14 +1,37 @@
+<app-loader></app-loader>
+<app-error-handler></app-error-handler>
 <div id="container">
   <h1>{{title}}</h1>
 
   <mat-card class="mat-elevation-z6">
-    <mat-nav-list #sheetList>
-        <mat-list-item *ngFor="let attendance of attendances">
-          <span matLine>{{attendance.date | date: "dd/MM/yy"}} - {{attendance.name}}</span>
-          <p matLine>{{attendance.location}}</p>
-          <div matLine><div class="status{{attendance.status}}" style="height: 30px; width:30px;"></div>{{attendance.comment}}</div>
-        </mat-list-item>
-      </mat-nav-list>
+    <mat-list #sheetList>
+      <mat-list-item *ngFor="let attendance of attendances; let index = index">
+        <span id="event-date" matLine>{{attendance.date | date: "EEE dd MMMM"}}</span>
+        <p matLine>{{attendance.name}}</p>
+        <p matLine>{{attendance.location}}</p>
+        <br matLine>
+        <mat-form-field matLine>
+          <input matInput placeholder="Commentaire" value="{{attendance.comment}}" (input)="modifyComment(attendance)">
+        </mat-form-field>
+
+        <ul class="attendance-input-list">
+          <li id="yes" [ngClass]='{"active": attendance.status === 1 }' class="attendance-input">
+            <input class="radiobtn" type="radio" name="attendance-{{index}}" [checked]="attendance.status === 1" (click)="modifyAttendance(attendance, 1)">
+          </li>
+          <li id="maybe" [ngClass]='{"active": attendance.status === 3 }' class="attendance-input">
+            <input class="radiobtn" type="radio" name="attendance-{{index}}" [checked]="attendance.status === 3" (click)="modifyAttendance(attendance, 3)">
+            </li>
+          <li id="no" [ngClass]='{"active": attendance.status === 2 }' class="attendance-input">
+            <input class="radiobtn" type="radio" name="attendance-{{index}}" [checked]="attendance.status === 2" (click)="modifyAttendance(attendance, 2)">
+          </li>
+        </ul>
+
+        <button *ngIf="attendance.isEdited" id="sm-button" mat-button>
+          Enregistrer
+        </button>
+
+      </mat-list-item>
+    </mat-list>
   </mat-card>
 
 </div>

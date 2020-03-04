@@ -11,8 +11,7 @@ import { Roles }          from "../shared/enums/roles";
 
 @Component({
   selector: "app-concerts",
-  templateUrl: "./concerts.component.html",
-  styleUrls: ["../../../src/assets/css/itemslist-style.scss"]
+  templateUrl: "./concerts.component.html"
 })
 export class ConcertsComponent implements OnInit, OnDestroy {
 
@@ -22,7 +21,7 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   public title: string;
   public dataSource: MatTableDataSource<Concert>;
   public displayedColumns: string[];
-  public hasRights: boolean;
+  public canAddConcerts: boolean;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -35,7 +34,7 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.title = "Concerts";
     this.dataSource = new MatTableDataSource();
-    this.hasRights = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
+    this.canAddConcerts = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
     this.onScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
@@ -55,9 +54,9 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   }
 
   private setupTable() {
-    this.displayedColumns = ["id", "date", "name", "location", "symbol"];
-    if (this.currentScreenWidth === "xs") {
-      this.displayedColumns = ["date", "name", "symbol"];
+    this.displayedColumns = ["date", "name", "location"];
+    if (this.currentScreenWidth === "ms" || this.currentScreenWidth === "xs") {
+      this.displayedColumns = ["date", "name"];
     }
   }
 

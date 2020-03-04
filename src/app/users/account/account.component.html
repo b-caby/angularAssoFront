@@ -1,11 +1,10 @@
 <app-loader></app-loader>
 <app-error-handler></app-error-handler>
-<div id="edit-header">
+<div class="header">
   <h1>{{title}}</h1>
 </div>
 
-<div id="edit-container">
-  <!-- Info card -->
+<div class="content">
   <mat-card class="card mat-elevation-z6">
     <mat-card-header>
       <div mat-card-avatar>
@@ -55,7 +54,6 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <!-- Box info card -->
   <mat-card class="card mat-elevation-z6">
     <mat-card-header>
       <div mat-card-avatar>
@@ -86,25 +84,27 @@
     </mat-card-content>
   </mat-card>
 </div>
-<!-- Concert info card -->
-<mat-card class="card mat-elevation-z6">
-  <mat-card-header>
-    <div mat-card-avatar>
-      <mat-icon>lock</mat-icon>
-    </div>
-    <mat-card-title>Identifiants</mat-card-title>
-  </mat-card-header>
-  <hr>
-  <mat-card-content>
-    <div class="grid-container">
-        <p class="grid-row">
-          <span class="grid-cell info-label">Login</span>
-          <span class="grid-cell">{{userInfos.login}}</span>
-        </p>
-        <p class="grid-row">
-          <span class="grid-cell info-label">Mot de passe</span>
-          <span class="grid-cell">{{userInfos.password}}</span>
-        </p>
+<div class="content">
+  <mat-card class="card mat-elevation-z6">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>lock</mat-icon>
       </div>
-  </mat-card-content>
-</mat-card>
+      <mat-card-title>Identifiants</mat-card-title>
+    </mat-card-header>
+    <hr>
+    <mat-card-content>
+      <div class="grid-container">
+          <p class="grid-row">
+            <span class="grid-cell info-label">Login</span>
+            <span class="grid-cell">{{userInfos.login}}</span>
+          </p>
+          <p class="grid-row">
+            <span class="grid-cell info-label">Mot de passe</span>
+            <span class="grid-cell">{{userInfos.password}}</span>
+          </p>
+        </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

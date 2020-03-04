@@ -1,12 +1,14 @@
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { BrowserModule }                                  from "@angular/platform-browser";
-import { NgModule }                                       from "@angular/core";
+import { NgModule, LOCALE_ID }                            from "@angular/core";
 import { BrowserAnimationsModule }                        from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule }               from "@angular/forms";
 import { FlexLayoutModule }                               from "@angular/flex-layout";
 import { HttpClientModule, HTTP_INTERCEPTORS }            from "@angular/common/http";
 import { AppRoutingModule }                               from "./app-routing.module";
 import { MatMomentDateModule, MomentDateAdapter }         from "@angular/material-moment-adapter";
+import { registerLocaleData }                             from "@angular/common";
+import localeFr                                           from "@angular/common/locales/fr";
 
 import { MatToolbarModule,
          MatButtonModule,
@@ -26,6 +28,7 @@ import { MatToolbarModule,
          MatProgressSpinnerModule,
          MatDatepickerModule,
          MatSnackBarModule,
+         MatRippleModule,
          MatPaginatorIntl } from "@angular/material";
 
 import { AppComponent }           from "./app.component";
@@ -58,6 +61,8 @@ const MY_FORMATS = {
     monthYearA11yLabel: "MMMM YYYY",
   },
 };
+
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -104,12 +109,14 @@ const MY_FORMATS = {
     MatDatepickerModule,
     MatMomentDateModule,
     MatSnackBarModule,
+    MatRippleModule,
     AppRoutingModule
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorTranslation },
               { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
               { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
               { provide: MAT_DATE_LOCALE, useValue: "fr-FR" },
+              { provide: LOCALE_ID, useValue: "fr-FR" },
               { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
               { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]

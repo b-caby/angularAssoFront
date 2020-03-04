@@ -1,0 +1,52 @@
+.mat-row:nth-child(even), .mat-list-option:nth-child(even){
+  background-color: #ffffff;
+  &:hover{
+    background-color: #ffeddd;
+  }
+}
+
+.mat-row:nth-child(odd), .mat-list-option:nth-child(odd){
+  background-color: #f8f8f8;
+  &:hover{
+    background-color: #ffeddd;
+  }
+}
+
+.mat-cell {
+  word-break: break-word;
+}
+
+.mat-header-cell {
+  background: #bca8ec;
+  word-break: keep-all;
+}
+
+.mat-row {
+  cursor: pointer;
+}
+
+.mat-table {
+  background: #ffffff;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+button.mat-sort-header-button {
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: bold;
+  font-size: larger;
+  font-family: "Poppins", sans-serif;
+}
+
+.mat-column-title {
+  flex: 0 0 50%;
+}
+
+.mat-column-date {
+  flex: 0 0 25%;
+}
+
+.mat-column-symbol {
+  flex: 0 0 10%;
+}

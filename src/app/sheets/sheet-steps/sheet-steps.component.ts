@@ -11,7 +11,7 @@ import { ErrorsService }          from "src/app/shared/services/errorsService";
 @Component({
   selector: "app-sheet-steps",
   templateUrl: "./sheet-steps.component.html",
-  styleUrls: ["../../../../src/assets/css/itemssteps-style.scss"]
+  styleUrls: ["../../../../src/assets/css/itemssteps.scss"]
 })
 export class SheetStepsComponent implements OnInit {
 

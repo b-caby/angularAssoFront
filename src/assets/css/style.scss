@@ -1,0 +1,45 @@
+body,
+html {
+  margin: 0px auto;
+}
+
+mat-sidenav-content {
+  background: #f9f9f9;
+}
+
+.header {
+  font-family: "Poppins", sans-serif;
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-buttons {
+  display: flex;
+}
+
+.content {
+  margin: 0px 20px 20px 20px;
+}
+
+.filter {
+  text-align: right;
+  margin: 0px 20px;
+}
+
+.rounded {
+  border-radius: 20px;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.collapsed {
+  visibility: collapse;
+}

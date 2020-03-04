@@ -15,7 +15,7 @@ import { Roles }                  from "src/app/shared/enums/roles";
 @Component({
   selector: "app-concert-detail",
   templateUrl: "./concert-detail.component.html",
-  styleUrls: ["../../../../src/assets/css/itemsdetails-style.scss"]
+  styleUrls: ["../../../../src/assets/css/itemsdetails.scss"]
 })
 export class ConcertDetailComponent implements OnInit {
 
@@ -43,7 +43,7 @@ export class ConcertDetailComponent implements OnInit {
     this.title = "Détail concert";
     this.concertInfos = new Concert();
     this.dataSource = new MatTableDataSource();
-    this.displayedColumns = ["title", "author", "symbol"];
+    this.displayedColumns = ["title", "author"];
     this.canModify = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
     this.canDelete = (this.auth.user.role === Roles.ADMIN);
 

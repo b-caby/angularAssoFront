@@ -11,8 +11,7 @@ import { Roles }         from "../shared/enums/roles";
 
 @Component({
   selector: "app-sheets",
-  templateUrl: "./sheets.component.html",
-  styleUrls: ["../../../src/assets/css/itemslist-style.scss"]
+  templateUrl: "./sheets.component.html"
 })
 export class SheetsComponent implements OnInit, OnDestroy {
 
@@ -22,7 +21,7 @@ export class SheetsComponent implements OnInit, OnDestroy {
   public title: string;
   public dataSource: MatTableDataSource<Sheet>;
   public displayedColumns: string[];
-  public hasRights: boolean;
+  public canAddSheets: boolean;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -36,7 +35,7 @@ export class SheetsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.title = "Partitions";
     this.dataSource = new MatTableDataSource();
-    this.hasRights = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
+    this.canAddSheets = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
     this.onScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
@@ -66,9 +65,9 @@ export class SheetsComponent implements OnInit, OnDestroy {
   }
 
   private setupTable() {
-    this.displayedColumns = ["id", "title", "author", "composer", "genre", "symbol"];
-    if (this.currentScreenWidth === "xs") {
-      this.displayedColumns = ["title", "author", "symbol"];
+    this.displayedColumns = ["title", "author", "composer", "genre"];
+    if (this.currentScreenWidth === "sm" || this.currentScreenWidth === "xs") {
+      this.displayedColumns = ["title", "author"];
     }
   }
 }
