@@ -71,7 +71,16 @@ input {
   outline: none;
   border: 2px solid lightgray;
   &:hover, &.hover {
+    cursor: pointer;
     top: -3px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+}
+
+button:disabled {
+  background: lightgray;
+  &:hover, &.hover {
+    top: 0px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
   }
 }
