@@ -19,6 +19,12 @@ mat-sidenav-content {
   display: flex;
 }
 
+.header-buttons a .mat-icon {
+  font-size: 32px;
+  margin-bottom: 9px;
+  margin-right: 6px;
+}
+
 .content {
   margin: 0px 20px 20px 20px;
 }
