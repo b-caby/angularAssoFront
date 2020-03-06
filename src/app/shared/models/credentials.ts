@@ -1,4 +1,4 @@
-export class AuthInfo {
+export class Credentials {
     public id: number;
     public firstname: string;
     public name: string;

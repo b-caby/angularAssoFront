@@ -4,7 +4,7 @@ import { Subscription }                            from "rxjs";
 import { Router }                                  from "@angular/router";
 
 import { AuthService } from "../shared/services/authService";
-import { AuthInfo }    from "../shared/models/authInfo";
+import { Credentials } from "../shared/models/credentials";
 
 @Component({
   selector: "app-shell",
@@ -18,7 +18,7 @@ export class ShellComponent implements OnInit, OnDestroy {
   private onClosed: Subscription;
 
   public menuButtonStyle: string;
-  public user: AuthInfo;
+  public user: Credentials;
 
   constructor(private auth: AuthService,
               private router: Router) { }

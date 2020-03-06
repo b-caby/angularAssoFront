@@ -17,7 +17,6 @@ export class ApiInterceptor implements HttpInterceptor {
         const token = localStorage.getItem("id_token");
         request = request.clone({
             setHeaders: {
-                // tslint:disable-next-line: max-line-length
                 Authorization: `Bearer ${token}`
             }
         });

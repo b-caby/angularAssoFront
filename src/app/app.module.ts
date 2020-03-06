@@ -32,13 +32,16 @@ import { MatToolbarModule,
          MatPaginatorIntl } from "@angular/material";
 
 import { AppComponent }           from "./app.component";
+/* AUTH COMPONENTS */
+import { AuthComponent }          from "./auth/auth.component";
+import { AuthErrorComponent }     from "./auth/auth-error.component";
+
 import { HomeComponent }          from "./home/home.component";
 import { SheetsComponent }        from "./sheets/sheets.component";
 import { ConcertsComponent }      from "./concerts/concerts.component";
 import { SheetDetailComponent }   from "./sheets/sheet-detail/sheet-detail.component";
 import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail.component";
 import { SheetStepsComponent }    from "./sheets/sheet-steps/sheet-steps.component";
-import { AuthComponent }          from "./auth/auth.component";
 import { ShellComponent }         from "./shell/shell.component";
 import { LoaderComponent }        from "./components/loader/loader.component";
 import { DeleteDialogComponent }  from "./components/delete-dialog/delete-dialog.component";
@@ -67,13 +70,14 @@ registerLocaleData(localeFr);
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
+    AuthErrorComponent,
     HomeComponent,
     SheetsComponent,
     ConcertsComponent,
     SheetDetailComponent,
     ConcertDetailComponent,
     SheetStepsComponent,
-    AuthComponent,
     ShellComponent,
     LoaderComponent,
     DeleteDialogComponent,
@@ -82,7 +86,10 @@ registerLocaleData(localeFr);
     ErrorSnackbarComponent,
     AccountComponent
   ],
-  entryComponents: [DeleteDialogComponent, ErrorSnackbarComponent],
+  entryComponents: [
+    AuthErrorComponent,
+    DeleteDialogComponent,
+    ErrorSnackbarComponent],
   imports: [
     HttpClientModule,
     BrowserModule,

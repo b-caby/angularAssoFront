@@ -4,6 +4,7 @@ import { Router, ActivatedRoute }             from "@angular/router";
 import { MatSnackBar }                        from "@angular/material";
 
 import { AuthService }            from "../shared/services/authService";
+import { AuthErrorComponent }     from "./auth-error.component";
 import { ErrorSnackbarComponent } from "../components/error-snackbar/error-snackbar.component";
 
 @Component({
@@ -30,20 +31,19 @@ export class AuthComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || "";
   }
 
-  public submit() {
+  public onSubmit() {
     const login = this.authFormGroup.get("login").value;
     const password = this.authFormGroup.get("password").value;
 
     this.service.login(login, password).subscribe((data: string) => {
       if (data === "") {
-        this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
+        this.snackbar.openFromComponent(AuthErrorComponent, { duration: 3000 });
       } else {
         this.service.setSession(data);
         this.router.navigateByUrl(this.returnUrl);
       }
-    }, (err: any) => {
+    }, () => {
       this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });
     });
-    this.router.navigate([this.returnUrl]);
   }
 }
