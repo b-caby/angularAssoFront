@@ -1,53 +1,53 @@
 <app-loader></app-loader>
 <app-error-handler></app-error-handler>
 <div class="header">
-    <h1>{{title}}</h1>
+  <h1>{{title}}</h1>
 
-    <div class="header-buttons">
-        <a *ngIf="canAddSheets" [routerLink]="['/sheets/steps']" routerLinkActive="active" mat-button>
-            <mat-icon>add_circle_outline</mat-icon>
-        </a>
-    </div>
+  <div class="header-buttons">
+    <a *ngIf="canAddSheets" [routerLink]="['/sheets/steps']" routerLinkActive="active" mat-button>
+      <mat-icon>add_circle_outline</mat-icon>
+    </a>
+  </div>
 </div>
 
 <div class="filter">
-    <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
-    </mat-form-field>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+  </mat-form-field>
 </div>
-    
-<div class="content">
-    <div class="rounded mat-elevation-z6">
-        <mat-table [dataSource]="dataSource" matSort>
-            <!-- Title column -->
-            <ng-container matColumnDef="title">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Titre</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.title}}</mat-cell>
-            </ng-container>
-        
-            <!-- Author column -->
-            <ng-container matColumnDef="author">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Auteur</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.author}}</mat-cell>
-            </ng-container>
-        
-            <!-- Composer column -->
-            <ng-container matColumnDef="composer">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Compositeur</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.composer}}</mat-cell>
-            </ng-container>
 
-            <!-- Genre column -->
-            <ng-container matColumnDef="genre">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Genre</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.genre}}</mat-cell>
-            </ng-container>
-        
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row matRipple *matRowDef="let row; columns: displayedColumns;"
-                     [routerLink]="['/sheets', row.id]" routerLinkActive="active"></mat-row>
-        </mat-table>
-        <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
-    </div>
+<div class="content">
+  <div class="rounded mat-elevation-z6">
+    <mat-table [dataSource]="dataSource" matSort>
+      <!-- Title column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Titre</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.title}}</mat-cell>
+      </ng-container>
+
+      <!-- Author column -->
+      <ng-container matColumnDef="author">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Auteur</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.author}}</mat-cell>
+      </ng-container>
+
+      <!-- Composer column -->
+      <ng-container matColumnDef="composer">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Compositeur</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.composer}}</mat-cell>
+      </ng-container>
+
+      <!-- Genre column -->
+      <ng-container matColumnDef="genre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Genre</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.genre}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/sheets', row.id]"
+        routerLinkActive="active"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
+  </div>
 
 </div>

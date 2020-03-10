@@ -1,9 +1,4 @@
-#container {
-    font-family: "Poppins", sans-serif;
-    margin: 20px;
-}
-
-#event-date {
+.event-date {
     text-transform: capitalize;
     font-weight: bold;
 }
@@ -14,7 +9,7 @@
     border-top: 1px dashed lightgray;
 }
 
-:host ::ng-deep .mat-list-text {
+.event-text {
     max-width: calc(100% - 156px);
 }
 
@@ -96,19 +91,15 @@
 }
 
 .mat-card {
-    max-width: 550px;
+    max-width: 70%;
     margin: auto;
+    min-width: 288px;
 }
 
 ul {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 10px;
-}
-
-#sm-button {
-    top: 45px;
-    left: 35px;
 }
 
 @font-face{

@@ -12,12 +12,13 @@ import { ErrorsService } from "../shared/services/errorsService";
 export class HomeComponent implements OnInit {
   public title: string;
   public attendances: Attendance[];
+  public isEdited: boolean;
 
   constructor(private service: UserService,
               private errorService: ErrorsService) { }
 
   ngOnInit() {
-    this.title = "Accueil";
+    this.title = "Planning";
     this.getAttendance();
   }
 
@@ -31,10 +32,22 @@ export class HomeComponent implements OnInit {
 
   public modifyAttendance(attendance: Attendance, value: number) {
     attendance.status = value;
-    attendance.isEdited = true;
+    this.isEdited = true;
   }
 
-  public modifyComment(attendance: Attendance) {
-    attendance.isEdited = true;
+  public modifyComment() {
+    this.isEdited = true;
+  }
+
+  public isAttendanceYes(attendance: Attendance) {
+    return attendance.status === 1;
+  }
+
+  public isAttendanceMaybe(attendance: Attendance) {
+    return attendance.status === 3;
+  }
+
+  public isAttendanceNo(attendance: Attendance) {
+    return attendance.status === 2;
   }
 }

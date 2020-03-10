@@ -1,80 +1,80 @@
 <mat-toolbar color="primary">
-    <!-- Primary row -->
-    <mat-toolbar-row class="primaryToolbar">
-      <img id="logo" src="../assets/img/logo.png" routerLink="/home" height="45" width="45">
-      <span id="spacer"></span>
-      <div>
-        <button class="headerButton" mat-button [matMenuTriggerFor]="menu">
-            <mat-icon>account_circle</mat-icon>
-            <mat-icon>arrow_drop_down</mat-icon>
-        </button>
-        <!-- Dropdown menu -->
-        <mat-menu #menu yPosition="below" xPosition="before">
-          <div style="text-align: center">
-            <span class="menuHeader">
-                <mat-icon>face</mat-icon>
-                {{user.firstname}} {{user.name}}
-              </span>
-          </div>
-          <hr>
-          <div>
-            <a class="menuButton" routerLink="/account" routerLinkActive="active" mat-button>
-              Mon compte
-            </a>
-            <a class="menuButton" (click)="logout()" routerLinkActive="active" mat-button>
-              Se déconnecter
-            </a>
-          </div>
-        </mat-menu>
-      </div>
-    </mat-toolbar-row>
-  
-    <!-- Secondary row -->
-    <mat-toolbar-row class="secondaryToolbar">
-      <div id="menuHamburger" [className]="menuButtonStyle" (click)="sidenav.toggle();" fxShow="true" fxHide.gt-sm>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div fxShow="true" fxHide.lt-md="true">
-        <a routerLink="/home" routerLinkActive="active" mat-button>
-          <mat-icon>home</mat-icon>
-          Accueil
-        </a>
-        <a routerLink="/sheets" routerLinkActive="active" mat-button>
-          <mat-icon>music_note</mat-icon>
-          Partitions
-        </a>
-        <a routerLink="/concerts" routerLinkActive="active" mat-button>
-          <mat-icon>event_note</mat-icon>
-          Concerts
-        </a>
-      </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  
-  <!-- Sidenav -->
-  <mat-sidenav-container class="sidenav">
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-        <a routerLink="/home" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
-          <mat-icon>home</mat-icon>
-          Accueil
-        </a>
-        <a routerLink="/sheets" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
-          <mat-icon>music_note</mat-icon>
-          Partitions
-        </a>
-        <a routerLink="/concerts" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
-          <mat-icon>event_note</mat-icon>
-          Concerts
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content fxFlexFill>
-      <router-outlet></router-outlet>
-      <footer class="footer">
-        <span>Harmonie du 3ème canton - Reims - 2019</span>
-      </footer>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <!-- Primary row -->
+  <mat-toolbar-row class="primaryToolbar">
+    <img id="logo" src="../assets/img/logo.png" routerLink="/home" height="45" width="45">
+    <span id="spacer"></span>
+    <div>
+      <button class="headerButton" mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <!-- Dropdown menu -->
+      <mat-menu #menu yPosition="below" xPosition="before">
+        <div style="text-align: center">
+          <span class="menuHeader">
+            <mat-icon>face</mat-icon>
+            {{user.firstname}} {{user.name}}
+          </span>
+        </div>
+        <hr>
+        <div>
+          <a class="menuButton" routerLink="/account" routerLinkActive="active" mat-button>
+            Mon compte
+          </a>
+          <a class="menuButton" (click)="logout()" routerLinkActive="active" mat-button>
+            Se déconnecter
+          </a>
+        </div>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+
+  <!-- Secondary row -->
+  <mat-toolbar-row class="secondaryToolbar">
+    <div id="menuHamburger" [className]="menuButtonStyle" (click)="sidenav.toggle();" fxShow="true" fxHide.gt-sm>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a routerLink="/home" routerLinkActive="active" mat-button>
+        <mat-icon>schedule</mat-icon>
+        Mon planning
+      </a>
+      <a routerLink="/sheets" routerLinkActive="active" mat-button>
+        <mat-icon>music_note</mat-icon>
+        Partitions
+      </a>
+      <a routerLink="/concerts" routerLinkActive="active" mat-button>
+        <mat-icon>event_note</mat-icon>
+        Concerts
+      </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- Sidenav -->
+<mat-sidenav-container class="sidenav">
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a routerLink="/home" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
+        <mat-icon>schedule</mat-icon>
+        Mon planning
+      </a>
+      <a routerLink="/sheets" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
+        <mat-icon>music_note</mat-icon>
+        Partitions
+      </a>
+      <a routerLink="/concerts" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
+        <mat-icon>event_note</mat-icon>
+        Concerts
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content fxFlexFill>
+    <router-outlet></router-outlet>
+    <footer class="footer">
+      <span>Harmonie du 3ème canton - Reims - 2019</span>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

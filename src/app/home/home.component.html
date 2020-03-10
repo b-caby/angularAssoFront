@@ -1,37 +1,38 @@
 <app-loader></app-loader>
 <app-error-handler></app-error-handler>
-<div id="container">
+<div class="header">
   <h1>{{title}}</h1>
+</div>
 
+<div class="content">
   <mat-card class="mat-elevation-z6">
     <mat-list #sheetList>
       <mat-list-item *ngFor="let attendance of attendances; let index = index">
-        <span id="event-date" matLine>{{attendance.date | date: "EEE dd MMMM"}}</span>
-        <p matLine>{{attendance.name}}</p>
-        <p matLine>{{attendance.location}}</p>
+        <span class="event-date event-text" matLine>{{attendance.date | date: "EEE dd MMMM"}}</span>
+        <p class="event-text" matLine>{{attendance.name}}</p>
+        <p class="event-text" matLine>{{attendance.location}}</p>
         <br matLine>
         <mat-form-field matLine>
-          <input matInput placeholder="Commentaire" value="{{attendance.comment}}" (input)="modifyComment(attendance)">
+          <textarea matInput placeholder="Commentaire" value="{{attendance.comment}}"
+            (input)="modifyComment()"></textarea>
         </mat-form-field>
 
         <ul class="attendance-input-list">
-          <li id="yes" [ngClass]='{"active": attendance.status === 1 }' class="attendance-input">
-            <input class="radiobtn" type="radio" name="attendance-{{index}}" [checked]="attendance.status === 1" (click)="modifyAttendance(attendance, 1)">
+          <li id="yes" [ngClass]='{"active": isAttendanceYes(attendance) }' class="attendance-input">
+            <input class="radiobtn" type="radio" name="attendance-{{index}}" (click)="modifyAttendance(attendance, 1)">
           </li>
-          <li id="maybe" [ngClass]='{"active": attendance.status === 3 }' class="attendance-input">
-            <input class="radiobtn" type="radio" name="attendance-{{index}}" [checked]="attendance.status === 3" (click)="modifyAttendance(attendance, 3)">
-            </li>
-          <li id="no" [ngClass]='{"active": attendance.status === 2 }' class="attendance-input">
-            <input class="radiobtn" type="radio" name="attendance-{{index}}" [checked]="attendance.status === 2" (click)="modifyAttendance(attendance, 2)">
+          <li id="maybe" [ngClass]='{"active": isAttendanceMaybe(attendance) }' class="attendance-input">
+            <input class="radiobtn" type="radio" name="attendance-{{index}}" (click)="modifyAttendance(attendance, 3)">
+          </li>
+          <li id="no" [ngClass]='{"active": isAttendanceNo(attendance) }' class="attendance-input">
+            <input class="radiobtn" type="radio" name="attendance-{{index}}" (click)="modifyAttendance(attendance, 2)">
           </li>
         </ul>
-
-        <button *ngIf="attendance.isEdited" id="sm-button" mat-button>
-          Enregistrer
-        </button>
-
       </mat-list-item>
     </mat-list>
-  </mat-card>
 
+    <button *ngIf="isEdited" id="sm-button" mat-button>
+      Enregistrer
+    </button>
+  </mat-card>
 </div>
