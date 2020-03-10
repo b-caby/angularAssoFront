@@ -8,8 +8,8 @@
   <mat-card class="mat-elevation-z6">
     <mat-list #sheetList>
       <mat-list-item *ngFor="let attendance of attendances; let index = index">
-        <span class="event-date event-text" matLine>{{attendance.date | date: "EEE dd MMMM"}}</span>
-        <p class="event-text" matLine>{{attendance.name}}</p>
+        <span class="event-date" matLine>{{attendance.date | date: "EEE dd MMMM"}}</span>
+        <p class="event-text" style="margin-top: 18px;" matLine>{{attendance.name}}</p>
         <p class="event-text" matLine>{{attendance.location}}</p>
         <br matLine>
         <mat-form-field matLine>

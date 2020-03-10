@@ -57,6 +57,12 @@
     transition-property: all;
 }
 
+.mat-card {
+    max-width: 60%;
+    margin: auto;
+    min-width: 250px;
+}
+
 #yes::before {
     content: "✔"; 
     font-family: 'DoodleIcons',sans-serif;
@@ -90,15 +96,9 @@
     color: #ffffff;
 }
 
-.mat-card {
-    max-width: 70%;
-    margin: auto;
-    min-width: 288px;
-}
-
 ul {
     position: absolute;
-    top: 15px;
+    top: 35px;
     right: 10px;
 }
 
@@ -107,4 +107,30 @@ ul {
     src: url("../../../src/assets/fonts/doodleIcons.woff") format('woff');
     font-weight: 400;
     font-style: normal;
+}
+
+@media only screen and (max-width: 425px) {
+    .attendance-input {
+        position: relative;
+        display: inline-block;
+        height: 38px;
+        width: 38px;
+        line-height: 38px;
+        text-align: center;
+        margin: 0 0 0 7px;
+        background-color: #e7e7e7;
+        color: silver;
+        vertical-align: top;
+        border-radius: 5px;
+        font-size: .8em;
+        cursor: pointer;
+        transition: .3s ease-out;
+        transition-property: all;
+    }
+
+    .mat-card {
+        max-width: 100%;
+        margin: auto;
+        min-width: 250px;
+    }
 }

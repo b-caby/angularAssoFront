@@ -7,7 +7,7 @@ import { ErrorsService } from "../shared/services/errorsService";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"]
+  styleUrls: ["../../../src/assets/css/home.scss"]
 })
 export class HomeComponent implements OnInit {
   public title: string;
