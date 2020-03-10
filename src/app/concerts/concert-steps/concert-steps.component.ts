@@ -5,7 +5,7 @@ import { MatTableDataSource, MatSort, MatSnackBar }      from "@angular/material
 import { MediaObserver, MediaChange }                    from "@angular/flex-layout";
 import { Subscription }                                  from "rxjs";
 
-import { Concert, ConcertSheets } from "src/app/shared/models/concert";
+import { Concert }                from "src/app/shared/models/concert";
 import { ConcertService }         from "src/app/shared/services/concertService";
 import { ErrorsService }          from "src/app/shared/services/errorsService";
 import { SheetService }           from "src/app/shared/services/sheetService";
@@ -28,7 +28,7 @@ export class ConcertStepsComponent implements OnInit, OnDestroy {
   public infosFormGroup: FormGroup;
   public audienceFormGroup: FormGroup;
   public displayedColumns: string[];
-  public dataSource: MatTableDataSource<ConcertSheets>;
+  public dataSource: MatTableDataSource<Sheet>;
   public hasSheets: boolean;
   public filteredSheets: Sheet[];
   public hasSearchResults: boolean;
@@ -142,7 +142,7 @@ export class ConcertStepsComponent implements OnInit, OnDestroy {
   }
 
   public addSheet(selectedSheets: any) {
-    selectedSheets.forEach((sheet: { value: ConcertSheets; }) => {
+    selectedSheets.forEach((sheet: { value: Sheet; }) => {
       const data = this.dataSource.data;
       data.push(sheet.value);
       this.dataSource.data = data;

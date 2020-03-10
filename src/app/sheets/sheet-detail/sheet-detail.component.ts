@@ -6,12 +6,13 @@ import { MediaObserver, MediaChange }               from "@angular/flex-layout";
 import { Subscription }                             from "rxjs";
 
 import { DeleteDialogComponent }  from "src/app/components/delete-dialog/delete-dialog.component";
-import { SheetConcert, Sheet }    from "src/app/shared/models/sheet";
+import { Sheet }                  from "src/app/shared/models/sheet";
 import { SheetService }           from "src/app/shared/services/sheetService";
 import { ErrorsService }          from "src/app/shared/services/errorsService";
 import { ErrorSnackbarComponent } from "src/app/components/error-snackbar/error-snackbar.component";
 import { AuthService }            from "src/app/shared/services/authService";
 import { Roles }                  from "src/app/shared/enums/roles";
+import { Concert }                from "src/app/shared/models/concert";
 
 @Component({
   selector: "app-sheet-detail",
@@ -25,7 +26,7 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
   private OnScreenSizeChanged: Subscription;
 
   public title: string;
-  public dataSource: MatTableDataSource<SheetConcert>;
+  public dataSource: MatTableDataSource<Concert>;
   public sheetInfos: Sheet;
   public displayedColumns: string[];
   public hasConcerts: boolean;

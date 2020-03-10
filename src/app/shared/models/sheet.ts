@@ -1,3 +1,5 @@
+import { Concert } from "./concert";
+
 export class Sheet {
     public id: number;
     public title: string;
@@ -10,12 +12,5 @@ export class Sheet {
     public boxNumber: string;
     public trayNumber: string;
     public recordingDate: string;
-    public concerts: SheetConcert[];
-}
-
-export class SheetConcert {
-    public id: number;
-    public date: Date;
-    public name: string;
-    public location: string;
+    public concerts: Concert[];
 }

@@ -3,13 +3,14 @@ import { MatTableDataSource, MatSort, MatSnackBar }  from "@angular/material";
 import { MatDialog }                                 from "@angular/material/dialog";
 import { ActivatedRoute, Router }                    from "@angular/router";
 
-import { ConcertSheets, Concert } from "src/app/shared/models/concert";
+import { Concert }                from "src/app/shared/models/concert";
 import { ConcertService }         from "src/app/shared/services/concertService";
 import { DeleteDialogComponent }  from "src/app/components/delete-dialog/delete-dialog.component";
 import { ErrorsService }          from "src/app/shared/services/errorsService";
 import { ErrorSnackbarComponent } from "src/app/components/error-snackbar/error-snackbar.component";
 import { AuthService }            from "src/app/shared/services/authService";
 import { Roles }                  from "src/app/shared/enums/roles";
+import { Sheet }                  from "src/app/shared/models/sheet";
 
 
 @Component({
@@ -23,7 +24,7 @@ export class ConcertDetailComponent implements OnInit {
 
   public title: string;
   public concertInfos: Concert;
-  public dataSource: MatTableDataSource<ConcertSheets>;
+  public dataSource: MatTableDataSource<Sheet>;
   public displayedColumns: string[];
   public hasSheets: boolean;
   public canModify: boolean;

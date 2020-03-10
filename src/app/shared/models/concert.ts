@@ -1,3 +1,5 @@
+import { Sheet } from "./sheet";
+
 export class Concert {
     public id: number;
     public date: Date;
@@ -6,11 +8,5 @@ export class Concert {
     public playerNumber: number;
     public spectatorNumber: number;
     public length: number;
-    public sheets: ConcertSheets[];
-}
-
-export class ConcertSheets {
-    public id: number;
-    public title: string;
-    public author: string;
+    public sheets: Sheet[];
 }
