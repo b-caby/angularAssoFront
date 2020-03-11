@@ -39,7 +39,7 @@ $secondaryColor: #bca8ec;
 .accountButton {
     display: block;
     border: 2px solid $primaryColor;
-    margin: 10px 20px 5px 20px;
+    margin: 0px 20px;
 }
 
 .logoutButton {
@@ -68,6 +68,12 @@ $secondaryColor: #bca8ec;
     background: lightgray;
     font-family: "Roboto", sans-serif;
     font-size: 12px;
+}
+
+.accountContent {
+    display: flex;
+    flex-direction: column;
+    text-align: center
 }
 
 /* CSS FOR THE HAMBURGER MENU ANIMATION*/
