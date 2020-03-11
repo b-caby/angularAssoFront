@@ -12,16 +12,15 @@
       <mat-menu #menu yPosition="below" xPosition="before">
         <div style="text-align: center">
           <span class="menuHeader">
-            <mat-icon>face</mat-icon>
             {{user.firstname}} {{user.name}}
           </span>
-        </div>
-        <hr>
-        <div>
-          <a class="menuButton" routerLink="/account" routerLinkActive="active" mat-button>
+          <a class="accountButton" routerLink="/account" routerLinkActive="active" mat-button>
             Mon compte
           </a>
-          <a class="menuButton" (click)="logout()" routerLinkActive="active" mat-button>
+        </div>
+        <hr style="width:90%">
+        <div>
+          <a class="logoutButton" (click)="logout()" routerLinkActive="active" mat-button>
             Se déconnecter
           </a>
         </div>

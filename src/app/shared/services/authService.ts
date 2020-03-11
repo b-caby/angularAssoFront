@@ -1,6 +1,7 @@
 import { Injectable }                  from "@angular/core";
 import { HttpClient }                  from "@angular/common/http";
 import { BehaviorSubject }             from "rxjs";
+import { Base64 }                      from "js-base64";
 
 import { environment } from "../../../environments/environment";
 import { Credentials } from "../models/credentials";
@@ -28,9 +29,9 @@ export class AuthService {
     }
 
     public setUser() {
-        const payload = localStorage.getItem("id_token");
-        const decoded = (!!payload) ? JSON.parse(window.atob(payload.split(".")[1])) : {};
-        return Object.assign(new Credentials(), decoded);
+        const token = localStorage.getItem("id_token");
+        const payload = (!!token) ? JSON.parse(Base64.fromBase64(token.split(".")[1])) : {};
+        return Object.assign(new Credentials(), payload);
     }
 
     public get user(): Credentials {

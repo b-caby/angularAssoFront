@@ -36,10 +36,16 @@ $secondaryColor: #bca8ec;
     }
 }
 
-.menuButton {
+.accountButton {
     display: block;
-    text-align: left;
-    padding: 0px 10px;
+    border: 2px solid $primaryColor;
+    margin: 10px 20px 5px 20px;
+}
+
+.logoutButton {
+    display: block;
+    border: 2px solid lightgray;
+    margin: 5px 20px;
 }
 
 .headerButton {
