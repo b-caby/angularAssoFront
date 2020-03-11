@@ -1,0 +1,49 @@
+<app-loader></app-loader>
+<app-error-handler></app-error-handler>
+<div class="header">
+  <h1>{{title}}</h1>
+
+  <div class="header-buttons"></div>
+</div>
+
+<div class="filter">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+  </mat-form-field>
+</div>
+
+<div class="content">
+  <div class="rounded mat-elevation-z6">
+    <mat-table [dataSource]="dataSource" matSort>
+      <!-- Name column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+      </ng-container>
+
+      <!-- Firstname column -->
+      <ng-container matColumnDef="firstname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Prénom</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.firstname}}</mat-cell>
+      </ng-container>
+
+      <!-- Composer column -->
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Téléphone</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
+      </ng-container>
+
+      <!-- Genre column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/sheets', row.id]"
+        routerLinkActive="active"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+
+</div>

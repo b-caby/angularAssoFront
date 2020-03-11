@@ -13,6 +13,7 @@ import { ConcertStepsComponent }  from "./concerts/concert-steps/concert-steps.c
 import { AuthGuard }              from "./shared/authGuard";
 import { Roles }                  from "./shared/enums/roles";
 import { AccountComponent }       from "./users/account/account.component";
+import { BenefactorsComponent }   from "./benefactors/benefactors.component";
 
 const routes: Routes = [
   { path: "", component: ShellComponent, children: [
@@ -61,6 +62,11 @@ const routes: Routes = [
       path: "concerts/:id",
       component: ConcertDetailComponent,
       canActivate: [AuthGuard]
+    },
+    {
+      path: "benefactors",
+      component: BenefactorsComponent,
+      canActivate: [AuthGuard], data: { roles: [Roles.OFFICER, Roles.ADMIN] }
     },
     {
       path: "account",
