@@ -11,7 +11,10 @@ import { BenefactorService } from "../shared/services/benefactorService";
   selector:  "app-benefactors",
   templateUrl: "./benefactors.component.html"
 })
-export class BenefactorsComponent implements OnInit {
+export class BenefactorsComponent implements OnInit, OnDestroy {
+  private onScreenSizeChanged: Subscription;
+  private currentScreenWidth: string;
+
   public title: string;
   public dataSource: MatTableDataSource<Benefactor>;
   public displayedColumns: string[];
@@ -20,13 +23,25 @@ export class BenefactorsComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private service: BenefactorService,
-              private errorService: ErrorsService) { }
+              private errorService: ErrorsService,
+              private mediaObserver: MediaObserver) { }
 
   ngOnInit() {
     this.title = "Bienfaiteurs";
     this.dataSource = new MatTableDataSource();
-    this.displayedColumns = ["name", "firstname", "phone", "email"];
+
+    this.onScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
+      if (change[0].mqAlias !== this.currentScreenWidth) {
+        this.currentScreenWidth = change[0].mqAlias;
+        this.setupTable();
+      }
+    });
+
     this.getAllBenefactors();
+  }
+
+  ngOnDestroy(): void {
+    this.onScreenSizeChanged.unsubscribe();
   }
 
   private getAllBenefactors() {
@@ -41,5 +56,13 @@ export class BenefactorsComponent implements OnInit {
 
   public applyFilter(filter: string) {
     this.dataSource.filter = filter;
+  }
+
+  private setupTable() {
+    this.displayedColumns = ["name", "firstname", "phone", "email"];
+    console.log(this.currentScreenWidth);
+    if (this.currentScreenWidth === "sm" || this.currentScreenWidth === "xs") {
+      this.displayedColumns = ["name", "firstname"];
+    }
   }
 }

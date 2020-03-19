@@ -53,6 +53,7 @@ import { ErrorInterceptor }       from "./shared/errorInterceptor";
 import { ErrorSnackbarComponent } from "./components/error-snackbar/error-snackbar.component";
 import { AccountComponent }       from "./users/account/account.component";
 import { BenefactorsComponent }   from "./benefactors/benefactors.component";
+import { BenefactorDetailComponent } from './benefactors/benefactor-detail/benefactor-detail.component';
 
 const MY_FORMATS = {
   parse: {
@@ -86,7 +87,8 @@ registerLocaleData(localeFr);
     ErrorHandlerComponent,
     ErrorSnackbarComponent,
     AccountComponent,
-    BenefactorsComponent
+    BenefactorsComponent,
+    BenefactorDetailComponent
   ],
   entryComponents: [
     AuthErrorComponent,

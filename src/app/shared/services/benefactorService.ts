@@ -16,4 +16,8 @@ export class BenefactorService {
   public getAllBenefactors() {
     return this.http.get(`${this.url}/api/benefactors`);
   }
+
+  public getBenefactorDetails(id: number) {
+    return this.http.get(`${this.url}/api/benefactors/${id}`);
+  }
 }
