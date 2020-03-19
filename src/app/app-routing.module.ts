@@ -1,18 +1,20 @@
 import { NgModule }             from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { HomeComponent }          from "./home/home.component";
-import { ConcertsComponent }      from "./concerts/concerts.component";
-import { SheetsComponent }        from "./sheets/sheets.component";
-import { SheetDetailComponent }   from "./sheets/sheet-detail/sheet-detail.component";
-import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail.component";
-import { SheetStepsComponent }    from "./sheets/sheet-steps/sheet-steps.component";
-import { AuthComponent }          from "./auth/auth.component";
-import { ShellComponent }         from "./shell/shell.component";
-import { ConcertStepsComponent }  from "./concerts/concert-steps/concert-steps.component";
-import { AuthGuard }              from "./shared/authGuard";
-import { Roles }                  from "./shared/enums/roles";
-import { AccountComponent }       from "./users/account/account.component";
+import { HomeComponent }             from "./home/home.component";
+import { ConcertsComponent }         from "./concerts/concerts.component";
+import { SheetsComponent }           from "./sheets/sheets.component";
+import { SheetDetailComponent }      from "./sheets/sheet-detail/sheet-detail.component";
+import { ConcertDetailComponent }    from "./concerts/concert-detail/concert-detail.component";
+import { SheetStepsComponent }       from "./sheets/sheet-steps/sheet-steps.component";
+import { AuthComponent }             from "./auth/auth.component";
+import { ShellComponent }            from "./shell/shell.component";
+import { ConcertStepsComponent }     from "./concerts/concert-steps/concert-steps.component";
+import { AuthGuard }                 from "./shared/authGuard";
+import { Roles }                     from "./shared/enums/roles";
+import { AccountComponent }          from "./users/account/account.component";
+import { BenefactorsComponent }      from "./benefactors/benefactors.component";
+import { BenefactorDetailComponent } from "./benefactors/benefactor-detail/benefactor-detail.component";
 
 const routes: Routes = [
   { path: "", component: ShellComponent, children: [
@@ -60,6 +62,16 @@ const routes: Routes = [
     {
       path: "concerts/:id",
       component: ConcertDetailComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: "benefactors",
+      component: BenefactorsComponent,
+      canActivate: [AuthGuard], data: { roles: [Roles.OFFICER, Roles.ADMIN] }
+    },
+    {
+      path: "benefactors/:id",
+      component: BenefactorDetailComponent,
       canActivate: [AuthGuard]
     },
     {
