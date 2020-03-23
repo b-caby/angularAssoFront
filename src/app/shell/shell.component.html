@@ -48,6 +48,10 @@
         <mat-icon>event_note</mat-icon>
         Concerts
       </a>
+      <a routerLink="/benefactors" routerLinkActive="active" mat-button>
+        <mat-icon>euro</mat-icon>
+        Bienfaiteurs
+      </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -67,6 +71,10 @@
       <a routerLink="/concerts" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
         <mat-icon>event_note</mat-icon>
         Concerts
+      </a>
+      <a routerLink="/benefactors" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
+        <mat-icon>euro</mat-icon>
+        Bienfaiteurs
       </a>
     </mat-nav-list>
   </mat-sidenav>
