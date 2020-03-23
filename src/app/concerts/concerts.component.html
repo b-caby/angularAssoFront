@@ -1,4 +1,3 @@
-<app-loader></app-loader>
 <app-error-handler></app-error-handler>
 <div class="header">
   <h1>{{title}}</h1>
@@ -41,6 +40,7 @@
       <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/concerts', row.id]"
         routerLinkActive="active"></mat-row>
     </mat-table>
+    <app-loader></app-loader>
     <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
   </div>
 </div>

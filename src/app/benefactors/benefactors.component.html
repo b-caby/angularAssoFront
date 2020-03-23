@@ -1,4 +1,3 @@
-<app-loader></app-loader>
 <app-error-handler></app-error-handler>
 <div class="header">
   <h1>{{title}}</h1>
@@ -27,13 +26,16 @@
         <mat-cell *matCellDef="let element">{{element.firstname}}</mat-cell>
       </ng-container>
 
-      <!-- Composer column -->
+      <!-- Phone column -->
       <ng-container matColumnDef="phone">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Téléphone</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
+        <mat-cell id="phoneTableCell" *matCellDef="let element">
+          <span class="phone-number">{{element.phone}}</span>
+          <span class="phone-number">{{element.mobile}}</span>
+        </mat-cell>
       </ng-container>
 
-      <!-- Genre column -->
+      <!-- Email column -->
       <ng-container matColumnDef="email">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
@@ -43,6 +45,7 @@
       <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/benefactors', row.id]"
         routerLinkActive="active"></mat-row>
     </mat-table>
+    <app-loader></app-loader>
     <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
   </div>
 

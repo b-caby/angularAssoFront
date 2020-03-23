@@ -67,3 +67,14 @@ button.mat-sort-header-button {
   background: $backgroundColor;
   color: #000000
 }
+
+#phoneTableCell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.phone-number {
+  padding: 1px 0px;
+}

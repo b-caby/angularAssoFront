@@ -1,7 +1,7 @@
-import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
-import { Component, OnInit, ViewChild, OnDestroy }   from "@angular/core";
-import { MediaObserver, MediaChange }                from "@angular/flex-layout";
-import { Subscription }                              from "rxjs";
+import { MatTableDataSource, MatSort, MatPaginator, MatSortable } from "@angular/material";
+import { Component, OnInit, ViewChild, OnDestroy }                from "@angular/core";
+import { MediaObserver, MediaChange }                             from "@angular/flex-layout";
+import { Subscription }                                           from "rxjs";
 
 import { ConcertService } from "../shared/services/concertService";
 import { Concert }        from "../shared/models/concert";
@@ -29,12 +29,19 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   constructor(private mediaObserver: MediaObserver,
               private service: ConcertService,
               private errorService: ErrorsService,
-              private auth: AuthService) { }
+              private auth: AuthService) {}
 
   ngOnInit() {
     this.title = "Concerts";
-    this.dataSource = new MatTableDataSource();
     this.canAddConcerts = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
+
+    // Sorting starts with descending dates
+    this.sort.sort(({ id: "date", start: "desc" }) as MatSortable)
+    this.dataSource = new MatTableDataSource();
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    
+    // Gets and sets the size of the current screen
     this.onScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
@@ -42,11 +49,20 @@ export class ConcertsComponent implements OnInit, OnDestroy {
       }
     });
 
+    // Call to the API
     this.getAllConcerts();
   }
 
   ngOnDestroy() {
     this.onScreenSizeChanged.unsubscribe();
+  }
+
+  private getAllConcerts() {
+    this.service.getAllConcerts().subscribe((data: Concert[]) => {
+      this.dataSource.data = data;
+    }, (err: any) => {
+      this.errorService.show();
+    });
   }
 
   public applyFilter(filter: string) {
@@ -55,18 +71,8 @@ export class ConcertsComponent implements OnInit, OnDestroy {
 
   private setupTable() {
     this.displayedColumns = ["date", "name", "location"];
-    if (this.currentScreenWidth === "ms" || this.currentScreenWidth === "xs") {
+    if (this.currentScreenWidth === "xs" || this.currentScreenWidth === "ms") {
       this.displayedColumns = ["date", "name"];
     }
-  }
-
-  private getAllConcerts() {
-    this.service.getAllConcerts().subscribe((data: Concert[]) => {
-      this.dataSource.data = data;
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    }, (err: any) => {
-      this.errorService.show();
-    });
   }
 }
