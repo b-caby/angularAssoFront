@@ -51,3 +51,15 @@ mat-sidenav-content {
 .collapsed {
   visibility: collapse;
 }
+
+.spinner-overlay {
+  background: $backgroundColor;
+  z-index:99999;
+  margin: 20px;
+}
+.spinner {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}

@@ -4,8 +4,7 @@ import { Subject } from "rxjs";
 
 @Component({
   selector: "app-loader",
-  templateUrl: "./loader.component.html",
-  styleUrls: ["./loader.component.scss"]
+  templateUrl: "./loader.component.html"
 })
 export class LoaderComponent implements OnInit {
   public color: string;
