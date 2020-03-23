@@ -1,5 +1,4 @@
-$primaryColor: #200f46;
-$secondaryColor: #bca8ec;
+@import "./variables.scss";
 
 .primaryToolbar {
     height: 56px;
@@ -26,10 +25,10 @@ $secondaryColor: #bca8ec;
 }
 
 .menuHeader {
-    font-family: "Roboto", sans-serif;
+    font-family: $primaryFont;
     padding: 10px;
     cursor: default;
-    color: #200f46;
+    color: $primaryColor;
 
     .mat-icon{
         vertical-align: bottom;
@@ -65,7 +64,7 @@ $secondaryColor: #bca8ec;
     padding: 5px 0px;
     width: 100%;
     text-align: center;
-    background: lightgray;
+    background: $footerColor;
     font-family: "Roboto", sans-serif;
     font-size: 12px;
 }

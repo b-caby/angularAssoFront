@@ -1,14 +1,16 @@
+@import "./variables.scss";
+
 .mat-row:nth-child(even), .mat-list-option:nth-child(even){
-  background-color: #ffffff;
+  background-color: $tableFirstColor;
   &:hover{
-    background-color: #ffeddd;
+    background-color: $tableHoverColor;
   }
 }
 
 .mat-row:nth-child(odd), .mat-list-option:nth-child(odd){
-  background-color: #f8f8f8;
+  background-color: $tableSecondColor;
   &:hover{
-    background-color: #ffeddd;
+    background-color: $tableHoverColor;
   }
 }
 
@@ -17,18 +19,28 @@
 }
 
 .mat-header-cell {
-  background: #bca8ec;
+  background: $secondaryColor;
   word-break: keep-all;
+}
+
+.mat-header-row {
+  border-bottom-color: black;
 }
 
 .mat-row {
   cursor: pointer;
+  border-bottom-color: rgba(0,0,0,.4);
+}
+
+.mat-row:last-child {
+  border-bottom-color: rgba(0,0,0,0);
 }
 
 .mat-table {
   background: #ffffff;
   overflow: hidden;
   border-radius: 20px;
+  border: 1px solid #000000;
 }
 
 button.mat-sort-header-button {
@@ -36,7 +48,7 @@ button.mat-sort-header-button {
   color: #000000;
   font-weight: bold;
   font-size: larger;
-  font-family: "Poppins", sans-serif;
+  font-family: $secondaryFont;
 }
 
 .mat-column-title {
@@ -49,4 +61,8 @@ button.mat-sort-header-button {
 
 .mat-column-symbol {
   flex: 0 0 10%;
+}
+
+.mat-paginator {
+  color: #000000
 }

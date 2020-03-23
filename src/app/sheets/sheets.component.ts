@@ -1,7 +1,7 @@
-import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
-import { Component, OnInit, ViewChild, OnDestroy }   from "@angular/core";
-import { MediaObserver, MediaChange }                from "@angular/flex-layout";
-import { Subscription }                              from "rxjs";
+import { MatTableDataSource, MatSort, MatPaginator, MatSortable } from "@angular/material";
+import { Component, OnInit, ViewChild, OnDestroy }                from "@angular/core";
+import { MediaObserver, MediaChange }                             from "@angular/flex-layout";
+import { Subscription }                                           from "rxjs";
 
 import { SheetService }  from "../shared/services/sheetService";
 import { Sheet }         from "../shared/models/sheet";
@@ -29,13 +29,21 @@ export class SheetsComponent implements OnInit, OnDestroy {
   constructor(private mediaObserver: MediaObserver,
               private service: SheetService,
               private errorService: ErrorsService,
-              private auth: AuthService) {
-  }
+              private auth: AuthService) {}
 
   ngOnInit() {
     this.title = "Partitions";
-    this.dataSource = new MatTableDataSource();
     this.canAddSheets = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
+
+    // Sorting starts with ascending titles
+    // Sorting is case-insensitive
+    this.sort.sort(({ id: "title", start: "asc" }) as MatSortable);
+    this.dataSource = new MatTableDataSource();
+    this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = (data, sortHeaderId) => data[sortHeaderId].toLocaleLowerCase();
+    this.dataSource.paginator = this.paginator;
+
+    // Gets and sets the size of the current screen
     this.onScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
@@ -43,6 +51,7 @@ export class SheetsComponent implements OnInit, OnDestroy {
       }
     });
 
+    // Call to the API
     this.getAllSheets();
   }
 
@@ -53,8 +62,6 @@ export class SheetsComponent implements OnInit, OnDestroy {
   private getAllSheets() {
     this.service.getAllSheets().subscribe((data: Sheet[]) => {
       this.dataSource.data = data;
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
     }, (err: any) => {
       this.errorService.show();
     });
