@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, OnDestroy }  from "@angular/core";
-import { MatSort, MatTableDataSource, MatSnackBar } from "@angular/material";
-import { MatDialog }                                from "@angular/material/dialog";
-import { ActivatedRoute, Router }                   from "@angular/router";
-import { MediaObserver, MediaChange }               from "@angular/flex-layout";
-import { Subscription }                             from "rxjs";
+import { Component, OnInit, ViewChild, OnDestroy }               from "@angular/core";
+import { MatSort, MatTableDataSource, MatSnackBar, MatSortable } from "@angular/material";
+import { MatDialog }                                             from "@angular/material/dialog";
+import { ActivatedRoute, Router }                                from "@angular/router";
+import { MediaObserver, MediaChange }                            from "@angular/flex-layout";
+import { Subscription }                                          from "rxjs";
 
 import { DeleteDialogComponent }  from "src/app/components/delete-dialog/delete-dialog.component";
 import { Sheet }                  from "src/app/shared/models/sheet";
@@ -21,13 +21,12 @@ import { Concert }                from "src/app/shared/models/concert";
 })
 export class SheetDetailComponent implements OnInit, OnDestroy {
 
-  private sheetId: number;
   private currentScreenWidth: string;
   private OnScreenSizeChanged: Subscription;
 
+  public sheetInfos: Sheet = new Sheet();
   public title: string;
   public dataSource: MatTableDataSource<Concert>;
-  public sheetInfos: Sheet;
   public displayedColumns: string[];
   public hasConcerts: boolean;
   public canModify: boolean;
@@ -46,10 +45,18 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.title = "Détails partition";
+    this.canModify = this.canDelete = false;
+
+    // TODO_V2
+    /*this.canModify = this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER;
+    this.canDelete = this.auth.user.role === Roles.ADMIN;*/
+
+    // Sorting starts with descending dates
+    this.sort.sort(({ id: "date", start: "desc"}) as MatSortable)
     this.dataSource = new MatTableDataSource();
-    this.sheetInfos = new Sheet();
-    this.canModify = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
-    this.canDelete = (this.auth.user.role === Roles.ADMIN);
+    this.dataSource.sort = this.sort;
+    
+    // Gets and sets the size of the current screen
     this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
         this.currentScreenWidth = change[0].mqAlias;
@@ -57,8 +64,8 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.sheetId = this.route.snapshot.params.id;
-    this.getSheetDetails(this.sheetId);
+    // Call to the API
+    this.getSheetDetails(this.route.snapshot.params.id);
   }
 
   ngOnDestroy(): void {
@@ -71,7 +78,6 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
       if (data.concerts) {
         this.hasConcerts = true;
         this.dataSource.data = data.concerts;
-        this.dataSource.sort = this.sort;
       }
     }, (err: any) => {
       this.errorService.show();
@@ -80,9 +86,13 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
 
   private setupTable() {
     this.displayedColumns = ["date", "name", "location"];
-    if (this.currentScreenWidth === "sm" || this.currentScreenWidth === "xs") {
+    if (this.currentScreenWidth === "xs" || this.currentScreenWidth === "ms") {
       this.displayedColumns = ["date", "name"];
     }
+  }
+
+  public modifySheet(){
+    this.router.navigateByUrl(`sheets/steps/${this.sheetInfos.id}`)
   }
 
   public openDeleteDialog() {
@@ -92,7 +102,7 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
 
     dialog.afterClosed().subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.service.deleteSheet(this.sheetId).subscribe(() => {
+        this.service.deleteSheet(this.sheetInfos.id).subscribe(() => {
           this.router.navigateByUrl("/sheets");
         }, (err: any) => {
           this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });

@@ -1,9 +1,8 @@
-<app-loader></app-loader>
 <app-error-handler></app-error-handler>
 <div class="header">
   <h1>{{title}}</h1>
   <div class="header-buttons">
-    <a *ngIf="canModify" [routerLink]="['/sheets/steps', sheetInfos.id]" routerLinkActive="active" mat-button>
+    <a *ngIf="canModify" (click)="modifySheet()" mat-button>
       <mat-icon>edit</mat-icon>
     </a>
     <a *ngIf="canDelete" (click)="openDeleteDialog()" mat-button>

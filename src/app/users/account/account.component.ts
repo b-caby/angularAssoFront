@@ -12,14 +12,13 @@ import { ErrorsService } from "src/app/shared/services/errorsService";
 export class AccountComponent implements OnInit {
 
   public title: string;
-  public userInfos: User;
+  public userInfos: User = new User();
 
   constructor(private service: UserService,
               private errorService: ErrorsService) { }
 
   ngOnInit() {
     this.title = "Mon compte";
-    this.userInfos = new User();
     this.getUserAccount();
   }
 

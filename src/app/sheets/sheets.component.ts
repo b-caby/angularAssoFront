@@ -33,7 +33,10 @@ export class SheetsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.title = "Partitions";
-    this.canAddSheets = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
+    this.canAddSheets = false;
+
+    // TODO_V2
+    /*this.canAddSheets = this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER;*/
 
     // Sorting starts with ascending titles
     // Sorting is case-insensitive

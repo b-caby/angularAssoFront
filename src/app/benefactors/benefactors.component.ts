@@ -33,7 +33,10 @@ export class BenefactorsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.title = "Bienfaiteurs";
-    this.canAddBenefactors = this.auth.user.role === Roles.ADMIN;
+    this.canAddBenefactors = false;
+
+    // TODO_V2
+    /*this.canAddBenefactors = this.auth.user.role === Roles.ADMIN;*/
 
     // Sorting starts with ascending names
     // Sorting is case-insensitive

@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild }              from "@angular/core";
-import { MatTableDataSource, MatSort, MatSnackBar }  from "@angular/material";
-import { MatDialog }                                 from "@angular/material/dialog";
-import { ActivatedRoute, Router }                    from "@angular/router";
+import { Component, OnInit, ViewChild, OnDestroy }                from "@angular/core";
+import { MatTableDataSource, MatSort, MatSnackBar, MatSortable }  from "@angular/material";
+import { MatDialog }                                              from "@angular/material/dialog";
+import { ActivatedRoute, Router }                                 from "@angular/router";
 
 import { Concert }                from "src/app/shared/models/concert";
 import { ConcertService }         from "src/app/shared/services/concertService";
@@ -12,7 +12,6 @@ import { AuthService }            from "src/app/shared/services/authService";
 import { Roles }                  from "src/app/shared/enums/roles";
 import { Sheet }                  from "src/app/shared/models/sheet";
 
-
 @Component({
   selector: "app-concert-detail",
   templateUrl: "./concert-detail.component.html",
@@ -20,10 +19,8 @@ import { Sheet }                  from "src/app/shared/models/sheet";
 })
 export class ConcertDetailComponent implements OnInit {
 
-  private concertId: number;
-
+  public concertInfos: Concert = new Concert();
   public title: string;
-  public concertInfos: Concert;
   public dataSource: MatTableDataSource<Sheet>;
   public displayedColumns: string[];
   public hasSheets: boolean;
@@ -42,14 +39,22 @@ export class ConcertDetailComponent implements OnInit {
 
   ngOnInit() {
     this.title = "Détail concert";
-    this.concertInfos = new Concert();
-    this.dataSource = new MatTableDataSource();
+    this.canModify = this.canDelete = false;
     this.displayedColumns = ["title", "author"];
-    this.canModify = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
-    this.canDelete = (this.auth.user.role === Roles.ADMIN);
 
-    this.concertId = this.route.snapshot.params.id;
-    this.getConcertDetails(this.concertId);
+    // TODO_V2
+    /*this.canModify = this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER;
+    this.canDelete = this.auth.user.role === Roles.ADMIN;*/
+
+    // Sorting starts with ascending title
+    // Sorting is case-insensitive
+    this.sort.sort(({ id: "title", start: "asc"}) as MatSortable)
+    this.dataSource = new MatTableDataSource();
+    this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = (data, sortHeaderId) => data[sortHeaderId].toLocaleLowerCase();
+
+    // Call to the API
+    this.getConcertDetails(this.route.snapshot.params.id);
   }
 
   private getConcertDetails(id: number) {
@@ -58,11 +63,14 @@ export class ConcertDetailComponent implements OnInit {
       if (data.sheets) {
         this.hasSheets = true;
         this.dataSource.data = data.sheets;
-        this.dataSource.sort = this.sort;
       }
     }, (err: any) => {
       this.errorService.show();
     });
+  }
+
+  public modifyConcert() {
+    this.router.navigateByUrl(`/concerts/steps/${this.concertInfos.id}`);
   }
 
   public openDeleteDialog() {
@@ -72,7 +80,7 @@ export class ConcertDetailComponent implements OnInit {
 
     dialog.afterClosed().subscribe((isConfirmed) => {
       if (isConfirmed) {
-        this.service.deleteConcert(this.concertId).subscribe(() => {
+        this.service.deleteConcert(this.concertInfos.id).subscribe(() => {
           this.router.navigateByUrl("/concerts");
         }, (err: any) => {
           this.snackbar.openFromComponent(ErrorSnackbarComponent, { duration: 3000 });

@@ -33,7 +33,10 @@ export class ConcertsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.title = "Concerts";
-    this.canAddConcerts = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);
+    this.canAddConcerts = false;
+
+    // TODO_V2
+    /*this.canAddConcerts = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);*/
 
     // Sorting starts with descending dates
     this.sort.sort(({ id: "date", start: "desc" }) as MatSortable)
