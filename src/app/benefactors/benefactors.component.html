@@ -29,9 +29,9 @@
       <!-- Phone column -->
       <ng-container matColumnDef="phone">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Téléphone</mat-header-cell>
-        <mat-cell id="phoneTableCell" *matCellDef="let element">
-          <span class="phone-number">{{element.phone}}</span>
-          <span class="phone-number">{{element.mobile}}</span>
+        <mat-cell id="multiLineCell" *matCellDef="let element">
+          <span class="line-cell">{{element.phone}}</span>
+          <span class="line-cell">{{element.mobile}}</span>
         </mat-cell>
       </ng-container>
 

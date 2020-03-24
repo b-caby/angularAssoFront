@@ -1,9 +1,18 @@
 @import "./variables.scss";
 
+.mat-row {
+  cursor: pointer;
+  border-bottom-color: rgba(0,0,0,.4);
+}
+
 .mat-row:nth-child(even), .mat-list-option:nth-child(even){
   background-color: $tableFirstColor;
   &:hover{
     background-color: $tableHoverColor;
+  }
+  &.no-hover{
+    cursor: auto;
+    background-color: $tableFirstColor;
   }
 }
 
@@ -11,6 +20,10 @@
   background-color: $tableSecondColor;
   &:hover{
     background-color: $tableHoverColor;
+  }
+  &.no-hover{
+    cursor: auto;
+    background-color: $tableSecondColor;
   }
 }
 
@@ -25,11 +38,6 @@
 
 .mat-header-row {
   border-bottom-color: black;
-}
-
-.mat-row {
-  cursor: pointer;
-  border-bottom-color: rgba(0,0,0,.4);
 }
 
 .mat-row:last-child {
@@ -63,18 +71,22 @@ button.mat-sort-header-button {
   flex: 0 0 10%;
 }
 
+.mat-column-amount {
+  flex: 0 0 25%;
+}
+
 .mat-paginator {
   background: $backgroundColor;
   color: #000000
 }
 
-#phoneTableCell {
+#multiLineCell {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 }
 
-.phone-number {
+.line-cell {
   padding: 1px 0px;
 }

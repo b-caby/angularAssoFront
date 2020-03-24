@@ -65,7 +65,6 @@ export class BenefactorsComponent implements OnInit, OnDestroy {
   private getAllBenefactors() {
     this.service.getAllBenefactors().subscribe((data: Benefactor[]) => {
       this.dataSource.data = data;
-      console.log(data[0]);
     }, (err: any) => {
       this.errorService.show();
     });
@@ -77,7 +76,7 @@ export class BenefactorsComponent implements OnInit, OnDestroy {
 
   private setupTable() {
     this.displayedColumns = ["name", "firstname", "phone", "email"];
-    if (this.currentScreenWidth === "xs" || this.currentScreenWidth === "ms") {
+    if (this.currentScreenWidth === "xs") {
       this.displayedColumns = ["name", "firstname"];
     }
     if (this.currentScreenWidth === "sm") {

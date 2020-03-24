@@ -1,3 +1,5 @@
+import { Gift } from "./gift";
+
 export class Benefactor {
     public id: number;
     public honorifics: string;
@@ -9,4 +11,5 @@ export class Benefactor {
     public phone: string;
     public mobile: string;
     public email: string;
+    public gifts: Gift[];
 }

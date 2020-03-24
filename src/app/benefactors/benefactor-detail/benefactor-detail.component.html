@@ -16,6 +16,10 @@
     <mat-card-content>
       <div class="grid-container">
         <p class="grid-row">
+          <span class="grid-cell info-label">Civilité</span>
+          <span class="grid-cell">{{benefactorInfos.honorifics}}</span>
+        </p>
+        <p class="grid-row">
           <span class="grid-cell info-label">Nom</span>
           <span class="grid-cell">{{benefactorInfos.name}}</span>
         </p>
@@ -24,12 +28,12 @@
           <span class="grid-cell">{{benefactorInfos.firstname}}</span>
         </p>
         <p class="grid-row">
-          <span class="grid-cell info-label">Date de naissance</span>
-          <span class="grid-cell">{{benefactorInfos.birthdate | date: "dd/MM/yyyy"}}</span>
-        </p>
-        <p class="grid-row">
           <span class="grid-cell info-label">Adresse</span>
           <span class="grid-cell">{{benefactorInfos.adress}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Cplt adress</span>
+          <span class="grid-cell">{{benefactorInfos.adress2}}</span>
         </p>
         <p class="grid-row">
           <span class="grid-cell info-label">Code postal</span>
@@ -39,6 +43,19 @@
           <span class="grid-cell info-label">Ville</span>
           <span class="grid-cell">{{benefactorInfos.city}}</span>
         </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card mat-elevation-z2">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>phone</mat-icon>
+      </div>
+      <mat-card-title>Contact</mat-card-title>
+    </mat-card-header>
+    <hr>
+    <mat-card-content>
+      <div class="grid-container">
         <p class="grid-row">
           <span class="grid-cell info-label">Email</span>
           <span class="grid-cell">{{benefactorInfos.email}}</span>
@@ -51,35 +68,62 @@
           <span class="grid-cell info-label">Portable</span>
           <span class="grid-cell">{{benefactorInfos.mobile}}</span>
         </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Détails</span>
+          <span class="grid-cell">{{benefactorInfos.misc}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Date de vérification</span>
+          <span class="grid-cell">{{benefactorInfos.verifiedDate | date: "dd/MM/yy"}}</span>
+        </p>
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card class="card mat-elevation-z2">
+</div>
+
+<div class="content">
+  <!-- Concert info card -->
+  <mat-card class="card mat-elevation-z2" [ngClass]='hasGifts ? "visible": "hidden"'>
     <mat-card-header>
       <div mat-card-avatar>
-        <mat-icon>music_note</mat-icon>
+        <mat-icon>event_note</mat-icon>
       </div>
-      <mat-card-title>Instrument</mat-card-title>
+      <mat-card-title>Concerts</mat-card-title>
     </mat-card-header>
     <hr>
     <mat-card-content>
-      <div class="grid-container">
-        <p class="grid-row">
-          <span class="grid-cell info-label">Instrument</span>
-          <span class="grid-cell">{{benefactorInfos.instrument}}</span>
-        </p>
-        <p class="grid-row">
-          <span class="grid-cell info-label">Type</span>
-          <span class="grid-cell">{{benefactorInfos.type}}</span>
-        </p>
-        <p class="grid-row">
-          <span class="grid-cell info-label">Marque</span>
-          <span class="grid-cell">{{benefactorInfos.brand}}</span>
-        </p>
-        <p class="grid-row">
-          <span class="grid-cell info-label">Numéro de série</span>
-          <span class="grid-cell">{{benefactorInfos.serialNumber}}</span>
-        </p>
+      <div class="rounded mat-elevation-z1">
+        <mat-table [dataSource]="dataSource" matSort>
+          <!-- Date column -->
+          <ng-container matColumnDef="giftDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.date | date: "dd/MM/yy"}}</mat-cell>
+          </ng-container>
+
+          <!-- Mode column -->
+          <ng-container matColumnDef="mode">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Mode</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.mode}}</mat-cell>
+          </ng-container>
+
+          <!-- Bank column -->
+          <ng-container matColumnDef="bank">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Banque</mat-header-cell>
+            <mat-cell id="multiLineCell" *matCellDef="let element">
+              <span class="line-cell">{{element.bank}}</span>
+              <span *ngIf="element.number" class="line-cell">№ {{element.number}}</span>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Amount column -->
+          <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Montant</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.amount}}</mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row class="no-hover" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
       </div>
     </mat-card-content>
   </mat-card>
