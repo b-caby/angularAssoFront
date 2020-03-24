@@ -36,24 +36,24 @@ import { AppComponent }           from "./app.component";
 import { AuthComponent }          from "./auth/auth.component";
 import { AuthErrorComponent }     from "./auth/auth-error.component";
 
-import { HomeComponent }          from "./home/home.component";
-import { SheetsComponent }        from "./sheets/sheets.component";
-import { ConcertsComponent }      from "./concerts/concerts.component";
-import { SheetDetailComponent }   from "./sheets/sheet-detail/sheet-detail.component";
-import { ConcertDetailComponent } from "./concerts/concert-detail/concert-detail.component";
-import { SheetStepsComponent }    from "./sheets/sheet-steps/sheet-steps.component";
-import { ShellComponent }         from "./shell/shell.component";
-import { LoaderComponent }        from "./components/loader/loader.component";
-import { DeleteDialogComponent }  from "./components/delete-dialog/delete-dialog.component";
-import { ConcertStepsComponent }  from "./concerts/concert-steps/concert-steps.component";
-import { ErrorHandlerComponent }  from "./components/error-handler/error-handler.component";
-import { ApiInterceptor }         from "./shared/apiInterceptor";
-import { PaginatorTranslation }   from "./shared/paginatorTranslation";
-import { ErrorInterceptor }       from "./shared/errorInterceptor";
-import { ErrorSnackbarComponent } from "./components/error-snackbar/error-snackbar.component";
-import { AccountComponent }       from "./users/account/account.component";
-import { BenefactorsComponent }   from "./benefactors/benefactors.component";
-import { BenefactorDetailComponent } from './benefactors/benefactor-detail/benefactor-detail.component';
+import { HomeComponent }             from "./home/home.component";
+import { SheetsComponent }           from "./sheets/sheets.component";
+import { ConcertsComponent }         from "./concerts/concerts.component";
+import { SheetDetailComponent }      from "./sheets/sheet-detail/sheet-detail.component";
+import { ConcertDetailComponent }    from "./concerts/concert-detail/concert-detail.component";
+import { SheetStepsComponent }       from "./sheets/sheet-steps/sheet-steps.component";
+import { ShellComponent }            from "./shell/shell.component";
+import { LoaderComponent }           from "./components/loader/loader.component";
+import { DeleteDialogComponent }     from "./components/delete-dialog/delete-dialog.component";
+import { ConcertStepsComponent }     from "./concerts/concert-steps/concert-steps.component";
+import { ErrorHandlerComponent }     from "./components/error-handler/error-handler.component";
+import { ApiInterceptor }            from "./shared/apiInterceptor";
+import { PaginatorTranslation }      from "./shared/paginatorTranslation";
+import { ErrorInterceptor }          from "./shared/errorInterceptor";
+import { ErrorSnackbarComponent }    from "./components/error-snackbar/error-snackbar.component";
+import { AccountComponent }          from "./users/account/account.component";
+import { BenefactorsComponent }      from "./benefactors/benefactors.component";
+import { BenefactorDetailComponent } from "./benefactors/benefactor-detail/benefactor-detail.component";
 
 const MY_FORMATS = {
   parse: {

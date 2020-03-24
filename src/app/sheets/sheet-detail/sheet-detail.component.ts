@@ -52,10 +52,10 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
     this.canDelete = this.auth.user.role === Roles.ADMIN;*/
 
     // Sorting starts with descending dates
-    this.sort.sort(({ id: "date", start: "desc"}) as MatSortable)
+    this.sort.sort(({ id: "date", start: "desc"}) as MatSortable);
     this.dataSource = new MatTableDataSource();
     this.dataSource.sort = this.sort;
-    
+
     // Gets and sets the size of the current screen
     this.OnScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {
@@ -91,8 +91,8 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  public modifySheet(){
-    this.router.navigateByUrl(`sheets/steps/${this.sheetInfos.id}`)
+  public modifySheet() {
+    this.router.navigateByUrl(`sheets/steps/${this.sheetInfos.id}`);
   }
 
   public openDeleteDialog() {

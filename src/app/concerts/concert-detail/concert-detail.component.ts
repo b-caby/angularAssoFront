@@ -48,7 +48,7 @@ export class ConcertDetailComponent implements OnInit {
 
     // Sorting starts with ascending title
     // Sorting is case-insensitive
-    this.sort.sort(({ id: "title", start: "asc"}) as MatSortable)
+    this.sort.sort(({ id: "title", start: "asc"}) as MatSortable);
     this.dataSource = new MatTableDataSource();
     this.dataSource.sort = this.sort;
     this.dataSource.sortingDataAccessor = (data, sortHeaderId) => data[sortHeaderId].toLocaleLowerCase();

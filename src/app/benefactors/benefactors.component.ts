@@ -40,7 +40,7 @@ export class BenefactorsComponent implements OnInit, OnDestroy {
 
     // Sorting starts with ascending names
     // Sorting is case-insensitive
-    this.sort.sort(({ id: "name", start: "asc"}) as MatSortable)
+    this.sort.sort(({ id: "name", start: "asc"}) as MatSortable);
     this.dataSource = new MatTableDataSource();
     this.dataSource.sort = this.sort;
     this.dataSource.sortingDataAccessor = (data, sortHeaderId) => data[sortHeaderId].toLocaleLowerCase();

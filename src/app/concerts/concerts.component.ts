@@ -39,11 +39,11 @@ export class ConcertsComponent implements OnInit, OnDestroy {
     /*this.canAddConcerts = (this.auth.user.role === Roles.ADMIN || this.auth.user.role === Roles.OFFICER);*/
 
     // Sorting starts with descending dates
-    this.sort.sort(({ id: "date", start: "desc" }) as MatSortable)
+    this.sort.sort(({ id: "date", start: "desc" }) as MatSortable);
     this.dataSource = new MatTableDataSource();
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    
+
     // Gets and sets the size of the current screen
     this.onScreenSizeChanged = this.mediaObserver.asObservable().subscribe((change: MediaChange[]) => {
       if (change[0].mqAlias !== this.currentScreenWidth) {

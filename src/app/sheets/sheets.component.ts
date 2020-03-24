@@ -79,8 +79,8 @@ export class SheetsComponent implements OnInit, OnDestroy {
     if (this.currentScreenWidth === "xs" || this.currentScreenWidth === "ms") {
       this.displayedColumns = ["title", "author"];
     }
-    if (this.currentScreenWidth === "sm"){
-      this.displayedColumns = ["title", "author", "composer"]
+    if (this.currentScreenWidth === "sm") {
+      this.displayedColumns = ["title", "author", "composer"];
     }
   }
 }
