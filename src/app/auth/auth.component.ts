@@ -10,7 +10,7 @@ import { ErrorSnackbarComponent } from "../components/error-snackbar/error-snack
 @Component({
   selector: "app-auth",
   templateUrl: "./auth.component.html",
-  styleUrls: ["./auth.component.scss"]
+  styleUrls: ["../../../src/assets/css/auth.scss"]
 })
 export class AuthComponent implements OnInit {
   public authFormGroup: FormGroup;

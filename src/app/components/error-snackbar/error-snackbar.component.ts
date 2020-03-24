@@ -2,7 +2,11 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "app-error-snackbar",
-  templateUrl: "./error-snackbar.component.html"
+  template: `
+    <span class="error-snackbar" style="font-family: 'Poppins', sans-serif">
+      {{errorMessage}} 
+    </span>
+  `
 })
 export class ErrorSnackbarComponent implements OnInit {
   public errorMessage: string;

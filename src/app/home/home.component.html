@@ -1,4 +1,3 @@
-<app-loader></app-loader>
 <app-error-handler></app-error-handler>
 <div class="header">
   <h1>{{title}}</h1>
@@ -6,6 +5,7 @@
 
 <div class="content">
   <mat-card class="mat-elevation-z2">
+    <app-loader></app-loader>
     <mat-list #sheetList>
       <mat-list-item *ngFor="let attendance of attendances; let index = index">
         <span class="event-date" matLine>{{attendance.date | date: "EEE dd MMMM"}}</span>
@@ -13,19 +13,22 @@
         <p class="event-text" matLine>{{attendance.location}}</p>
         <br matLine>
         <mat-form-field matLine>
-          <textarea matInput placeholder="Commentaire" value="{{attendance.comment}}"
-            (input)="modifyComment()"></textarea>
+          <textarea readonly matInput placeholder="Commentaire" value="{{attendance.comment}}"></textarea>
+          <!--<textarea matInput placeholder="Commentaire" value="{{attendance.comment}}" (input)="modifyComment()"></textarea>-->
         </mat-form-field>
 
         <ul class="attendance-input-list">
           <li id="yes" [ngClass]='{"active": isAttendanceYes(attendance) }' class="attendance-input">
-            <input class="radiobtn" type="radio" name="attendance-{{index}}" (click)="modifyAttendance(attendance, 1)">
+            <input class="radiobtn" type="radio" name="attendance-{{index}}">
+            <!--<input class="radiobtn" type="radio" name="attendance-{{index}}" (click)="modifyAttendance(attendance, 1)">-->
           </li>
           <li id="maybe" [ngClass]='{"active": isAttendanceMaybe(attendance) }' class="attendance-input">
-            <input class="radiobtn" type="radio" name="attendance-{{index}}" (click)="modifyAttendance(attendance, 3)">
+            <input class="radiobtn" type="radio" name="attendance-{{index}}">
+            <!--<input class="radiobtn" type="radio" name="attendance-{{index}}" (click)="modifyAttendance(attendance, 3)">-->
           </li>
           <li id="no" [ngClass]='{"active": isAttendanceNo(attendance) }' class="attendance-input">
-            <input class="radiobtn" type="radio" name="attendance-{{index}}" (click)="modifyAttendance(attendance, 2)">
+            <input class="radiobtn" type="radio" name="attendance-{{index}}">
+            <!--<input class="radiobtn" type="radio" name="attendance-{{index}}" (click)="modifyAttendance(attendance, 2)">-->
           </li>
         </ul>
       </mat-list-item>

@@ -10,6 +10,7 @@ import { ErrorsService } from "../shared/services/errorsService";
   styleUrls: ["../../../src/assets/css/home.scss"]
 })
 export class HomeComponent implements OnInit {
+  
   public title: string;
   public attendances: Attendance[];
   public isEdited: boolean;
