@@ -15,6 +15,8 @@ import { Roles }                     from "./shared/enums/roles";
 import { AccountComponent }          from "./users/account/account.component";
 import { BenefactorsComponent }      from "./benefactors/benefactors.component";
 import { BenefactorDetailComponent } from "./benefactors/benefactor-detail/benefactor-detail.component";
+import { UsersComponent }            from "./users/users.component";
+import { UserDetailComponent }       from "./users/user-detail/user-detail.component";
 
 const routes: Routes = [
   { path: "", component: ShellComponent, children: [
@@ -72,6 +74,16 @@ const routes: Routes = [
     {
       path: "benefactors/:id",
       component: BenefactorDetailComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: "users",
+      component: UsersComponent,
+      canActivate: [AuthGuard], data: { roles: [Roles.OFFICER, Roles.ADMIN] }
+    },
+    {
+      path: "users/:id",
+      component: UserDetailComponent,
       canActivate: [AuthGuard]
     },
     {

@@ -20,4 +20,12 @@ export class UserService {
   public getAttendance() {
     return this.http.get(`${this.url}/api/users/attendance`);
   }
+
+  public getAllUsers() {
+    return this.http.get(`${this.url}/api/users`);
+  }
+
+  public getuUserDetails(id: number) {
+    return this.http.get(`${this.url}/api/users/${id}`)
+  }
 }

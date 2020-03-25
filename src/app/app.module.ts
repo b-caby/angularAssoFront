@@ -54,6 +54,8 @@ import { ErrorSnackbarComponent }    from "./components/error-snackbar/error-sna
 import { AccountComponent }          from "./users/account/account.component";
 import { BenefactorsComponent }      from "./benefactors/benefactors.component";
 import { BenefactorDetailComponent } from "./benefactors/benefactor-detail/benefactor-detail.component";
+import { UsersComponent }            from "./users/users.component";
+import { UserDetailComponent }       from "./users/user-detail/user-detail.component";
 
 const MY_FORMATS = {
   parse: {
@@ -88,7 +90,9 @@ registerLocaleData(localeFr);
     ErrorSnackbarComponent,
     AccountComponent,
     BenefactorsComponent,
-    BenefactorDetailComponent
+    BenefactorDetailComponent,
+    UsersComponent,
+    UserDetailComponent
   ],
   entryComponents: [
     AuthErrorComponent,

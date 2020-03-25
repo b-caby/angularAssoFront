@@ -69,7 +69,6 @@ export class BenefactorDetailComponent implements OnInit, OnDestroy {
   private getBenefactorDetails(id: number) {
     this.service.getBenefactorDetails(id).subscribe((data: Benefactor) => {
       this.benefactorInfos = data;
-      console.log(data);
       if (data.gifts) {
         this.hasGifts = true;
         this.dataSource.data = data.gifts;
@@ -80,7 +79,6 @@ export class BenefactorDetailComponent implements OnInit, OnDestroy {
   }
 
   private setupTable() {
-    console.log(this.currentScreenWidth);
     this.displayedColumns = ["giftDate", "mode", "bank", "amount"];
     if (this.currentScreenWidth === "xs") {
       this.displayedColumns = ["giftDate", "mode", "amount"];

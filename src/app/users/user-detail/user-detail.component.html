@@ -1,0 +1,85 @@
+<app-error-handler></app-error-handler>
+<div class="header">
+  <h1>{{title}}</h1>
+</div>
+
+<div class="content">
+  <mat-card class="card mat-2">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>apartment</mat-icon>
+      </div>
+      <mat-card-title>Coordonnées</mat-card-title>
+    </mat-card-header>
+    <hr>
+    <mat-card-content>
+      <div class="grid-container">
+        <p class="grid-row">
+          <span class="grid-cell info-label">Nom</span>
+          <span class="grid-cell">{{userInfos.name}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Prénom</span>
+          <span class="grid-cell">{{userInfos.firstname}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Date de naissance</span>
+          <span class="grid-cell">{{userInfos.birthdate | date: "dd/MM/yyyy"}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Adresse</span>
+          <span class="grid-cell">{{userInfos.adress}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Code postal</span>
+          <span class="grid-cell">{{userInfos.postalCode}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Ville</span>
+          <span class="grid-cell">{{userInfos.city}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Email</span>
+          <span class="grid-cell">{{userInfos.email}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Téléphone</span>
+          <span class="grid-cell">{{userInfos.phone}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Portable</span>
+          <span class="grid-cell">{{userInfos.mobile}}</span>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card mat-elevation-z2">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>music_note</mat-icon>
+      </div>
+      <mat-card-title>Instrument</mat-card-title>
+    </mat-card-header>
+    <hr>
+    <mat-card-content>
+      <div class="grid-container">
+        <p class="grid-row">
+          <span class="grid-cell info-label">Instrument</span>
+          <span class="grid-cell">{{userInfos.instrument}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Type</span>
+          <span class="grid-cell">{{userInfos.type}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Marque</span>
+          <span class="grid-cell">{{userInfos.brand}}</span>
+        </p>
+        <p class="grid-row">
+          <span class="grid-cell info-label">Numéro de série</span>
+          <span class="grid-cell">{{userInfos.serialNumber}}</span>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
