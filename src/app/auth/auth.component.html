@@ -1,6 +1,6 @@
 <div id="auth-container">
   <img id="logo" src="../assets/img/logo.png" height="90" width="90">
-  <form [formGroup]="authFormGroup" (ngSubmit)="onSubmit()" class="container mat-elevation-z6">
+  <form [formGroup]="authFormGroup" (ngSubmit)="onSubmit()" class="container mat-elevation-z2">
     <div>
       <p>Login</p>
       <input type="text" placeholder="Login" formControlName="login" required autocomplete="username">
@@ -11,7 +11,7 @@
         autocomplete="current-password">
     </div>
     <div class="button">
-      <button [disabled]="authFormGroup.invalid" class="form-login" type="submit">Se connecter</button>
+      <button [disabled]="authFormGroup.invalid" class="submit-button" type="submit">Se connecter</button>
     </div>
   </form>
 </div>

@@ -5,6 +5,7 @@ import { Router }                                  from "@angular/router";
 
 import { AuthService } from "../shared/services/authService";
 import { Credentials } from "../shared/models/credentials";
+import { Roles }       from "../shared/enums/roles";
 
 @Component({
   selector: "app-shell",
@@ -19,12 +20,14 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   public menuButtonStyle: string;
   public user: Credentials;
+  public isOfficerOrAdmin: boolean;
 
   constructor(private auth: AuthService,
               private router: Router) { }
 
   ngOnInit() {
     this.user = this.auth.user;
+    this.isOfficerOrAdmin = this.user.role === Roles.OFFICER || this.user.role === Roles.ADMIN;
 
     // Sidenav behaviour management
     this.onOpened = this.sidenav.openedStart.subscribe(() => {

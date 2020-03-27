@@ -48,11 +48,11 @@
         <mat-icon>event_note</mat-icon>
         Concerts
       </a>
-      <a routerLink="/users" routerLinkActive="active" mat-button>
+      <a *ngIf="isOfficerOrAdmin" routerLink="/users" routerLinkActive="active" mat-button>
         <mat-icon>people_alt</mat-icon>
         Musiciens
       </a>
-      <a routerLink="/benefactors" routerLinkActive="active" mat-button>
+      <a *ngIf="isOfficerOrAdmin" routerLink="/benefactors" routerLinkActive="active" mat-button>
         <mat-icon>euro</mat-icon>
         Bienfaiteurs
       </a>
@@ -76,11 +76,11 @@
         <mat-icon>event_note</mat-icon>
         Concerts
       </a>
-      <a routerLink="/users" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
+      <a *ngIf="isOfficerOrAdmin" routerLink="/users" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
         <mat-icon>people_alt</mat-icon>
         Musiciens
       </a>
-      <a routerLink="/benefactors" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
+      <a *ngIf="isOfficerOrAdmin" routerLink="/benefactors" routerLinkActive="active" (click)="sidenav.toggle()" mat-list-item>
         <mat-icon>euro</mat-icon>
         Bienfaiteurs
       </a>

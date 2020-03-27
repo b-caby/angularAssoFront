@@ -8,7 +8,7 @@ p {
 
 .container {
   background: #ffffff;
-  margin: 20px 0px;
+  margin: 20px;
 }
 
 #auth-container {
@@ -18,15 +18,9 @@ p {
   align-items: center
 }
 
-:host {
-  display: flex;
-  justify-content: center;
-  margin: 25px 0px;
-}
-
 form {
-  padding: 30px;
-  border-radius: 10px;
+  padding: 25px;
+  border-radius: 20px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -50,15 +44,7 @@ input {
   }
 }
 
-::ng-deep .mat-form-field-wrapper {
-  padding: 0px;
-}
-
-::ng-deep .mat-form-field-infix {
-  width: 100% !important;
-}
-
-.form-login {
+.submit-button {
   font-family: "Poppins", sans-serif;
   border-radius: 10px;
   padding: 10px;
