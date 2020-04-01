@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 .content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -6,7 +8,7 @@
 
 .mat-card-header {
     font-family: "Poppins", sans-serif;
-    color: #200f46;
+    color: $primaryColor;
     height: 30px;
 }
 
@@ -27,4 +29,16 @@
 
 .mat-card {
     border: 1px solid #000000;
+}
+
+.header-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.mat-mini-fab {
+    margin: 24px 20px 24px 0px;
+    background-color: $primaryColor;
+    box-shadow: none;
 }

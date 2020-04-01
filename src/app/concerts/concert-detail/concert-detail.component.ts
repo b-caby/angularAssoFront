@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, OnDestroy }                from "@angular
 import { MatTableDataSource, MatSort, MatSnackBar, MatSortable }  from "@angular/material";
 import { MatDialog }                                              from "@angular/material/dialog";
 import { ActivatedRoute, Router }                                 from "@angular/router";
+import { Location }                                               from "@angular/common";
 
 import { Concert }                from "src/app/shared/models/concert";
 import { ConcertService }         from "src/app/shared/services/concertService";
@@ -35,7 +36,8 @@ export class ConcertDetailComponent implements OnInit {
               private errorService: ErrorsService,
               private router: Router,
               private snackbar: MatSnackBar,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private location: Location) { }
 
   ngOnInit() {
     this.title = "Détail concert";
@@ -67,6 +69,10 @@ export class ConcertDetailComponent implements OnInit {
     }, (err: any) => {
       this.errorService.show();
     });
+  }
+
+  public clickPrevious() {
+    this.location.back();
   }
 
   public modifyConcert() {

@@ -2,6 +2,7 @@ import { MatTableDataSource, MatSort, MatPaginator, MatSortable } from "@angular
 import { Component, OnInit, ViewChild, OnDestroy }                from "@angular/core";
 import { MediaObserver, MediaChange }                             from "@angular/flex-layout";
 import { Subscription }                                           from "rxjs";
+import { Location }                                               from "@angular/common";
 
 import { Benefactor }        from "../shared/models/benefactor";
 import { ErrorsService }     from "../shared/services/errorsService";
@@ -29,7 +30,8 @@ export class BenefactorsComponent implements OnInit, OnDestroy {
   constructor(private service: BenefactorService,
               private errorService: ErrorsService,
               private mediaObserver: MediaObserver,
-              private auth: AuthService) {}
+              private auth: AuthService,
+              private location: Location) {}
 
   ngOnInit() {
     this.title = "Bienfaiteurs";
@@ -74,6 +76,10 @@ export class BenefactorsComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filter;
   }
 
+  public clickPrevious() {
+    this.location.back();
+  }
+ 
   private setupTable() {
     this.displayedColumns = ["name", "firstname", "phone", "email"];
     if (this.currentScreenWidth === "xs") {

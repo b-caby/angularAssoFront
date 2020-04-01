@@ -4,6 +4,7 @@ import { MatDialog }                                             from "@angular/
 import { ActivatedRoute, Router }                                from "@angular/router";
 import { MediaObserver, MediaChange }                            from "@angular/flex-layout";
 import { Subscription }                                          from "rxjs";
+import { Location }                                              from "@angular/common";
 
 import { DeleteDialogComponent }  from "src/app/components/delete-dialog/delete-dialog.component";
 import { Sheet }                  from "src/app/shared/models/sheet";
@@ -41,7 +42,8 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
               private errorService: ErrorsService,
               private snackbar: MatSnackBar,
               private router: Router,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private location: Location) { }
 
   ngOnInit() {
     this.title = "Détails partition";
@@ -70,6 +72,10 @@ export class SheetDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.OnScreenSizeChanged.unsubscribe();
+  }
+
+  public clickPrevious() {
+    this.location.back();
   }
 
   private getSheetDetails(id: number) {

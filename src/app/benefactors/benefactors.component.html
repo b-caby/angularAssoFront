@@ -1,7 +1,11 @@
 <app-error-handler></app-error-handler>
 <div class="header">
-  <h1>{{title}}</h1>
-
+  <div class=header-title>
+    <a (click)="clickPrevious()" mat-mini-fab>
+      <mat-icon>keyboard_backspace</mat-icon>
+    </a>
+    <h1>{{title}}</h1>
+  </div>
   <div class="header-buttons"></div>
 </div>
 

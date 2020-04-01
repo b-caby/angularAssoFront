@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute }    from '@angular/router';
+import { Location }          from "@angular/common";
 
-import { User } from 'src/app/shared/models/user';
-import { UserService } from 'src/app/shared/services/userService';
+import { User }          from 'src/app/shared/models/user';
+import { UserService }   from 'src/app/shared/services/userService';
 import { ErrorsService } from 'src/app/shared/services/errorsService';
-import { AuthService } from 'src/app/shared/services/authService';
+import { AuthService }   from 'src/app/shared/services/authService';
 
 @Component({
   selector: "app-user-detail",
@@ -22,7 +23,8 @@ export class UserDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private service: UserService,
               private errorService: ErrorsService,
-              private auth: AuthService) {}
+              private auth: AuthService,
+              private location: Location) {}
 
   ngOnInit() {
     this.title = "Détails musicien";
@@ -34,6 +36,10 @@ export class UserDetailComponent implements OnInit {
 
     // Call to the API
     this.getUserDetails(this.route.snapshot.params.id);
+  }
+
+  public clickPrevious() {
+    this.location.back();
   }
 
   private getUserDetails(id: number) {
