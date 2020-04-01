@@ -69,10 +69,6 @@ export class UsersComponent implements OnInit, OnDestroy {
     });
   }
 
-  public applyFilter(filter: string) {
-    this.dataSource.filter = filter;
-  }
-
   private setupTable() {
     this.displayedColumns = ["name", "firstname", "phone", "email"];
     if (this.currentScreenWidth === "xs") {

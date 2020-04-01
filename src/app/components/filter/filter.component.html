@@ -1,0 +1,8 @@
+<div class="filter">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="filterValue" placeholder="Filtre">
+        <button mat-button *ngIf="filterValue" matSuffix mat-icon-button (click)="filterValue=''; applyFilter('')">
+            <mat-icon>close</mat-icon>
+        </button> 
+    </mat-form-field>
+</div>

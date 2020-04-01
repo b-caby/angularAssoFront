@@ -56,6 +56,7 @@ import { BenefactorsComponent }      from "./benefactors/benefactors.component";
 import { BenefactorDetailComponent } from "./benefactors/benefactor-detail/benefactor-detail.component";
 import { UsersComponent }            from "./users/users.component";
 import { UserDetailComponent }       from "./users/user-detail/user-detail.component";
+import { FilterComponent }           from "./components/filter/filter.component";
 
 const MY_FORMATS = {
   parse: {
@@ -92,7 +93,8 @@ registerLocaleData(localeFr);
     BenefactorsComponent,
     BenefactorDetailComponent,
     UsersComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    FilterComponent
   ],
   entryComponents: [
     AuthErrorComponent,

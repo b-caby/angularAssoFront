@@ -68,10 +68,6 @@ export class ConcertsComponent implements OnInit, OnDestroy {
     });
   }
 
-  public applyFilter(filter: string) {
-    this.dataSource.filter = filter;
-  }
-
   private setupTable() {
     this.displayedColumns = ["date", "name", "location"];
     if (this.currentScreenWidth === "xs") {

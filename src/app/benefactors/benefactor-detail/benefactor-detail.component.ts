@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, OnDestroy }  from "@angular/core";
 import { ActivatedRoute }                           from "@angular/router";
 import { Subscription }                             from "rxjs";
 import { MediaObserver, MediaChange }               from "@angular/flex-layout";
+import { Location }                                 from "@angular/common";
 
 import { BenefactorService } from "src/app/shared/services/benefactorService";
 import { Benefactor }        from "src/app/shared/models/benefactor";
@@ -35,7 +36,8 @@ export class BenefactorDetailComponent implements OnInit, OnDestroy {
               private service: BenefactorService,
               private errorService: ErrorsService,
               private auth: AuthService,
-              private mediaObserver: MediaObserver) {}
+              private mediaObserver: MediaObserver,
+              private location: Location) {}
 
   ngOnInit() {
     this.title = "Détails bienfaiteur";
@@ -76,6 +78,10 @@ export class BenefactorDetailComponent implements OnInit, OnDestroy {
     }, (err: any) => {
       this.errorService.show();
     });
+  }
+
+  public clickPrevious() {
+    this.location.back();
   }
 
   private setupTable() {

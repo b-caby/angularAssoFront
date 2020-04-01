@@ -9,11 +9,7 @@
   </div>
 </div>
 
-<div class="filter">
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
-  </mat-form-field>
-</div>
+<app-filter [dataSource]="dataSource"></app-filter>
 
 <div class="content">
   <div class="rounded mat-elevation-z2">

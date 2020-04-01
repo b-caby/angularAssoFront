@@ -70,10 +70,6 @@ export class SheetsComponent implements OnInit, OnDestroy {
     });
   }
 
-  public applyFilter(filter: string) {
-    this.dataSource.filter = filter;
-  }
-
   private setupTable() {
     this.displayedColumns = ["title", "author", "composer", "genre"];
     if (this.currentScreenWidth === "xs") {

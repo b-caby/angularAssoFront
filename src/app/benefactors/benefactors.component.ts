@@ -71,14 +71,6 @@ export class BenefactorsComponent implements OnInit, OnDestroy {
       this.errorService.show();
     });
   }
-
-  public applyFilter(filter: string) {
-    this.dataSource.filter = filter;
-  }
-
-  public clickPrevious() {
-    this.location.back();
-  }
  
   private setupTable() {
     this.displayedColumns = ["name", "firstname", "phone", "email"];
