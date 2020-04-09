@@ -17,7 +17,8 @@ export class ApiInterceptor implements HttpInterceptor {
         const token = localStorage.getItem("id_token");
         request = request.clone({
             setHeaders: {
-                Authorization: `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": `application/json; charset=utf-8`
             }
         });
 
